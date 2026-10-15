@@ -1,0 +1,118 @@
+/* MAIN - INDEX.HTML */
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+}
+
+main p {
+    margin: 0;
+}
+
+main .container_main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1240px;
+    max-width: 90%;
+    padding: 0 30px;
+    box-sizing: border-box;
+    gap: 40px;
+}
+
+.container_main .section_conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section_conteudo .titulo_top {
+    font-family: 'Manrope';
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #A3683F;
+}
+
+.section_conteudo .titulo_main {
+    max-width: 600px;
+    font-family: 'Cormorant Garamond';
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--heading);
+}
+
+.titulo_main span {
+    font-style: italic;
+    font-weight: 500;
+    color: #2D5A43;
+}
+
+.section_conteudo .titulo_down {
+    max-width: 460px;
+    font-family: 'Manrope';
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.section_conteudo .botoes_conteudo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.botoes_conteudo a {
+    align-items: center;
+    gap: 10px;
+    font-family: 'Manrope';
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 999px;
+    transition: 0.3s all;
+}
+
+.botoes_conteudo .botao_comecar {
+    background-color: #2D5A43;
+    color: #F7F3EA;
+}
+
+.botoes_conteudo .botao_comecar:hover {
+    background-color: #234836;
+}
+
+.botoes_conteudo .botao_conta {
+    border: 1px solid #DDD3BF;
+    color: var(--heading);
+}
+
+.botoes_conteudo .botao_conta:hover {
+    background-color: #E9E1D0;
+}
+
+.container_main .section_imagem {
+    position: relative;
+    align-items: center;
+}
+
+.section_conteudo img {
+    width: 400px;
+    max-width: 100%;
+    border-radius: 200px 200px 6px 6px;
+}
+
+.section_conteudo .text_salmos {
+    position: absolute;
+    bottom: 15px;
+    font-family: 'Manrope';
+    font-size: 12px;
+    color: var(--muted);
+    background-color: #F7F3EA;
+    padding: 6px 12px;
+    border-radius: 999px;
+}

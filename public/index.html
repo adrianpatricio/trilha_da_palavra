@@ -82,17 +82,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ínicio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ínicio</title>
 
-  <link rel="stylesheet" href="./css/estilo.css">
-  <link rel="stylesheet" href="./css/header.css">
-  <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
     <header id="header" data-pagina="inicio"></header>
     <script src="./js/header.js"></script>
+
+    <main>
+        <section class="container_main">
+            <section class="section_conteudo">
+                <p class="titulo_top">PLANO DE LEITURA BÍBLICO</p>
+
+                <p class="titulo_main">Caminhe pela Bíblia, <br><span>um capítulo</span> de cada vez.</p>
+
+                <p class="titulo_down">Registre cada capítulo que você lê e acompanhe, com calma, a sua jornada de Gênesis a Apocalipse.</p>
+
+                <section class="botoes_conteudo">
+                    <a href="#" class="botao_comecar">
+                        Começar minha trilha
+
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.65625 5.90625H11.1562M5.90625 11.1562L11.1562 5.90625L5.90625 0.65625" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                    <a href="#" class="botao_conta">
+                        Já tenho conta
+                    </a>
+                </section>
+            </section>
+
+            <section class="section_conteudo section_imagem">
+                <img src="./assets/img/img_inicio_claro.png">
+
+                <p class="text_salmos">Salmos 119:105</p>
+            </section>
+        </section>
+    </main>
 
     <footer id="footer" data-pagina="inicio"></footer>
     <script src="./js/footer.js"></script>
