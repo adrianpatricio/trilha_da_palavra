@@ -1,0 +1,131 @@
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 240px;
+    background-color: #ECE5D6;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer .container_footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 1240px;
+    max-width: 90%;
+}
+
+.container_footer .container_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+/* SOBRE */
+
+.container_info .section_sobre {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    gap: 10px;
+}
+
+.section_sobre a {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    font-family: 'Cormorant Garamond';
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--heading);
+    gap: 10px;
+}
+
+.section_sobre .descricao_sobre {
+    font-family: 'Manrope';
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+/* PROJETO E CONTA */
+
+.container_info .section_projeto,
+.container_info .section_conta {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 200px;
+    height: 105px;
+}
+
+.section_projeto p,
+.section_conta p {
+    font-family: 'Manrope';
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #A3683F;
+}
+
+.section_projeto a,
+.section_conta a {
+    font-family: 'Manrope';
+    font-size: 15px;
+    color: var(--muted);
+    transition: 0.3s all;
+}
+
+.section_projeto a:hover,
+.section_conta a:hover {
+    color: var(--heading);
+}
+
+/* DIVISOR */
+
+.container_footer .divisor_footer {
+    width: 100%;
+    border-top: 1px solid #DDD3BF;
+    margin: 30px 0 20px;
+}
+
+/* REFERÊNCIAS */
+
+.container_footer .section_referencias {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.section_referencias p {
+    font-family: 'Manrope';
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.section_referencias .voltar_topo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Manrope';
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--heading);
+    padding: 6px 10px;
+    border-radius: 10px;
+    transition: 0.3s all;
+}
+
+.section_referencias .voltar_topo:hover {
+    background-color: #E2D9C5;
+}
