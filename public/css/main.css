@@ -2,6 +2,7 @@
 
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 60px 0;
@@ -11,7 +12,7 @@ main p {
     margin: 0;
 }
 
-main .container_main {
+main .container_c1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,7 +23,7 @@ main .container_main {
     gap: 40px;
 }
 
-.container_main .section_conteudo {
+.container_c1 .section_conteudo {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -95,7 +96,7 @@ main .container_main {
     background-color: #E9E1D0;
 }
 
-.container_main .section_imagem {
+.container_c1 .section_imagem {
     position: relative;
     align-items: center;
 }
@@ -115,4 +116,53 @@ main .container_main {
     background-color: #F7F3EA;
     padding: 6px 12px;
     border-radius: 999px;
+}
+
+main .container_c2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 1240px;
+    max-width: 90%;
+    padding: 0 30px;
+    box-sizing: border-box;
+    gap: 50px 40px;
+}
+
+.container_c2 .divisor_c1_c2 {
+    width: 100%;
+    border-top: 1px solid #DDD3BF;
+    margin-top: 60px;
+}
+
+.container_c2 .section_cadastro,
+.container_c2 .section_leu,
+.container_c2 .section_caminho {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.container_c2 svg {
+    padding: 13px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    background-color: #E2E6D3;
+    color: #2D5A43;
+}
+
+.container_c2 .title {
+    font-family: 'Manrope';
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--heading);
+}
+
+.container_c2 .subtitle {
+    max-width: 360px;
+    font-family: 'Manrope';
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted);
 }
