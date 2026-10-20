@@ -1,45 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ínicio</title>
 
-  <title>AquaTech | Cadastro</title>
-
-  <script src="./js/sessao.js"></script>
-
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
 </head>
+<body>
+    <header id="header" data-pagina="inicio"></header>
+    <script src="./js/header.js"></script>
 
-<body onload="listar()">
-  <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!--header fim-->
-
-  <div class="login">
+  <!-- <div class="login">
     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
@@ -49,10 +23,8 @@
       <div class="card card-cadastro">
         <h2>Bem-vindo!</h2>
         <div class="formulario">
-          <!--
                          Para inserir mais um campo, copie uma das inputs abaixo.
                          Assim que inserir vá para o script abaixo.
-                     -->
           <div class="campo">
             <span>Código de ativação:</span>
             <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
@@ -86,15 +58,14 @@
         <div id="div_erros_login"></div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023-2026</h4>
-    </div>
-  </div>
-  <!--footer fim-->
+    <section class="section_login">
+        
+    </section>
+
+    <footer id="footer" data-pagina="inicio"></footer>
+    <script src="./js/footer.js"></script>
 </body>
 
 </html>
