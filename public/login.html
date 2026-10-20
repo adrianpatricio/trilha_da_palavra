@@ -15,58 +15,6 @@
     <header id="header" data-pagina="inicio"></header>
     <script src="./js/header.js"></script>
 
-    <!-- <div class="header">
-        <div class="container">
-            <h1 class="titulo">AquaTech</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="index.html">Inicial</a>
-                </li>
-                <li>
-                    <a href="simulador.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="#">Login</a>
-                </li>
-                <li>
-                    <a href="cadastro.html">Cadastro</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-
-    <div class="login">
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
-            </div>
-        </div>
-        <div class="container">
-            <div class="card card-login">
-                <h2>Olá de volta!</h2>
-                <div class="formulario">
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
-                    </div>
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
-                    </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
-                </div>
-
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
-
-                <div id="div_erros_login"></div>
-            </div>
-        </div>
-    </div> -->
-
     <section class="section_login">
         <section class="section_bem-vindo">
             <p class="bem-vindo">
@@ -95,20 +43,17 @@
                 Entre para continuar sua leitura.
             </p>
 
-            <span class="mensagem_erro">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12 8V12M12 16H12.01" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-
-                E-mail ou senha incorretos.
-            </span>
+            <span class="mensagem_erro_entrar"></span>
 
             <label for="ipt_email">E-mail</label>
             <input type="email" id="ipt_email" placeholder="voce@exemplo.com">
 
+            <span class="mensagem_erro_email"></span>
+
             <label for="ipt_senha">Senha</label>
             <input type="password" id="ipt_senha" placeholder="sua senha">
+
+            <span class="mensagem_erro_senha"></span>
 
             <button onclick="entrar()" class="botao_entrar">
                 Entrar
