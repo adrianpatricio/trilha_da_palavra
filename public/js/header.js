@@ -46,7 +46,7 @@ header.innerHTML = `
             <span class="span_divisor"></span>
 
             <li class="li text">
-                <a href="#">
+                <a href="./login.html">
                     Entrar
                 </a>
             </li>
