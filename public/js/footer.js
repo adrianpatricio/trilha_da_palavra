@@ -27,9 +27,9 @@ footer.innerHTML = `
             <section class="section_conta">
                 <p>SUA CONTA</p>
 
-                <a href="#">Entrar</a>
+                <a href="./login.html">Entrar</a>
 
-                <a href="#">Criar conta</a>
+                <a href="./cadastro.html">Criar conta</a>
             </section>
         </section>
 
