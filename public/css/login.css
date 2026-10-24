@@ -136,7 +136,8 @@
     color: var(--heading);
 }
 
-.formulario_login input {
+.formulario_login input,
+.formulario_login select {
     width: 100%;
     height: 50.5px;
     margin: 0;
@@ -157,8 +158,28 @@
     color: var(--muted);
 }
 
-.formulario_login input:focus {
+.formulario_login input:focus,
+.formulario_login select:focus {
     border-color: #2D5A43;
+}
+
+.formulario_login select {
+    cursor: pointer;
+}
+
+/* CADASTRO - CADASTRO.HTML */
+
+.formulario_login .lado_a_lado {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.lado_a_lado .lados {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
 }
 
 .formulario_login .botao_entrar {

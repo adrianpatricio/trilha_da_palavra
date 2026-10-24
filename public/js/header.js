@@ -52,7 +52,7 @@ header.innerHTML = `
             </li>
 
             <li class="login text">
-                <a href="#">
+                <a href="./cadastro.html">
                     Criar conta
                 </a>
             </li>
