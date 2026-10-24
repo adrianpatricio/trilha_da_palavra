@@ -15,59 +15,61 @@
     <header id="header" data-pagina="inicio"></header>
     <script src="./js/header.js"></script>
 
-    <section class="section_login">
-        <section class="section_bem-vindo">
-            <p class="bem-vindo">
-                Bem-vindo de volta
-            </p>
+    <main class="main_login">
+        <section class="section_login">
+            <section class="section_bem-vindo">
+                <p class="bem-vindo">
+                    Bem-vindo de volta
+                </p>
 
-            <p class="num_sete">
-                7
-            </p>
+                <p class="num_sete">
+                    7
+                </p>
 
-            <p class="versiculo_mateus">
-                “Peçam, e será dado a vocês; busquem e vocês encontrarão; batam, e a porta será aberta a vocês.”
-            </p>
+                <p class="versiculo_mateus">
+                    “Peçam, e será dado a vocês; busquem e vocês encontrarão; batam, e a porta será aberta a vocês.”
+                </p>
 
-            <p class="versiculo_legenda">
-                Mateus 7:7 · NVI
-            </p>
+                <p class="versiculo_legenda">
+                    Mateus 7:7 · NVI
+                </p>
+            </section>
+
+            <section class="formulario_login">
+                <h1 class="titulo_entrar">
+                    Entrar
+                </h1>
+
+                <p class="subtitulo_entrar">
+                    Entre para continuar sua leitura.
+                </p>
+
+                <span class="mensagem_erro_entrar"></span>
+
+                <label for="ipt_email">E-mail</label>
+                <input type="email" id="ipt_email" placeholder="voce@exemplo.com">
+
+                <span class="mensagem_erro_email"></span>
+
+                <label for="ipt_senha">Senha</label>
+                <input type="password" id="ipt_senha" placeholder="sua senha">
+
+                <span class="mensagem_erro_senha"></span>
+
+                <button onclick="entrar()" class="botao_entrar">
+                    Entrar
+                
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.65625 5.90625H11.1562M5.90625 11.1562L11.1562 5.90625L5.90625 0.65625" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <p class="direcionar_cadastro">
+                    Ainda não tem conta? <a href="./cadastro.html">Cadastre-se</a> 
+                </p>
+            </section>
         </section>
-
-        <section class="formulario_login">
-            <h1 class="titulo_entrar">
-                Entrar
-            </h1>
-
-            <p class="subtitulo_entrar">
-                Entre para continuar sua leitura.
-            </p>
-
-            <span class="mensagem_erro_entrar"></span>
-
-            <label for="ipt_email">E-mail</label>
-            <input type="email" id="ipt_email" placeholder="voce@exemplo.com">
-
-            <span class="mensagem_erro_email"></span>
-
-            <label for="ipt_senha">Senha</label>
-            <input type="password" id="ipt_senha" placeholder="sua senha">
-
-            <span class="mensagem_erro_senha"></span>
-
-            <button onclick="entrar()" class="botao_entrar">
-                Entrar
-            
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.65625 5.90625H11.1562M5.90625 11.1562L11.1562 5.90625L5.90625 0.65625" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-
-            <p class="direcionar_cadastro">
-                Ainda não tem conta? <a href="./cadastro.html">Cadastre-se</a> 
-            </p>
-        </section>
-    </section>
+    </main>
 
     <footer id="footer" data-pagina="inicio"></footer>
     <script src="./js/footer.js"></script>
