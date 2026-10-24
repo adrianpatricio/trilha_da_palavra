@@ -481,34 +481,119 @@ main .container_c4 {
 
 main .container_c5 {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1240px;
-    max-width: 90%;
-    padding: 70px 30px;
+    flex-direction: column;
+    width: 1400px;
+    max-width: 95%;
+    padding: 80px 30px;
     box-sizing: border-box;
-    gap: 30px;
 }
 
-.container_c5 .img_criador {
+.container_c5 .funcionalidade {
+    font-family: 'Manrope';
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #A3683F;
+}
+
+.container_c5 .titulo_funcio {
+    margin-top: 10px;
+    font-family: 'Cormorant Garamond';
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--heading);
+}
+
+.container_c5 .container_funionalidades {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 45px;
+}
+
+.container_funionalidades .secao_funcionalidades {
+    display: flex;
+    gap: 25px;
+}
+
+.secao_funcionalidades .card_funcionalidades {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+    gap: 18px;
+    padding: 28px;
+    background-color: #F7F3EA;
+    border: 1px solid #DDD3BF;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(29, 51, 40, 0.06);
+}
+
+.card_funcionalidades .icone_card {
+    display: flex;
+    flex-shrink: 0;
+    color: #2D5A43;
+}
+
+.icone_card svg {
+    width: 30px;
+    height: 30px;
+}
+
+.card_funcionalidades .texto_card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.texto_card .titulo_card {
+    font-family: 'Manrope';
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--heading);
+}
+
+.texto_card .descricao_card {
+    font-family: 'Manrope';
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.card_funcionalidades .seta_card {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    color: #2D5A43;
+}
+
+.container_c5 .section_criador {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 90px;
+}
+
+.section_criador .img_criador {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    width: 72px;
-    height: 72px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
     background-color: #E2E6D3;
 }
 
 .img_criador span {
     font-family: 'Cormorant Garamond';
-    font-size: 30px;
+    font-size: 38px;
     font-weight: 500;
     color: var(--heading);
 }
 
-.container_c5 .info_criador {
+.section_criador .info_criador {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -556,4 +641,77 @@ main .container_c5 {
 
 .info_criador .btn_criador:hover {
     color: var(--heading);
+}
+
+.container_c5 .section_comeco {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin-top: 50px;
+    padding: 56px;
+    border-radius: 24px;
+    background-color: #2D5A43;
+}
+
+.section_comeco .div_trilha {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.div_trilha .titulo_comeco {
+    font-family: 'Cormorant Garamond';
+    font-size: 36px;
+    font-weight: 600;
+    color: #F7F3EA;
+}
+
+.titulo_comeco span {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.div_trilha .descricao_comeco {
+    max-width: 540px;
+    font-family: 'Manrope';
+    font-size: 16px;
+    line-height: 1.6;
+    color: #DCE3DA;
+}
+
+.section_comeco .botoes_trilha {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 10px;
+}
+
+.botoes_trilha a {
+    align-items: center;
+    gap: 10px;
+    font-family: 'Manrope';
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 999px;
+    transition: 0.3s all;
+}
+
+.botoes_trilha .botao_criar {
+    background-color: #F7F3EA;
+    color: var(--heading);
+}
+
+.botoes_trilha .botao_criar:hover {
+    background-color: #E9E1D0;
+}
+
+.botoes_trilha .botao_projeto {
+    border: 1px solid rgba(247, 243, 234, 0.4);
+    color: #F7F3EA;
+}
+
+.botoes_trilha .botao_projeto:hover {
+    background-color: rgba(247, 243, 234, 0.1);
 }
