@@ -67,3 +67,7 @@ header.innerHTML = `
 var atual = header.querySelector('[data-link="' + header.dataset.pagina + '"]');
 
 if (atual) atual.classList.add('agora');
+
+window.addEventListener('scroll', function () {
+    header.classList.toggle('rolando', window.scrollY > 0);
+});
