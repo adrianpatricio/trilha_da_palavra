@@ -38,7 +38,7 @@ footer.innerHTML = `
         <section class="section_referencias">
             <p>Projeto Individual · São Paulo Tech School</p>
 
-            <a href="#header" class="voltar_topo">
+            <a href="#top" class="voltar_topo">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.1562 5.90625L5.90625 0.65625L0.65625 5.90625M5.90625 0.65625V11.1562" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
