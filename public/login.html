@@ -73,6 +73,7 @@
 
     <footer id="footer" data-pagina="inicio"></footer>
     <script src="./js/footer.js"></script>
+    <script src="./js/sessao.js"></script>
 
     <script>
         function entrar() {
@@ -125,22 +126,6 @@
                 console.log(erro);
                 mostrarMensagem("mensagem_erro", "Não foi possível conectar ao servidor.");
             });
-        }
-
-        function mostrarMensagem(idSpan, texto) {
-            var span = document.getElementById(idSpan);
-            span.textContent = texto;
-            span.classList.add("ativa");
-        }
-
-        function limparMensagens() {
-            var ids = ["mensagem_erro", "erro_email", "erro_senha"];
-
-            for (var i = 0; i < ids.length; i++) {
-                var span = document.getElementById(ids[i]);
-                span.textContent = "";
-                span.classList.remove("ativa");
-            }
         }
     </script>
 </body>
