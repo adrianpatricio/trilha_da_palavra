@@ -121,6 +121,18 @@
     display: flex;
 }
 
+.formulario_login .mensagem_erro_campo {
+    display: none;
+    margin-top: 6px;
+    font-family: 'Manrope';
+    font-size: 13px;
+    color: #A33B2E;
+}
+
+.formulario_login .mensagem_erro_campo.ativa {
+    display: block;
+}
+
 .mensagem_erro svg {
     width: 16px;
     height: 16px;
