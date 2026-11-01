@@ -44,17 +44,17 @@
                     Entre para continuar sua leitura.
                 </p>
 
-                <span class="mensagem_erro_entrar"></span>
+                <span id="mensagem_erro" class="mensagem_erro"></span>
 
                 <label for="ipt_email">E-mail</label>
                 <input type="email" id="ipt_email" placeholder="voce@exemplo.com">
 
-                <span class="mensagem_erro_email"></span>
+                <span id="erro_email" class="mensagem_erro_campo"></span>
 
                 <label for="ipt_senha">Senha</label>
                 <input type="password" id="ipt_senha" placeholder="sua senha">
 
-                <span class="mensagem_erro_senha"></span>
+                <span id="erro_senha" class="mensagem_erro_campo"></span>
 
                 <button onclick="entrar()" class="botao_entrar">
                     Entrar
@@ -73,79 +73,75 @@
 
     <footer id="footer" data-pagina="inicio"></footer>
     <script src="./js/footer.js"></script>
-</body>
-</html>
 
-<script>
+    <script>
+        function entrar() {
+            var emailVar = document.getElementById("ipt_email").value.trim();
+            var senhaVar = document.getElementById("ipt_senha").value;
 
+            limparMensagens();
 
-    function entrar() {
-        aguardar();
+            var temErro = false;
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+            if (emailVar == "") {
+                mostrarMensagem("erro_email", "Informe seu e-mail.");
+                temErro = true;
             }
 
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+            if (senhaVar == "") {
+                mostrarMensagem("erro_senha", "Informe sua senha.");
+                temErro = true;
+            }
 
-        return false;
-    }
+            if (temErro) {
+                return;
+            }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (json) {
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.TIPO_USUARIO = json.tipo;
 
-</script>
+                        window.location = "index.html";
+                    });
+                } else {
+                    resposta.text().then(function (texto) {
+                        mostrarMensagem("mensagem_erro", texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                mostrarMensagem("mensagem_erro", "Não foi possível conectar ao servidor.");
+            });
+        }
+
+        function mostrarMensagem(idSpan, texto) {
+            var span = document.getElementById(idSpan);
+            span.textContent = texto;
+            span.classList.add("ativa");
+        }
+
+        function limparMensagens() {
+            var ids = ["mensagem_erro", "erro_email", "erro_senha"];
+
+            for (var i = 0; i < ids.length; i++) {
+                var span = document.getElementById(ids[i]);
+                span.textContent = "";
+                span.classList.remove("ativa");
+            }
+        }
+    </script>
+</body>
+</html>
