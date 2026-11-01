@@ -1,55 +1,37 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está indefinida!");
+    if (email == undefined || email.trim() == '') {
+        res.status(400).send('Informe seu e-mail.');
+    } else if (senha == undefined || senha == '') {
+        res.status(400).send('Informe sua senha.');
     } else {
 
-        usuarioModel.autenticar(email, senha)
+        usuarioModel.buscarEmail(email.trim().toLowerCase())
             .then(
-                function (resultadoAutenticar) {
-                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-
-                    if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
-
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        cpf: resultadoAutenticar[0].cpf,
-                                        aquarios: resultadoAquarios
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            })
-                    } else if (resultadoAutenticar.length == 0) {
-                        res.status(403).send("Email e/ou senha inválido(s)");
+                function (resultado) {
+                    if (resultado.length == 1 && resultado[0].senha_usuario == senha) {
+                        res.json({
+                            id: resultado[0].id_usuario,
+                            nome: resultado[0].nome_usuario,
+                            email: resultado[0].email_usuario,
+                            tipo: resultado[0].tipo_usuario
+                        });
                     } else {
-                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                        res.status(401).send('E-mail e/ou senha inválido(s).');
                     }
                 }
             ).catch(
                 function (erro) {
-                    console.log(erro);
                     console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+
                     res.status(500).json(erro.sqlMessage);
                 }
             );
     }
-
 }
 
 function cadastrar(req, res) {
