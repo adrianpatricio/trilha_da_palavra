@@ -1,4 +1,34 @@
 var header = document.getElementById('header');
+var nomeUsuario = sessionStorage.NOME_USUARIO;
+var linksConta = '';
+
+if (nomeUsuario != undefined) {
+    linksConta = `
+        <li class="li text">
+            <a>Olá, <span id="nome_usuario_header"></span></a>
+        </li>
+
+        <li class="login text">
+            <a href="#" onclick="sair()">
+                Sair
+            </a>
+        </li>
+    `;
+} else {
+    linksConta = `
+        <li class="li text">
+            <a href="./login.html">
+                Entrar
+            </a>
+        </li>
+
+        <li class="login text">
+            <a href="./cadastro.html">
+                Criar conta
+            </a>
+        </li>
+    `;
+}
 
 header.innerHTML = `
     <section class="section_logo">
@@ -45,17 +75,7 @@ header.innerHTML = `
 
             <span class="span_divisor"></span>
 
-            <li class="li text">
-                <a href="./login.html">
-                    Entrar
-                </a>
-            </li>
-
-            <li class="login text">
-                <a href="./cadastro.html">
-                    Criar conta
-                </a>
-            </li>
+            ${linksConta}
 
             <li class="text">
                 <img src="">
@@ -71,3 +91,12 @@ if (atual) atual.classList.add('agora');
 window.addEventListener('scroll', function () {
     header.classList.toggle('rolando', window.scrollY > 0);
 });
+
+if (nomeUsuario != undefined) {
+    document.getElementById('nome_usuario_header').textContent = nomeUsuario;
+}
+
+function sair() {
+    sessionStorage.clear();
+    window.location = './login.html';
+}
