@@ -68,76 +68,10 @@
                         <select id="slc_livros">
                             <option value="">Selecione um livro</option>
 
-                            <optgroup label="Antigo Testamento">
-                                <option value="1">Gênesis</option>
-                                <option value="2">Êxodo</option>
-                                <option value="3">Levítico</option>
-                                <option value="4">Números</option>
-                                <option value="5">Deuteronômio</option>
-                                <option value="6">Josué</option>
-                                <option value="7">Juízes</option>
-                                <option value="8">Rute</option>
-                                <option value="9">1 Samuel</option>
-                                <option value="10">2 Samuel</option>
-                                <option value="11">1 Reis</option>
-                                <option value="12">2 Reis</option>
-                                <option value="13">1 Crônicas</option>
-                                <option value="14">2 Crônicas</option>
-                                <option value="15">Esdras</option>
-                                <option value="16">Neemias</option>
-                                <option value="17">Ester</option>
-                                <option value="18">Jó</option>
-                                <option value="19">Salmos</option>
-                                <option value="20">Provérbios</option>
-                                <option value="21">Eclesiastes</option>
-                                <option value="22">Cânticos</option>
-                                <option value="23">Isaías</option>
-                                <option value="24">Jeremias</option>
-                                <option value="25">Lamentações</option>
-                                <option value="26">Ezequiel</option>
-                                <option value="27">Daniel</option>
-                                <option value="28">Oseias</option>
-                                <option value="29">Joel</option>
-                                <option value="30">Amós</option>
-                                <option value="31">Obadias</option>
-                                <option value="32">Jonas</option>
-                                <option value="33">Miqueias</option>
-                                <option value="34">Naum</option>
-                                <option value="35">Habacuque</option>
-                                <option value="36">Sofonias</option>
-                                <option value="37">Ageu</option>
-                                <option value="38">Zacarias</option>
-                                <option value="39">Malaquias</option>
+                            <optgroup label="Antigo Testamento" id="grupo_at">
                             </optgroup>
 
-                            <optgroup label="Novo Testamento">
-                                <option value="40">Mateus</option>
-                                <option value="41">Marcos</option>
-                                <option value="42">Lucas</option>
-                                <option value="43">João</option>
-                                <option value="44">Atos</option>
-                                <option value="45">Romanos</option>
-                                <option value="46">1 Coríntios</option>
-                                <option value="47">2 Coríntios</option>
-                                <option value="48">Gálatas</option>
-                                <option value="49">Efésios</option>
-                                <option value="50">Filipenses</option>
-                                <option value="51">Colossenses</option>
-                                <option value="52">1 Tessalonicenses</option>
-                                <option value="53">2 Tessalonicenses</option>
-                                <option value="54">1 Timóteo</option>
-                                <option value="55">2 Timóteo</option>
-                                <option value="56">Tito</option>
-                                <option value="57">Filemom</option>
-                                <option value="58">Hebreus</option>
-                                <option value="59">Tiago</option>
-                                <option value="60">1 Pedro</option>
-                                <option value="61">2 Pedro</option>
-                                <option value="62">1 João</option>
-                                <option value="63">2 João</option>
-                                <option value="64">3 João</option>
-                                <option value="65">Judas</option>
-                                <option value="66">Apocalipse</option>
+                            <optgroup label="Novo Testamento" id="grupo_nt">
                             </optgroup>
                         </select>
                     </div>
@@ -159,6 +93,92 @@
     <script src="./js/sessao.js"></script>
 
     <script>
+        var livros = [
+            "Gênesis", 
+            "Êxodo", 
+            "Levítico", 
+            "Números", 
+            "Deuteronômio", 
+            "Josué", 
+            "Juízes", 
+            "Rute",
+            "1 Samuel", 
+            "2 Samuel", 
+            "1 Reis", 
+            "2 Reis", 
+            "1 Crônicas", 
+            "2 Crônicas", 
+            "Esdras", 
+            "Neemias",
+            "Ester", 
+            "Jó", 
+            "Salmos", 
+            "Provérbios", 
+            "Eclesiastes", 
+            "Cânticos", 
+            "Isaías", 
+            "Jeremias",
+            "Lamentações", 
+            "Ezequiel", 
+            "Daniel", 
+            "Oseias", 
+            "Joel", 
+            "Amós", 
+            "Obadias", 
+            "Jonas",
+            "Miqueias", 
+            "Naum", 
+            "Habacuque", 
+            "Sofonias", 
+            "Ageu", 
+            "Zacarias", 
+            "Malaquias",
+            "Mateus", 
+            "Marcos", 
+            "Lucas", 
+            "João", 
+            "Atos", 
+            "Romanos", 
+            "1 Coríntios", 
+            "2 Coríntios",
+            "Gálatas", 
+            "Efésios", 
+            "Filipenses", 
+            "Colossenses", 
+            "1 Tessalonicenses", 
+            "2 Tessalonicenses",
+            "1 Timóteo", 
+            "2 Timóteo", 
+            "Tito", 
+            "Filemom", 
+            "Hebreus", 
+            "Tiago", 
+            "1 Pedro", 
+            "2 Pedro",
+            "1 João", 
+            "2 João", 
+            "3 João", 
+            "Judas", 
+            "Apocalipse"
+        ];
+
+        function carregarLivros() {
+            var grupoAT = document.getElementById("grupo_at");
+            var grupoNT = document.getElementById("grupo_nt");
+
+            for (let i = 0; i < livros.length; i++) {
+                var opcao = `<option value="${i + 1}">${livros[i]}</option>`;
+                
+                if (i < 39) {
+                    grupoAT.innerHTML += opcao;
+                } else {
+                    grupoNT.innerHTML += opcao;
+                }
+            }
+        }
+
+        carregarLivros();
+
         function cadastrar() {
             var nomeVar = document.getElementById("ipt_nome").value.trim();
             var emailVar = document.getElementById("ipt_email").value.trim();
