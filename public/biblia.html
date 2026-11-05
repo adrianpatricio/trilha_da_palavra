@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bíblia - Trilha da Palavra</title>
+
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/biblia.css">
+
+    <script src="./js/sessao.js"></script>
+    <script>
+        exigirLogin();
+    </script>
+</head>
+<body>
+    <header id="header" data-pagina="biblia"></header>
+    <script src="./js/header.js"></script>
+
+    <main class="biblia_container">
+        <section class="biblia_titulo">
+            <p class="biblia_titulo_rotulo">BÍBLIA</p>
+
+            <h1>Livros e capítulos</h1>
+
+            <p class="biblia_titulo_descricao">Escolha um livro e toque nos capítulos que você já leu na sua Bíblia. Toque de novo para desmarcar.</p>
+        </section>
+
+        <!-- PRÓXIMA LEITURA -->
+
+        <section class="biblia_proxima">
+            <span class="proxima_icone">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.25 15.75L9 12.75L3.75 15.75V3.75C3.75 3.35218 3.90804 2.97064 4.18934 2.68934C4.47064 2.40804 4.85218 2.25 5.25 2.25H12.75C13.1478 2.25 13.5294 2.40804 13.8107 2.68934C14.092 2.97064 14.25 3.35218 14.25 3.75V15.75Z" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+
+            <div class="proxima_texto">
+                <p>Próxima leitura</p>
+
+                <h2 id="proxima_nome">Carregando...</h2>
+            </div>
+
+            <div class="proxima_botoes">
+                <button id="btn_marcar_proxima" class="botao botao_primario">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 4.5L6.75 12.75L3 9" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                    Marcar como lido
+                </button>
+
+                <button id="btn_abrir_proxima" class="botao">
+                    Abrir
+                </button>
+            </div>
+        </section>
+
+        <section class="biblia_conteudo">
+
+            <!-- LATERAL: BUSCA, TESTAMENTOS E LISTA DE LIVROS -->
+
+            <aside class="biblia_lateral">
+                <div class="lateral_busca">
+                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.4583 7.79167C13.4583 10.9213 10.9213 13.4583 7.79167 13.4583C4.66205 13.4583 2.125 10.9213 2.125 7.79167C2.125 4.66205 4.66205 2.125 7.79167 2.125C10.9213 2.125 13.4583 4.66205 13.4583 7.79167Z" stroke="currentColor" stroke-width="1.23958" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14.875 14.875L11.8292 11.8292" stroke="currentColor" stroke-width="1.23958" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                    <input type="text" id="ipt_busca" placeholder="Buscar livro">
+                </div>
+
+                <div class="lateral_testamentos">
+                    <button id="btn_antigo" class="ativo">Antigo</button>
+                    <button id="btn_novo">Novo</button>
+                </div>
+
+                <p id="lista_titulo" class="lateral_rotulo">ANTIGO TESTAMENTO</p>
+
+                <!-- O JavaScript gera a lista de livros com os dados do banco -->
+                <ul id="lista_livros" class="lateral_livros"></ul>
+            </aside>
+
+            <!-- PAINEL DO LIVRO SELECIONADO -->
+
+            <section class="biblia_livro">
+                <div class="livro_topo">
+                    <div>
+                        <p id="livro_testamento" class="livro_rotulo">ANTIGO TESTAMENTO</p>
+
+                        <h2 id="livro_nome">Gênesis</h2>
+                    </div>
+
+                    <div class="livro_setas">
+                        <button id="btn_anterior" aria-label="Livro anterior" disabled>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.25 13.5L6.75 9L11.25 4.5" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+
+                        <button id="btn_proximo" aria-label="Próximo livro">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.75 13.5L11.25 9L6.75 4.5" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <p id="livro_progresso" class="livro_progresso">12 de 50 capítulos lidos · 24%</p>
+
+                <span class="livro_barra_grande"><span id="livro_barra" style="width: 24%"></span></span>
+
+                <!-- O JavaScript gera um botão para cada capítulo do livro -->
+                <div id="grade_capitulos" class="grade_capitulos"></div>
+
+                <div class="livro_legenda">
+                    <span><i class="legenda_lido"></i>Lido</span>
+                    <span><i class="legenda_nao_lido"></i>Não lido</span>
+                    <span><i class="legenda_proximo"></i>Próxima leitura</span>
+                </div>
+
+                <div class="livro_rodape">
+                    <p>Marcou fora de ordem? Tudo bem: a próxima leitura é sempre o primeiro capítulo ainda não lido, na ordem da Bíblia.</p>
+
+                    <button id="btn_marcar_livro" class="botao">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 4.5L6.75 12.75L3 9" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                        Marcar livro inteiro
+                    </button>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer id="footer" data-pagina="inicio"></footer>
+    <script src="./js/footer.js"></script>
+
+    <script>
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var livros = [];
+        var proxima = null;
+        var idLivroAtual = null;
+        var capitulosLidos = [];
+        var testamentoAtual = "AT";
+
+        var iconeCheck = `<svg class="capitulo_check" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 3L4.5 8.5L2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+        var iconeConcluido = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.6667 3.5L5.25 9.91667L2.33333 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+        // 1. BUSCAR DADOS NO BANCO
+
+        function carregarLivros() {
+            return fetch(`/leituras/livros/${idUsuario}`)
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+                .then(function (json) {
+                    livros = json;
+                });
+        }
+
+        function carregarProxima() {
+            return fetch(`/leituras/proxima/${idUsuario}`)
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+                .then(function (json) {
+                    proxima = json;
+                });
+        }
+
+        function carregarCapitulos() {
+            return fetch(`/leituras/capitulos/${idUsuario}/${idLivroAtual}`)
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+                .then(function (json) {
+                    capitulosLidos = [];
+
+                    for (var i = 0; i < json.length; i++) {
+                        capitulosLidos.push(json[i].capitulo);
+                    }
+                });
+        }
+
+        // Depois de marcar ou desmarcar, busca tudo de novo e redesenha a tela
+        function atualizarTela() {
+            return Promise.all([carregarLivros(), carregarProxima(), carregarCapitulos()])
+                .then(function () {
+                    mostrarProxima();
+                    mostrarLista();
+                    mostrarLivro();
+                })
+                .catch(function (erro) {
+                    console.log(erro);
+                    alert("Não foi possível carregar suas leituras.");
+                });
+        }
+
+        // 2. MOSTRAR NA TELA
+
+        function buscarLivroPorId(id) {
+            for (var i = 0; i < livros.length; i++) {
+                if (livros[i].id_livro == id) {
+                    return livros[i];
+                }
+            }
+
+            return null;
+        }
+
+        // Tira os acentos para a busca achar "Gênesis" digitando "genesis"
+        function semAcento(texto) {
+            return texto.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+        }
+
+        function mostrarProxima() {
+            var titulo = document.getElementById("proxima_nome");
+            var btnMarcar = document.getElementById("btn_marcar_proxima");
+            var btnAbrir = document.getElementById("btn_abrir_proxima");
+
+            if (proxima == null) {
+                titulo.textContent = "Você leu a Bíblia inteira!";
+                btnMarcar.disabled = true;
+                btnAbrir.disabled = true;
+            } else {
+                titulo.textContent = `${proxima.nomeLivro} ${proxima.capitulo}`;
+                btnMarcar.disabled = false;
+                btnAbrir.disabled = false;
+            }
+        }
+
+        function mostrarLista() {
+            var busca = semAcento(document.getElementById("ipt_busca").value.trim());
+            var titulo = document.getElementById("lista_titulo");
+            var html = "";
+
+            document.getElementById("btn_antigo").classList.toggle("ativo", testamentoAtual == "AT");
+            document.getElementById("btn_novo").classList.toggle("ativo", testamentoAtual == "NT");
+
+            if (busca != "") {
+                titulo.textContent = "RESULTADOS DA BUSCA";
+            } else if (testamentoAtual == "AT") {
+                titulo.textContent = "ANTIGO TESTAMENTO";
+            } else {
+                titulo.textContent = "NOVO TESTAMENTO";
+            }
+
+            for (var i = 0; i < livros.length; i++) {
+                var livro = livros[i];
+
+                // Com busca, procura nos 66 livros; sem busca, só no testamento escolhido
+                if (busca != "") {
+                    if (!semAcento(livro.nome_livro).includes(busca)) {
+                        continue;
+                    }
+                } else if (livro.testamento != testamentoAtual) {
+                    continue;
+                }
+
+                var porcentagem = Math.round(livro.capitulos_lidos / livro.quantidade_capitulos * 100);
+                var classes = "livro";
+                var contagem = `${livro.capitulos_lidos}/${livro.quantidade_capitulos}`;
+
+                if (livro.capitulos_lidos == livro.quantidade_capitulos) {
+                    classes += " concluido";
+                    contagem = `${iconeConcluido} Concluído`;
+                }
+
+                if (livro.id_livro == idLivroAtual) {
+                    classes += " selecionado";
+                }
+
+                html += `
+                    <li>
+                        <button class="${classes}" onclick="abrirLivro(${livro.id_livro})">
+                            <span class="livro_linha">
+                                <span class="livro_nome">${livro.nome_livro}</span>
+                                <span class="livro_contagem">${contagem}</span>
+                            </span>
+                            <span class="livro_barra"><span style="width: ${porcentagem}%"></span></span>
+                        </button>
+                    </li>
+                `;
+            }
+
+            if (html == "") {
+                html = `<li class="lateral_vazio">Nenhum livro encontrado.</li>`;
+            }
+
+            document.getElementById("lista_livros").innerHTML = html;
+        }
+
+        function mostrarLivro() {
+            var livro = buscarLivroPorId(idLivroAtual);
+            var lidos = capitulosLidos.length;
+            var porcentagem = Math.round(lidos / livro.quantidade_capitulos * 100);
+            var html = "";
+
+            if (livro.testamento == "AT") {
+                document.getElementById("livro_testamento").textContent = "ANTIGO TESTAMENTO";
+            } else {
+                document.getElementById("livro_testamento").textContent = "NOVO TESTAMENTO";
+            }
+
+            document.getElementById("livro_nome").textContent = livro.nome_livro;
+            document.getElementById("livro_progresso").textContent = `${lidos} de ${livro.quantidade_capitulos} capítulos lidos · ${porcentagem}%`;
+            document.getElementById("livro_barra").style.width = porcentagem + "%";
+
+            for (var cap = 1; cap <= livro.quantidade_capitulos; cap++) {
+                var classes = "capitulo";
+                var conteudo = cap;
+
+                if (capitulosLidos.includes(cap)) {
+                    classes += " lido";
+                    conteudo = cap + iconeCheck;
+                } else if (proxima != null && proxima.idLivro == livro.id_livro && proxima.capitulo == cap) {
+                    classes += " proximo";
+                }
+
+                html += `<button class="${classes}" onclick="alternarCapitulo(${cap})">${conteudo}</button>`;
+            }
+
+            document.getElementById("grade_capitulos").innerHTML = html;
+
+            document.getElementById("btn_anterior").disabled = livro.id_livro == 1;
+            document.getElementById("btn_proximo").disabled = livro.id_livro == 66;
+            document.getElementById("btn_marcar_livro").disabled = lidos == livro.quantidade_capitulos;
+        }
+
+        // 3. AÇÕES DO USUÁRIO
+
+        function abrirLivro(idLivro) {
+            idLivroAtual = idLivro;
+            testamentoAtual = buscarLivroPorId(idLivro).testamento;
+            document.getElementById("ipt_busca").value = "";
+
+            carregarCapitulos().then(function () {
+                mostrarLista();
+                mostrarLivro();
+            });
+        }
+
+        function trocarTestamento(testamento) {
+            testamentoAtual = testamento;
+            document.getElementById("ipt_busca").value = "";
+            mostrarLista();
+        }
+
+        // Envia um pedido que altera o banco e mostra o erro, se houver
+        function enviarParaServidor(endereco, metodo, dados) {
+            return fetch(endereco, {
+                method: metodo,
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            }).then(function (resposta) {
+                if (!resposta.ok) {
+                    return resposta.text().then(function (texto) {
+                        alert(texto);
+                    });
+                }
+            });
+        }
+
+        function alternarCapitulo(capitulo) {
+            var pedido;
+
+            if (capitulosLidos.includes(capitulo)) {
+                pedido = enviarParaServidor(`/leituras/desmarcar/${idUsuario}/${idLivroAtual}/${capitulo}`, "DELETE", {});
+            } else {
+                pedido = enviarParaServidor("/leituras/marcar", "POST", {
+                    idUsuarioServer: idUsuario,
+                    idLivroServer: idLivroAtual,
+                    capituloServer: capitulo
+                });
+            }
+
+            pedido.then(atualizarTela);
+        }
+
+        function marcarProxima() {
+            enviarParaServidor("/leituras/marcar", "POST", {
+                idUsuarioServer: idUsuario,
+                idLivroServer: proxima.idLivro,
+                capituloServer: proxima.capitulo
+            }).then(atualizarTela);
+        }
+
+        function marcarLivroInteiro() {
+            enviarParaServidor("/leituras/marcar-livro", "POST", {
+                idUsuarioServer: idUsuario,
+                idLivroServer: idLivroAtual
+            }).then(atualizarTela);
+        }
+
+        // 4. LIGAR OS BOTÕES ÀS FUNÇÕES
+
+        document.getElementById("btn_antigo").onclick = function () {
+            trocarTestamento("AT");
+        };
+
+        document.getElementById("btn_novo").onclick = function () {
+            trocarTestamento("NT");
+        };
+
+        document.getElementById("ipt_busca").oninput = mostrarLista;
+
+        document.getElementById("btn_anterior").onclick = function () {
+            abrirLivro(idLivroAtual - 1);
+        };
+
+        document.getElementById("btn_proximo").onclick = function () {
+            abrirLivro(idLivroAtual + 1);
+        };
+
+        document.getElementById("btn_marcar_proxima").onclick = marcarProxima;
+
+        document.getElementById("btn_abrir_proxima").onclick = function () {
+            abrirLivro(proxima.idLivro);
+        };
+
+        document.getElementById("btn_marcar_livro").onclick = marcarLivroInteiro;
+
+        // 5. INÍCIO: carrega os livros e abre o livro da próxima leitura
+
+        Promise.all([carregarLivros(), carregarProxima()])
+            .then(function () {
+                mostrarProxima();
+
+                if (proxima != null) {
+                    abrirLivro(proxima.idLivro);
+                } else {
+                    abrirLivro(1);
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                alert("Não foi possível carregar suas leituras.");
+            });
+    </script>
+</body>
+</html>

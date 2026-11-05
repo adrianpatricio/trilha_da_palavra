@@ -11,6 +11,10 @@ router.get("/capitulos/:idUsuario/:idLivro", function (req, res) {
     leituraController.listarCapitulos(req, res);
 });
 
+router.get("/proxima/:idUsuario", function (req, res) {
+    leituraController.buscarProxima(req, res);
+});
+
 router.post("/marcar", function (req, res) {
     leituraController.marcar(req, res);
 });

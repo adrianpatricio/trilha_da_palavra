@@ -1,8 +1,35 @@
 var header = document.getElementById('header');
+
 var nomeUsuario = sessionStorage.NOME_USUARIO;
+
 var linksConta = '';
+var linksLeitor = '';
 
 if (nomeUsuario != undefined) {
+    linksLeitor = `
+        <li class="li text">
+            <a href="./biblia.html">
+                <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.5 2.25H6C6.79565 2.25 7.55871 2.56607 8.12132 3.12868C8.68393 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 8.76295 14.581 8.34099 14.159C7.91903 13.7371 7.34674 13.5 6.75 13.5H1.5V2.25Z" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16.5 2.25H12C11.2044 2.25 10.4413 2.56607 9.87868 3.12868C9.31607 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 9.23705 14.581 9.65901 14.159C10.081 13.7371 10.6533 13.5 11.25 13.5H16.5V2.25Z" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                Bíblia
+            </a>
+        </li>
+
+        <li class="li text">
+            <a href="./dashboard.html">
+                <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.25 2.25V15.75H15.75" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13.5 12.75V6.75M9.75 12.75V3.75M6 12.75V10.5" stroke="currentColor" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                Progresso
+            </a>
+        </li>
+    `;
+
     linksConta = `
         <li class="li text">
             <a>Olá, <span id="nome_usuario_header"></span></a>
@@ -72,6 +99,8 @@ header.innerHTML = `
                     Sobre o projeto
                 </a>
             </li>
+
+            ${linksLeitor}
 
             <span class="span_divisor"></span>
 
