@@ -15,6 +15,10 @@ router.get("/proxima/:idUsuario", function (req, res) {
     leituraController.buscarProxima(req, res);
 });
 
+router.get("/progresso/:idUsuario", function (req, res) {
+    leituraController.buscarProgresso(req, res);
+});
+
 router.post("/marcar", function (req, res) {
     leituraController.marcar(req, res);
 });

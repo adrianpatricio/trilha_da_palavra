@@ -226,11 +226,109 @@ function buscarProxima(req, res) {
         );
 }
 
+function buscarProgresso(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    Promise.all([
+        leituraModel.listarLivros(idUsuario),
+        leituraModel.buscarUltimaLeitura(idUsuario),
+        leituraModel.listarLeiturasPorDia(idUsuario),
+        calcularProxima(idUsuario)
+    ])
+        .then(
+            function (resultados) {
+                var livros = resultados[0];
+                var ultima = resultados[1];
+                var dias = resultados[2];
+                var proxima = resultados[3];
+
+                // Totais da Bíblia e de cada testamento
+                var capitulosLidos = 0;
+                var totalCapitulos = 0;
+                var antigo = { lidos: 0, total: 0 };
+                var novo = { lidos: 0, total: 0 };
+                var livrosConcluidos = 0;
+
+                for (var i = 0; i < livros.length; i++) {
+                    capitulosLidos += livros[i].capitulos_lidos;
+                    totalCapitulos += livros[i].quantidade_capitulos;
+
+                    if (livros[i].testamento == "AT") {
+                        antigo.lidos += livros[i].capitulos_lidos;
+                        antigo.total += livros[i].quantidade_capitulos;
+                    } else {
+                        novo.lidos += livros[i].capitulos_lidos;
+                        novo.total += livros[i].quantidade_capitulos;
+                    }
+
+                    if (livros[i].capitulos_lidos == livros[i].quantidade_capitulos) {
+                        livrosConcluidos++;
+                    }
+                }
+
+                // Sequência: dias seguidos com leitura, contando de hoje (ou de ontem) para trás
+                var sequencia = 0;
+
+                if (dias.length > 0 && dias[0].dias_atras <= 1) {
+                    sequencia = 1;
+
+                    for (var i = 1; i < dias.length; i++) {
+                        if (dias[i].dias_atras == dias[i - 1].dias_atras + 1) {
+                            sequencia++;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+
+                // Capítulos lidos de hoje até 6 dias atrás
+                var ultimos7Dias = 0;
+
+                for (var i = 0; i < dias.length; i++) {
+                    if (dias[i].dias_atras <= 6) {
+                        ultimos7Dias += dias[i].capitulos;
+                    }
+                }
+
+                var ultimaLeitura = null;
+
+                if (ultima.length > 0) {
+                    ultimaLeitura = {
+                        nomeLivro: ultima[0].nome_livro,
+                        capitulo: ultima[0].capitulo,
+                        diasAtras: ultima[0].dias_atras
+                    };
+                }
+
+                res.status(200).json({
+                    capitulosLidos: capitulosLidos,
+                    totalCapitulos: totalCapitulos,
+                    antigo: antigo,
+                    novo: novo,
+                    livrosConcluidos: livrosConcluidos,
+                    totalLivros: livros.length,
+                    sequencia: sequencia,
+                    ultimos7Dias: ultimos7Dias,
+                    ultimaLeitura: ultimaLeitura,
+                    proxima: proxima
+                });
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log("\nHouve um erro ao buscar o progresso! Erro: ", erro.sqlMessage);
+
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     listarLivros,
     listarCapitulos,
     marcar,
     marcarLivro,
     desmarcar,
-    buscarProxima
+    buscarProxima,
+    buscarProgresso
 };
