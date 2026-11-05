@@ -133,15 +133,8 @@
     margin-top: 16px;
 }
 
-/* Quantidade de capítulos (fixa por enquanto, depois virá do banco) */
-
-.top_progresso_at::after {
-    content: '16 de 929';
-    color: var(--muted);
-}
-
-.top_progresso_nt::after {
-    content: '5 de 260';
+.top_progresso_at span,
+.top_progresso_nt span {
     color: var(--muted);
 }
 
@@ -156,21 +149,22 @@
     background-color: #E6DECD;
 }
 
-.barra_at::before,
-.barra_nt::before {
-    content: '';
-    position: absolute;
-    inset: 0 auto 0 0;
+/* A largura de cada barra é definida pelo JavaScript */
+
+.barra_at span,
+.barra_nt span {
+    display: block;
+    width: 0%;
+    height: 100%;
     border-radius: 999px;
+    transition: 0.3s width;
 }
 
-.barra_at::before {
-    width: 1.7%;
+.barra_at span {
     background-color: #2D5A43;
 }
 
-.barra_nt::before {
-    width: 1.9%;
+.barra_nt span {
     background-color: #8FAF96;
 }
 

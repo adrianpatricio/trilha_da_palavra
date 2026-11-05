@@ -79,11 +79,43 @@ function desmarcar(idUsuario, idLivro, capitulo) {
     return database.executar(instrucaoSql, [idUsuario, idLivro, capitulo]);
 }
 
+function buscarUltimaLeitura(idUsuario) {
+    var instrucaoSql = `
+        SELECT livro.nome_livro, leitura.capitulo,
+            DATEDIFF(CURDATE(), leitura.data_leitura) AS dias_atras
+        FROM leitura
+        JOIN livro ON livro.id_livro = leitura.fk_livro
+        WHERE leitura.fk_usuario = ?
+        ORDER BY leitura.data_leitura DESC, leitura.id_leitura DESC
+        LIMIT 1;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql, [idUsuario]);
+}
+
+function listarLeiturasPorDia(idUsuario) {
+    var instrucaoSql = `
+        SELECT DATEDIFF(CURDATE(), data_leitura) AS dias_atras, COUNT(*) AS capitulos
+        FROM leitura
+        WHERE fk_usuario = ?
+        GROUP BY data_leitura
+        ORDER BY data_leitura DESC;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql, [idUsuario]);
+}
+
 module.exports = {
     listarLivros,
     listarCapitulos,
     buscarLivro,
     marcar,
     marcarVarios,
-    desmarcar
+    desmarcar,
+    buscarUltimaLeitura,
+    listarLeiturasPorDia
 };
