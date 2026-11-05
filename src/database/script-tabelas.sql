@@ -28,13 +28,14 @@ CREATE TABLE usuario (
 
 CREATE TABLE leitura (
 	id_leitura INT PRIMARY KEY AUTO_INCREMENT,
-    fk_usuario INT UNIQUE,
-    fk_livro INT  UNIQUE,
-    capitulo INT UNIQUE,
-    data_leitura DATE,
-    
+    fk_usuario INT NOT NULL,
+    fk_livro INT NOT NULL,
+    capitulo INT NOT NULL,
+    data_leitura DATE NOT NULL,
+
     CONSTRAINT ch_capitulo CHECK (capitulo > 0),
-    
+    CONSTRAINT uq_leitura UNIQUE (fk_usuario, fk_livro, capitulo),
+
     CONSTRAINT fk_usuario_leitura FOREIGN KEY (fk_usuario) REFERENCES usuario (id_usuario),
     CONSTRAINT fk_livro_leitura FOREIGN KEY (fk_livro) REFERENCES livro (id_livro)
 );
