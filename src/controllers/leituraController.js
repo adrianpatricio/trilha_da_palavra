@@ -162,10 +162,75 @@ function desmarcar(req, res) {
         );
 }
 
+// Próxima leitura = o primeiro capítulo ainda não lido, na ordem da Bíblia.
+// Fica separada para ser usada também pela página Progresso.
+function calcularProxima(idUsuario) {
+    return leituraModel.listarLivros(idUsuario)
+        .then(
+            function (livros) {
+                var livro = null;
+
+                for (var i = 0; i < livros.length; i++) {
+                    if (livros[i].capitulos_lidos < livros[i].quantidade_capitulos) {
+                        livro = livros[i];
+
+                        break;
+                    }
+                }
+
+                // A Bíblia inteira foi lida
+                if (livro == null) {
+                    return null;
+                }
+
+                return leituraModel.listarCapitulos(idUsuario, livro.id_livro)
+                    .then(
+                        function (lidos) {
+                            var capitulo = 1;
+
+                            for (var i = 0; i < lidos.length; i++) {
+                                if (lidos[i].capitulo == capitulo) {
+                                    capitulo++;
+                                }
+                            }
+
+                            return {
+                                idLivro: livro.id_livro,
+                                nomeLivro: livro.nome_livro,
+                                testamento: livro.testamento,
+                                capitulo: capitulo,
+                                quantidadeCapitulos: livro.quantidade_capitulos,
+                                capitulosLidos: livro.capitulos_lidos
+                            };
+                        }
+                    );
+            }
+        );
+}
+
+function buscarProxima(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    calcularProxima(idUsuario)
+        .then(
+            function (proxima) {
+                res.status(200).json(proxima);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log("\nHouve um erro ao buscar a próxima leitura! Erro: ", erro.sqlMessage);
+
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     listarLivros,
     listarCapitulos,
     marcar,
     marcarLivro,
-    desmarcar
+    desmarcar,
+    buscarProxima
 };

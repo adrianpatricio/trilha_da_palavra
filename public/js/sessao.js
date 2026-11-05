@@ -1,3 +1,10 @@
+// sessão
+function exigirLogin() {
+    if (sessionStorage.ID_USUARIO == undefined) {
+        window.location = "./login.html";
+    }
+}
+
 // mensagens dos formulários (login e cadastro)
 function mostrarMensagem(idSpan, texto) {
     var span = document.getElementById(idSpan);
