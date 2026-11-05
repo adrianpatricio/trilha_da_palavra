@@ -1,0 +1,351 @@
+/* DASHBOARD - DASHBOARD.HTML */
+
+.dash_container {
+    display: flex;
+    flex-direction: column;
+    width: 1240px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 30px 0 80px;
+    box-sizing: border-box;
+}
+
+.dash_container p,
+.dash_container h1 {
+    margin: 0;
+}
+
+/* TÍTULO */
+
+.dash_titulo {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.dash_titulo .dash_titulo_progresso {
+    font-family: 'Manrope';
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #A3683F;
+}
+
+.dash_titulo h1 {
+    font-family: 'Cormorant Garamond';
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--heading);
+}
+
+.dash_titulo .dash_titulo_descricao {
+    max-width: 580px;
+    font-family: 'Manrope';
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+/* CARDS */
+
+.dash_container .dash_top {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    margin-top: 36px;
+}
+
+/* O card da esquerda é formado por duas sections lado a lado:
+   o gráfico (metade esquerda) e o progresso (metade direita) */
+
+.dash_top .top_grafico {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 142px;
+    padding: 0 38px;
+    font-family: 'Cormorant Garamond';
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--heading);
+    background-color: #FAF7F0;
+    border: 1px solid #DDD3BF;
+    border-right: none;
+    border-radius: 20px 0 0 20px;
+}
+
+.top_grafico::before {
+    content: '';
+    position: absolute;
+    width: 142px;
+    height: 142px;
+    box-sizing: border-box;
+    border: 10px solid #2D5A43;
+    border-radius: 50%;
+}
+
+.dash_top .top_progresso {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 108px 40px 0;
+    background-color: #FAF7F0;
+    border: 1px solid #DDD3BF;
+    border-left: none;
+    border-radius: 0 20px 20px 0;
+}
+
+.top_progresso .top_progresso_titulo {
+    font-family: 'Manrope';
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #A3683F;
+}
+
+.top_progresso h1 {
+    margin-top: 10px;
+    font-family: 'Cormorant Garamond';
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--heading);
+}
+
+.top_progresso .top_progresso_descricao {
+    margin-top: 8px;
+    font-family: 'Manrope';
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.top_progresso .top_progresso_at,
+.top_progresso .top_progresso_nt {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-family: 'Manrope';
+    font-size: 14px;
+    color: var(--heading);
+}
+
+.top_progresso .top_progresso_nt {
+    margin-top: 16px;
+}
+
+/* Quantidade de capítulos (fixa por enquanto, depois virá do banco) */
+
+.top_progresso_at::after {
+    content: '16 de 929';
+    color: var(--muted);
+}
+
+.top_progresso_nt::after {
+    content: '5 de 260';
+    color: var(--muted);
+}
+
+.top_progresso .barra_at,
+.top_progresso .barra_nt {
+    position: relative;
+    display: block;
+    height: 6px;
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background-color: #E6DECD;
+}
+
+.barra_at::before,
+.barra_nt::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 999px;
+}
+
+.barra_at::before {
+    width: 1.7%;
+    background-color: #2D5A43;
+}
+
+.barra_nt::before {
+    width: 1.9%;
+    background-color: #8FAF96;
+}
+
+/* LEITURAS */
+
+.dash_top .dash_leituas {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: 24px;
+}
+
+.dash_leituas .top_leitura,
+.dash_leituas .dash_registro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px;
+    border-radius: 20px;
+}
+
+.dash_leituas .top_leitura {
+    background-color: #DFE7D8;
+    border: 1px solid #CBD6C2;
+}
+
+.dash_leituas .dash_registro {
+    background-color: #FAF7F0;
+    border: 1px solid #DDD3BF;
+}
+
+.top_leitura .top_leitura_pxLeitura,
+.dash_registro .registro_ultimo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Manrope';
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.top_leitura_pxLeitura svg,
+.registro_ultimo svg {
+    color: #A3683F;
+}
+
+.top_leitura h1,
+.dash_registro h1 {
+    margin-top: 14px;
+    font-family: 'Cormorant Garamond';
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--heading);
+}
+
+.top_leitura .top_leitura_descricao,
+.dash_registro .registro_hoje {
+    margin-top: 10px;
+    font-family: 'Manrope';
+    font-size: 15px;
+    color: var(--muted);
+}
+
+.top_leitura a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 10px 16px;
+    font-family: 'Manrope';
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #F7F3EA;
+    background-color: #2D5A43;
+    border-radius: 999px;
+    transition: 0.3s all;
+}
+
+.top_leitura a:hover {
+    background-color: #234836;
+}
+/* KPIs */
+
+.dash_container .dash_kpi {
+    display: flex;
+    margin-top: 24px;
+    background-color: #FAF7F0;
+    border: 1px solid #DDD3BF;
+    border-radius: 20px;
+}
+
+.dash_kpi .kpis {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 12px;
+    padding: 24px;
+    border-right: 1px solid #DDD3BF;
+}
+
+.dash_kpi .kpis:last-child {
+    border-right: none;
+}
+
+.kpis p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Manrope';
+    font-size: 14px;
+    color: var(--heading);
+}
+
+.kpis p svg {
+    color: #2D5A43;
+}
+
+.kpis h4,
+.kpis h6 {
+    margin: 0;
+    font-family: 'Manrope';
+}
+
+.kpis h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--heading);
+}
+
+.kpis h6 {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+}
+
+/* GRÁFICOS */
+
+.dash_container .dash_graficos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.dash_graficos .grafico_dias,
+.dash_graficos .grafico_livros {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 24px;
+    background-color: #FAF7F0;
+    border: 1px solid #DDD3BF;
+    border-radius: 20px;
+}
+
+.dash_graficos .grafico_titulo {
+    font-family: 'Manrope';
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--heading);
+}
+
+/* O Chart.js precisa de um pai com position e altura definidas */
+
+.dash_graficos .grafico_canvas {
+    position: relative;
+    height: 200px;
+    margin-top: 20px;
+}
+
+.dash_graficos .grafico_descricao {
+    margin-top: 20px;
+    font-family: 'Manrope';
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+}

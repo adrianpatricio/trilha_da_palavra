@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="./css/estilo.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
 </head>
-<body>
 <body>
     <header id="header" data-pagina="inicio"></header>
     <script src="./js/header.js"></script>
@@ -83,9 +82,290 @@
                 </section>
             </section>
         </section>
+
+        <section class="dash_kpi">
+            <section class="kpis">
+                <p>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.33325 2H5.33325C6.0405 2 6.71877 2.28095 7.21887 2.78105C7.71897 3.28115 7.99992 3.95942 7.99992 4.66667V14C7.99992 13.4696 7.78921 12.9609 7.41413 12.5858C7.03906 12.2107 6.53035 12 5.99992 12H1.33325V2Z" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+                        <path d="M14.6667 2H10.6667C9.95942 2 9.28115 2.28095 8.78105 2.78105C8.28095 3.28115 8 3.95942 8 4.66667V14C8 13.4696 8.21071 12.9609 8.58579 12.5858C8.96086 12.2107 9.46957 12 10 12H14.6667V2Z" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+                    </svg>
+
+                    Capítulos lidos
+                </p>
+
+                <h4>21</h4>
+
+                <h6>de 1.189</h6>
+            </section>
+            <section class="kpis">
+                <p>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.6667 4.00008L13.3334 13.3334M8.00008 4.00008V13.3334M5.33341 5.33341V13.3334M2.66675 2.66675V13.3334" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+                    </svg>
+
+                    Livros concluídos
+                </p>
+
+                <h4>1</h4>
+
+                <h6>de 66</h6>
+            </section>
+            <section class="kpis">
+                <p>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.66683 9.66667C6.10886 9.66667 6.53278 9.49107 6.84534 9.17851C7.1579 8.86595 7.3335 8.44203 7.3335 8C7.3335 7.08 7.00016 6.66667 6.66683 6C5.9535 4.57333 6.52016 3.3 8.00016 2C8.3335 3.66667 9.3335 5.26667 10.6668 6.33333C12.0002 7.4 12.6668 8.66667 12.6668 10C12.6668 10.6128 12.5461 11.2197 12.3116 11.7859C12.0771 12.352 11.7333 12.8665 11.3 13.2998C10.8667 13.7332 10.3522 14.0769 9.78602 14.3114C9.21983 14.546 8.613 14.6667 8.00016 14.6667C7.38733 14.6667 6.78049 14.546 6.21431 14.3114C5.64812 14.0769 5.13367 13.7332 4.70033 13.2998C4.26699 12.8665 3.92325 12.352 3.68872 11.7859C3.4542 11.2197 3.3335 10.6128 3.3335 10C3.3335 9.23333 3.62016 8.47333 4.00016 8C4.00016 8.44203 4.17576 8.86595 4.48832 9.17851C4.80088 9.49107 5.2248 9.66667 5.66683 9.66667Z" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+                    </svg>
+
+                    Sequência
+                </p>
+
+                <h4>6</h4>
+
+                <h6>dias seguidos com leitura</h6>
+            </section>
+            <section class="kpis">
+                <p>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.33333 2.66675H12.6667C13.403 2.66675 14 3.2637 14 4.00008V13.3334C14 14.0698 13.403 14.6667 12.6667 14.6667H3.33333C2.59695 14.6667 2 14.0698 2 13.3334V4.00008C2 3.2637 2.59695 2.66675 3.33333 2.66675Z" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+                        <path d="M10.6667 1.33325V3.99992M5.33333 1.33325V3.99992M2 6.66659H14" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+                    </svg>
+
+                    Últimos 7 dias
+                </p>
+
+                <h4>21</h4>
+
+                <h6>capítulos lidos</h6>
+            </section>
+        </section>
+
+        <section class="dash_graficos">
+            <section class="grafico_dias">
+                <p class="grafico_titulo">Capítulos por dia, últimos 7 dias</p>
+
+                <section class="grafico_canvas">
+                    <canvas id="canvas_dias"></canvas>
+                </section>
+
+                <p class="grafico_descricao">Média de 3,5 capítulos por dia desde 08/10/2026. Nesse ritmo, faltam cerca de 334 dias para terminar.</p>
+            </section>
+
+            <section class="grafico_livros">
+                <p class="grafico_titulo">Os 66 livros</p>
+
+                <section class="grafico_canvas">
+                    <canvas id="canvas_livros"></canvas>
+                </section>
+
+                <p class="grafico_descricao">A altura de cada barra é proporcional ao número de capítulos do livro.</p>
+            </section>
+        </section>
     </main>
 
     <footer id="footer" data-pagina="inicio"></footer>
     <script src="./js/footer.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <script>
+        Chart.defaults.font.family = "Manrope";
+        Chart.defaults.color = "#645D51";
+
+        // GRÁFICO 1 - CAPÍTULOS POR DIA
+
+        var dias = ["qua", "qui", "sex", "sáb", "dom", "seg", "hoje"];
+        var capitulosPorDia = [0, 2, 2, 2, 2, 6, 7];
+
+        function criarGraficoDias() {
+            var cores = [];
+
+            for (let i = 0; i < capitulosPorDia.length; i++) {
+                if (capitulosPorDia[i] == 0) {
+                    cores.push("#E6DECD");
+                } else {
+                    cores.push("#2D5A43");
+                }
+            }
+
+            new Chart(document.getElementById("canvas_dias"), {
+                type: "bar",
+                plugins: [ChartDataLabels],
+                data: {
+                    labels: dias,
+                    datasets: [{
+                        data: capitulosPorDia,
+                        backgroundColor: cores,
+                        borderRadius: 6,
+                        minBarLength: 4,
+                        categoryPercentage: 0.9,
+                        barPercentage: 0.95
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: { top: 24 }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false },
+                        datalabels: {
+                            anchor: "end",
+                            align: "top",
+                            color: "#1D3328",
+                            font: { size: 15 },
+                            formatter: function (valor) {
+                                if (valor == 0) {
+                                    return "";
+                                }
+                                return valor;
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            border: { display: false },
+                            ticks: {
+                                font: function (contexto) {
+                                    if (contexto.index == dias.length - 1) {
+                                        return { weight: "bold" };
+                                    }
+                                    return {};
+                                },
+                                color: function (contexto) {
+                                    if (contexto.index == dias.length - 1) {
+                                        return "#1D3328";
+                                    }
+                                    return "#645D51";
+                                }
+                            }
+                        },
+                        y: {
+                            display: false,
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // GRÁFICO 2 - OS 66 LIVROS
+
+        var livros = [
+            "Gênesis", "Êxodo", "Levítico", "Números", "Deuteronômio", "Josué", "Juízes", "Rute",
+            "1 Samuel", "2 Samuel", "1 Reis", "2 Reis", "1 Crônicas", "2 Crônicas", "Esdras", "Neemias",
+            "Ester", "Jó", "Salmos", "Provérbios", "Eclesiastes", "Cânticos", "Isaías", "Jeremias",
+            "Lamentações", "Ezequiel", "Daniel", "Oseias", "Joel", "Amós", "Obadias", "Jonas",
+            "Miqueias", "Naum", "Habacuque", "Sofonias", "Ageu", "Zacarias", "Malaquias",
+            "Mateus", "Marcos", "Lucas", "João", "Atos", "Romanos", "1 Coríntios", "2 Coríntios",
+            "Gálatas", "Efésios", "Filipenses", "Colossenses", "1 Tessalonicenses", "2 Tessalonicenses",
+            "1 Timóteo", "2 Timóteo", "Tito", "Filemom", "Hebreus", "Tiago", "1 Pedro", "2 Pedro",
+            "1 João", "2 João", "3 João", "Judas", "Apocalipse"
+        ];
+
+        // Total de capítulos de cada livro (mesma ordem do vetor livros)
+        var totalCapitulos = [
+            50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31,
+            12, 8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4,
+            28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22
+        ];
+
+        // Capítulos lidos de cada livro (fixo por enquanto, depois virá do banco)
+        var capitulosLidos = [];
+
+        for (let i = 0; i < livros.length; i++) {
+            capitulosLidos.push(0);
+        }
+
+        capitulosLidos[0] = 12;  // Gênesis
+        capitulosLidos[7] = 3;   // Rute
+        capitulosLidos[30] = 1;  // Obadias
+        capitulosLidos[42] = 5;  // João
+
+        function criarGraficoLivros() {
+            var concluidos = [];
+            var emAndamento = [];
+            var naoIniciados = [];
+
+            // Cada livro entra em só um dos três grupos; nos outros fica null
+            for (let i = 0; i < livros.length; i++) {
+                if (capitulosLidos[i] == totalCapitulos[i]) {
+                    concluidos.push(totalCapitulos[i]);
+                    emAndamento.push(null);
+                    naoIniciados.push(null);
+                } else if (capitulosLidos[i] > 0) {
+                    concluidos.push(null);
+                    emAndamento.push(totalCapitulos[i]);
+                    naoIniciados.push(null);
+                } else {
+                    concluidos.push(null);
+                    emAndamento.push(null);
+                    naoIniciados.push(totalCapitulos[i]);
+                }
+            }
+
+            new Chart(document.getElementById("canvas_livros"), {
+                type: "bar",
+                data: {
+                    labels: livros,
+                    datasets: [
+                        { label: "Concluído", data: concluidos, backgroundColor: "#2D5A43" },
+                        { label: "Em andamento", data: emAndamento, backgroundColor: "#8FAF96" },
+                        { label: "Não iniciado", data: naoIniciados, backgroundColor: "#E6DECD" }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+                            align: "start",
+                            labels: {
+                                usePointStyle: true,
+                                pointStyle: "rectRounded",
+                                padding: 20,
+                                font: { size: 14 }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (contexto) {
+                                    var i = contexto.dataIndex;
+                                    return capitulosLidos[i] + " de " + totalCapitulos[i] + " capítulos";
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: { display: false },
+                            border: { color: "#DDD3BF" },
+                            ticks: {
+                                autoSkip: false,
+                                maxRotation: 0,
+                                callback: function (valor, indice) {
+                                    if (indice == 0 || indice == 39 || indice == 65) {
+                                        return livros[indice];
+                                    }
+                                    return "";
+                                }
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        criarGraficoDias();
+        criarGraficoLivros();
+    </script>
 </body>
 </html>
