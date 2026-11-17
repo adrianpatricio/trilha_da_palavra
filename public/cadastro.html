@@ -16,55 +16,38 @@
 
     <main class="main_login">
         <section class="section_login">
-            <section class="section_bem-vindo">
-                <p class="bem-vindo">
-                    O COMEÇO DA SUA TRILHA
-                </p>
+            <!-- FORMULÁRIO -->
+            <section class="formulario_login formulario_cadastro">
+                <section class="cabecalho_login">
+                    <h1 class="titulo_login">Criar conta</h1>
 
-                <p class="num_sete">
-                    1
-                </p>
-
-                <p class="versiculo_mateus">
-                    “No princípio criou Deus os céus e a terra.”
-                </p>
-
-                <p class="versiculo_legenda">
-                    Gênesis 1:1 · ACF
-                </p>
-            </section>
-
-            <section class="formulario_login">
-                <h1 class="titulo_entrar">
-                    Criar conta
-                </h1>
-
-                <p class="subtitulo_entrar">
-                    Crie sua conta para registrar os capítulos que você lê.
-                </p>
+                    <p class="subtitulo_login">Crie sua conta para registrar os capítulos que você lê.</p>
+                </section>
 
                 <span id="mensagem_erro" class="mensagem_erro"></span>
 
-                <label for="ipt_nome">Nome</label>
-                <input type="text" id="ipt_nome" placeholder="Seu nome">
+                <div class="campo">
+                    <label for="ipt_nome">Nome</label>
+                    <input type="text" id="ipt_nome" placeholder="Seu nome">
+                    <span id="erro_nome" class="mensagem_erro_campo"></span>
+                </div>
 
-                <span id="erro_nome" class="mensagem_erro_campo"></span>
-
-                <label for="ipt_email">E-mail</label>
-                <input type="email" id="ipt_email" placeholder="voce@exemplo.com">
-
-                <span id="erro_email" class="mensagem_erro_campo"></span>
+                <div class="campo">
+                    <label for="ipt_email">E-mail</label>
+                    <input type="email" id="ipt_email" placeholder="voce@exemplo.com">
+                    <span id="erro_email" class="mensagem_erro_campo"></span>
+                </div>
 
                 <section class="lado_a_lado">
-                    <div class="lados">
+                    <div class="campo">
                         <label for="ipt_senha">Senha</label>
                         <input type="password" id="ipt_senha" placeholder="Mínimo de 6 caracteres">
                         <span id="erro_senha" class="mensagem_erro_campo"></span>
                     </div>
 
-                    <div class="lados">
+                    <div class="campo">
                         <label for="slc_livros">Livro favorito</label>
-                        
+
                         <select id="slc_livros">
                             <option value="">Selecione um livro</option>
 
@@ -77,13 +60,22 @@
                     </div>
                 </section>
 
-                <button onclick="cadastrar()" class="botao_entrar">
-                    Criar conta
-                </button>
+                <button onclick="cadastrar()" class="botao_entrar">Criar conta</button>
 
-                <p class="direcionar_cadastro">
-                    Já tem conta? <a href="./login.html">Entrar</a>
-                </p>
+                <p class="direcionar_cadastro">Já tem conta? <a href="./login.html">Entrar</a></p>
+            </section>
+
+            <!-- PAINEL DO VERSÍCULO -->
+            <section class="painel_versiculo painel_cadastro">
+                <span class="selo_versiculo">O COMEÇO DA SUA TRILHA</span>
+
+                <p class="numero_versiculo">1</p>
+
+                <section>
+                    <p class="texto_versiculo texto_versiculo_curto">“No princípio criou Deus os céus e a terra.”</p>
+
+                    <p class="referencia_versiculo">Gênesis 1:1 · ACF</p>
+                </section>
             </section>
         </section>
     </main>
