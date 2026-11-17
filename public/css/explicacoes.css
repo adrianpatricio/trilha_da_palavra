@@ -1,0 +1,267 @@
+/* EXPLICAÇÕES - EXPLICACOES.HTML */
+
+main {
+    font-family: var(--fonte_texto);
+    color: var(--texto_principal);
+}
+
+main p,
+main h1,
+main h2 {
+    margin: 0;
+}
+
+/* cada seção do main fica centralizada, com até 1240px */
+main > section {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 var(--espaco_24);
+    box-sizing: border-box;
+}
+
+.rotulo_secao {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--verde);
+}
+
+/* TOPO */
+
+.section_topo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco_16);
+    padding-top: var(--espaco_64);
+    padding-bottom: var(--espaco_24);
+}
+
+.titulo_topo {
+    max-width: 760px;
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+.destaque_topo {
+    font-family: var(--fonte_destaque);
+    font-size: 62px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--verde);
+}
+
+.descricao_topo {
+    font-size: 17px;
+    color: var(--texto_secundario);
+}
+
+/* ÍNDICE E PARTES, LADO A LADO */
+
+.section_conteudo {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espaco_40);
+    padding-bottom: var(--espaco_96);
+}
+
+.indice {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 230px;
+    margin-top: var(--espaco_30);
+    padding: var(--espaco_10);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+}
+
+.indice a {
+    padding: var(--espaco_10) var(--espaco_12);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto_secundario);
+    transition: 0.3s all;
+}
+
+.indice a:hover {
+    background-color: var(--verde_suave);
+    color: var(--verde_escuro);
+}
+
+.partes {
+    flex: 1;
+    min-width: 0;
+}
+
+.parte {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco_14);
+    padding: var(--espaco_36) 0;
+    border-bottom: 1px solid var(--borda_padrao);
+    /* ao clicar no índice, a parte não fica escondida atrás do header */
+    scroll-margin-top: var(--espaco_96);
+}
+
+.parte_ultima {
+    border-bottom: none;
+}
+
+.titulo_parte {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.texto_parte {
+    max-width: 680px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--texto_secundario);
+}
+
+/* 2 · BARRA DO ANTIGO E DO NOVO TESTAMENTO */
+
+.barra_testamentos {
+    display: flex;
+    height: 34px;
+    overflow: hidden;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* a largura de cada parte segue a porcentagem: 78% e 22% */
+.barra_antigo,
+.barra_novo {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--espaco_12);
+}
+
+.barra_antigo {
+    flex: 78;
+    background-color: var(--verde);
+    color: var(--texto_sobre_cor);
+}
+
+.barra_novo {
+    flex: 22;
+    background-color: var(--verde_medio);
+}
+
+/* 2 E 3 · CARDS COM NÚMEROS */
+
+.cards_numeros {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espaco_12);
+}
+
+.card_numero {
+    padding: var(--espaco_20);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+}
+
+.valor_numero {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.legenda_numero {
+    margin-top: var(--espaco_4);
+    font-size: 14px;
+    color: var(--texto_secundario);
+}
+
+/* 4 · REFERÊNCIA (JOÃO 3:16) */
+
+.card_referencia {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--espaco_32);
+    padding: var(--espaco_26);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+}
+
+.parte_referencia {
+    font-family: var(--fonte_destaque);
+    font-size: 56px;
+    line-height: 1;
+}
+
+.referencia_destaque {
+    color: var(--verde);
+}
+
+.legenda_referencia {
+    margin-top: var(--espaco_8);
+    padding-top: var(--espaco_6);
+    border-top: 2px solid var(--borda_padrao);
+    font-size: 13px;
+    color: var(--texto_secundario);
+}
+
+.legenda_destaque {
+    border-top-color: var(--verde);
+}
+
+/* 5 · CAMADAS */
+
+.cards_camadas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--espaco_10);
+}
+
+.card_camada {
+    padding: var(--espaco_18);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+}
+
+.numero_camada {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--verde);
+}
+
+.titulo_camada {
+    margin: var(--espaco_6) 0 var(--espaco_4);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.texto_camada {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--texto_secundario);
+}
+
+.nota_parte {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--texto_secundario);
+}
+
+/* 6 · FÓRMULAS */
+
+.formula {
+    padding: var(--espaco_14) var(--espaco_18);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-left: 4px solid var(--verde);
+    border-radius: 12px;
+    font-size: 14px;
+}

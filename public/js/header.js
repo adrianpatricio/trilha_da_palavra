@@ -17,7 +17,7 @@ if (pagina == "login" || pagina == "cadastro") {
 
     links = `
         <a href="./index.html" class="header_link">Início</a>
-        <a href="#" class="header_link">Explicações</a>
+        <a href="./explicacoes.html" class="header_link">Explicações</a>
         <a href="./sobre.html" class="header_link">Sobre o projeto</a>
         ${botaoConta}
     `;
@@ -37,7 +37,7 @@ if (pagina == "login" || pagina == "cadastro") {
     // visitante
     links = `
         <a href="./index.html" class="header_link" data-link="inicio">Início</a>
-        <a href="#" class="header_link" data-link="explicacoes">Explicações</a>
+        <a href="./explicacoes.html" class="header_link" data-link="explicacoes">Explicações</a>
         <a href="./sobre.html" class="header_link" data-link="sobre">Sobre o projeto</a>
 
         <span class="header_divisor"></span>
