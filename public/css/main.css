@@ -1,715 +1,464 @@
+/* INÍCIO - INDEX.HTML */
+
 main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 0 0;
+    font-family: var(--fonte_texto);
+    color: var(--texto_principal);
 }
 
-main p {
+main p,
+main h1,
+main h2 {
     margin: 0;
 }
 
-main .container_c1 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 1240px;
-    max-width: 90%;
-    padding: 0 30px;
+/* cada seção do main fica centralizada, com até 1240px */
+main > section {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 var(--espaco_24) var(--espaco_96);
     box-sizing: border-box;
-    gap: 40px;
 }
 
-.container_c1 .section_conteudo {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+/* TEXTOS QUE SE REPETEM */
 
-.section_conteudo .titulo_top {
-    font-family: 'Manrope';
+.rotulo_secao {
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #A3683F;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--verde);
 }
 
-.section_conteudo .titulo_main {
-    max-width: 600px;
-    font-family: 'Cormorant Garamond';
-    font-size: 64px;
-    font-weight: 600;
+.titulo_secao {
+    margin-top: var(--espaco_10);
+    font-size: 40px;
+    font-weight: 800;
     line-height: 1.1;
-    color: var(--heading);
+    letter-spacing: -0.02em;
 }
 
-.titulo_main span {
+.destaque_hero,
+.destaque_secao {
+    font-family: var(--fonte_destaque);
     font-style: italic;
-    font-weight: 500;
-    color: #2D5A43;
+    font-weight: 400;
+    color: var(--verde);
 }
 
-.section_conteudo .titulo_down {
-    max-width: 460px;
-    font-family: 'Manrope';
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--muted);
-}
-
-.section_conteudo .botoes_conteudo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.botoes_conteudo a {
-    align-items: center;
-    gap: 10px;
-    font-family: 'Manrope';
-    font-size: 15px;
-    font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 999px;
-    transition: 0.3s all;
-}
-
-.botoes_conteudo .botao_comecar {
-    background-color: #2D5A43;
-    color: #F7F3EA;
-}
-
-.botoes_conteudo .botao_comecar:hover {
-    background-color: #234836;
-}
-
-.botoes_conteudo .botao_conta {
-    border: 1px solid #DDD3BF;
-    color: var(--heading);
-}
-
-.botoes_conteudo .botao_conta:hover {
-    background-color: #E9E1D0;
-}
-
-.container_c1 .section_imagem {
-    position: relative;
-    align-items: center;
-}
-
-.section_conteudo img {
-    width: 400px;
-    max-width: 100%;
-    border-radius: 200px 200px 6px 6px;
-}
-
-.section_conteudo .text_salmos {
-    position: absolute;
-    bottom: 15px;
-    font-family: 'Manrope';
-    font-size: 12px;
-    color: var(--muted);
-    background-color: #F7F3EA;
-    padding: 6px 12px;
-    border-radius: 999px;
-}
-
-main .container_c2 {
+.icone_card {
     display: flex;
     justify-content: center;
-    width: 100%;
-    margin-top: 80px;
-    padding: 70px 30px;
-    box-sizing: border-box;
-    background-color: #ECE5D6;
-    border-top: 1px solid #DDD3BF;
-    border-bottom: 1px solid #DDD3BF;
-}
-
-.container_c2 .conteudo_c2 {
-    display: flex;
-    flex-direction: column;
-    width: 1240px;
-    max-width: 90%;
-    padding: 0 30px;
-    box-sizing: border-box;
-}
-
-.conteudo_c2 .funcionamento {
-    font-family: 'Manrope';
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #A3683F;
-}
-
-.conteudo_c2 .passos {
-    margin-top: 10px;
-    font-family: 'Cormorant Garamond';
-    font-size: 42px;
-    font-weight: 600;
-    color: var(--heading);
-}
-
-.conteudo_c2 .cards_c2 {
-    display: flex;
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.cards_c2 .section_cadastro,
-.cards_c2 .section_leu,
-.cards_c2 .section_caminho {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 14px;
-    padding: 36px 32px;
-    background-color: #F7F3EA;
-    border: 1px solid #DDD3BF;
-    border-radius: 20px;
-}
-
-.cards_c2 span {
-    margin-bottom: 10px;
-    font-family: 'Cormorant Garamond';
-    font-size: 52px;
-    font-weight: 500;
-    line-height: 1;
-    color: #A3683F;
-}
-
-.container_c2 .title {
-    font-family: 'Manrope';
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--heading);
-}
-
-.container_c2 .subtitle {
-    max-width: 380px;
-    font-family: 'Manrope';
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--muted);
-}
-
-main .container_c3 {
-    display: flex;
     align-items: center;
-    width: 1240px;
-    max-width: 90%;
-    padding: 100px 30px;
-    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: var(--verde_suave);
+    color: var(--verde);
 }
 
-.container_c3 .section_por_dentro {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 520px;
-    margin-right: auto;
+.icone_cobre {
+    background-color: var(--cobre_suave);
+    color: var(--cobre_escuro);
 }
 
-.section_por_dentro .mensagem_por_dentro {
-    font-family: 'Manrope';
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #A3683F;
-}
+/* BOTÕES */
 
-.section_por_dentro .titulo_por_dentro {
-    font-family: 'Cormorant Garamond';
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 1.15;
-    color: var(--heading);
-}
-
-.titulo_por_dentro span {
-    font-style: italic;
-    font-weight: 500;
-    color: #2D5A43;
-}
-
-.section_por_dentro .descricao_por_dentro {
-    font-family: 'Manrope';
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--muted);
-}
-
-.section_por_dentro a {
-    align-self: flex-start;
+.botao_principal,
+.botao_secundario,
+.botao_claro,
+.botao_contorno {
     align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-    font-family: 'Manrope';
-    font-size: 16px;
-    font-weight: 600;
-    color: #2D5A43;
+    gap: var(--espaco_8);
+    height: 48px;
+    padding: 0 var(--espaco_22);
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
     transition: 0.3s all;
 }
 
-.section_por_dentro a:hover {
-    color: var(--heading);
+.botao_principal {
+    background-color: var(--verde);
+    color: var(--texto_sobre_cor);
 }
 
-.container_c3 .section_exemplo {
+.botao_principal:hover {
+    background-color: var(--verde_escuro);
+}
+
+.botao_secundario {
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    color: var(--texto_principal);
+}
+
+.botao_secundario:hover {
+    background-color: var(--fundo_pagina);
+}
+
+/* HERO */
+
+.section_hero {
     display: flex;
     flex-direction: column;
-    width: 508px;
-    padding: 28px 24px;
-    box-sizing: border-box;
-    background-color: #F7F3EA;
-    border: 1px solid #DDD3BF;
-    border-radius: 20px;
-    box-shadow: 0 12px 30px rgba(29, 51, 40, 0.06);
+    align-items: center;
+    gap: var(--espaco_22);
+    padding-top: var(--espaco_88);
+    padding-bottom: var(--espaco_40);
+    text-align: center;
 }
 
-.section_exemplo .mensagem_exemplo {
-    font-family: 'Manrope';
+.selo_hero {
+    padding: var(--espaco_6) var(--espaco_12);
+    border-radius: 999px;
+    background-color: var(--verde_suave);
+    color: var(--verde_escuro);
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #A3683F;
+    font-weight: 700;
+    letter-spacing: 0.08em;
 }
 
-.section_exemplo .livro_exemplo {
-    margin-top: 4px;
-    font-family: 'Cormorant Garamond';
-    font-size: 30px;
-    font-weight: 600;
-    color: var(--heading);
+.titulo_hero {
+    max-width: 820px;
+    font-size: 68px;
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
 }
 
-.section_exemplo .progresso_exemplo {
-    margin-top: 16px;
-    font-family: 'Manrope';
-    font-size: 14px;
-    color: var(--muted);
+.destaque_hero {
+    font-size: 76px;
 }
 
-.section_exemplo .barra_progresso_exemplo {
-    position: relative;
+.descricao_hero {
+    max-width: 560px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--texto_secundario);
+}
+
+.botoes_hero {
+    display: flex;
+    justify-content: center;
+    gap: var(--espaco_12);
+    margin-top: var(--espaco_6);
+}
+
+.versiculo_hero {
+    margin-top: var(--espaco_4);
+    font-size: 13px;
+    color: var(--texto_secundario);
+}
+
+/* PRÉVIA (IMAGEM) */
+
+.img_previa {
     display: block;
-    height: 6px;
-    margin-top: 10px;
+    width: 100%;
+}
+
+/* COMO FUNCIONA */
+
+/* faixa de divisão: vai de um lado a outro da tela */
+.faixa_passos {
+    max-width: none;
+    margin-bottom: var(--espaco_96);
+    padding: var(--espaco_64) 0;
+    background-color: var(--fundo_superficie);
+    border-top: 1px solid var(--borda_padrao);
+    border-bottom: 1px solid var(--borda_padrao);
+}
+
+.section_passos {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 var(--espaco_24);
+    box-sizing: border-box;
+}
+
+.cards_passos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espaco_16);
+    margin-top: var(--espaco_36);
+}
+
+/* fundo da página, para o card aparecer sobre a faixa clara */
+.card_passo {
+    padding: var(--espaco_28);
+    background-color: var(--fundo_pagina);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+}
+
+.numero_passo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--verde);
+    color: var(--texto_sobre_cor);
+    font-weight: 800;
+}
+
+.titulo_passo {
+    margin: var(--espaco_18) 0 var(--espaco_8);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.descricao_passo {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--texto_secundario);
+}
+
+/* POR DENTRO DA TRILHA */
+
+.section_por_dentro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: var(--espaco_48);
+}
+
+.section_por_dentro .destaque_secao {
+    font-size: 46px;
+}
+
+.descricao_por_dentro {
+    margin: var(--espaco_18) 0 var(--espaco_24);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--texto_secundario);
+}
+
+.link_por_dentro {
+    font-weight: 700;
+    color: var(--verde);
+    transition: 0.3s all;
+}
+
+.link_por_dentro:hover {
+    color: var(--verde_escuro);
+}
+
+.cards_por_dentro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espaco_12);
+}
+
+.card_por_dentro {
+    padding: var(--espaco_22);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+}
+
+.numero_por_dentro {
+    margin-top: var(--espaco_14);
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.legenda_por_dentro {
+    font-size: 13px;
+    color: var(--texto_secundario);
+}
+
+/* card das barras do Antigo e do Novo Testamento */
+.card_testamentos {
+    grid-column: span 2;
+}
+
+.titulo_testamentos {
+    margin-bottom: var(--espaco_12);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.barras_testamentos {
+    display: flex;
+    gap: var(--espaco_4);
+    height: 10px;
+}
+
+/* a largura de cada barra segue o número de capítulos: 929 (AT) e 260 (NT) */
+.barra_antigo {
+    flex: 929;
     overflow: hidden;
     border-radius: 999px;
-    background-color: #E6DECD;
+    background-color: var(--verde_suave);
 }
 
-.barra_progresso_exemplo::before {
-    content: '';
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 24%;
+.barra_novo {
+    flex: 260;
     border-radius: 999px;
-    background-color: #2D5A43;
+    background-color: var(--verde_suave);
 }
 
-.section_exemplo .capitulos_exemplo {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 6px;
-    margin: 16px 0 0;
-    padding: 0;
-    list-style: none;
+.barra_preenchida {
+    display: block;
+    width: 2%;
+    height: 100%;
+    background-color: var(--verde);
 }
 
-.capitulos_exemplo li {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 34px;
-    font-family: 'Manrope';
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--heading);
-    background-color: #F4EFE4;
-    border: 1px solid #DDD3BF;
-    border-radius: 8px;
-}
-
-.capitulos_exemplo li:nth-child(-n+12) {
-    color: #F7F3EA;
-    background-color: #2D5A43;
-    border-color: #2D5A43;
-}
-
-.capitulos_exemplo li:nth-child(-n+12)::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 6px;
-    height: 3px;
-    border-left: 1.5px solid #F7F3EA;
-    border-bottom: 1.5px solid #F7F3EA;
-    transform: rotate(-45deg);
-}
-
-.capitulos_exemplo li:nth-child(13) {
-    color: #A3683F;
-    background-color: #F0E3D6;
-    border: 1.5px dashed #A3683F;
-}
-
-.capitulos_exemplo li:nth-child(13)::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: #A3683F;
-}
-
-.container_c3 .section_exemplo2 {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    gap: 20px;
-    align-self: flex-end;
-    margin: 0 -110px -48px -216px;
-    padding: 24px 28px;
-    background-color: #F7F3EA;
-    border: 1px solid #DDD3BF;
-    border-radius: 20px;
-    box-shadow: 0 16px 36px rgba(29, 51, 40, 0.10);
-}
-
-.section_exemplo2 .porcentagem_exemplo2 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 68px;
-    height: 68px;
-    font-family: 'Manrope';
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--heading);
-}
-
-.porcentagem_exemplo2::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: conic-gradient(#2D5A43 0 1%, #E6DECD 1% 100%);
-    mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 4px));
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 4px));
-}
-
-.section_exemplo2 .mensagem_exemplo2 {
-    font-family: 'Manrope';
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #A3683F;
-}
-
-.section_exemplo2 .progresso_exemplo2 {
-    margin-top: 8px;
-    font-family: 'Manrope';
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--heading);
-}
-
-.section_exemplo2 .proxima_exemplo2 {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 6px;
-    font-family: 'Manrope';
-    font-size: 13px;
-    color: var(--muted);
-}
-
-.proxima_exemplo2 svg {
-    width: 14px;
-    height: 14px;
-}
-
-main .container_c4 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 80px;
-    padding: 70px 30px;
-    box-sizing: border-box;
-    gap: 15px;
-    background-color: #ECE5D6;
-    border-top: 1px solid #DDD3BF;
-    border-bottom: 1px solid #DDD3BF;
-}
-
-.container_c4 svg {
-    color: #A3683F;
-}
-
-.container_c4 .salmo_119 {
-    max-width: 440px;
-    font-family: 'Cormorant Garamond';
-    font-size: 38px;
-    font-style: italic;
-    font-weight: 500;
-    line-height: 1.3;
-    text-align: center;
-    color: var(--heading);
-}
-
-.container_c4 .subtitle_salmo {
-    font-family: 'Manrope';
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #A3683F;
-}
-
-main .container_c5 {
-    display: flex;
-    flex-direction: column;
-    width: 1400px;
-    max-width: 95%;
-    padding: 80px 30px;
-    box-sizing: border-box;
-}
-
-.container_c5 .funcionalidade {
-    font-family: 'Manrope';
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #A3683F;
-}
-
-.container_c5 .titulo_funcio {
-    margin-top: 10px;
-    font-family: 'Cormorant Garamond';
-    font-size: 42px;
-    font-weight: 600;
-    color: var(--heading);
-}
-
-.container_c5 .container_funionalidades {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    margin-top: 45px;
-}
-
-.container_funionalidades .secao_funcionalidades {
-    display: flex;
-    gap: 25px;
-}
-
-.secao_funcionalidades .card_funcionalidades {
-    display: flex;
-    align-items: flex-start;
-    flex: 1;
-    gap: 18px;
-    padding: 28px;
-    background-color: #F7F3EA;
-    border: 1px solid #DDD3BF;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(29, 51, 40, 0.06);
-}
-
-.card_funcionalidades .icone_card {
-    display: flex;
-    flex-shrink: 0;
-    color: #2D5A43;
-}
-
-.icone_card svg {
-    width: 30px;
-    height: 30px;
-}
-
-.card_funcionalidades .texto_card {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 10px;
-}
-
-.texto_card .titulo_card {
-    font-family: 'Manrope';
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--heading);
-}
-
-.texto_card .descricao_card {
-    font-family: 'Manrope';
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--muted);
-}
-
-.card_funcionalidades .seta_card {
-    flex-shrink: 0;
-    width: 18px;
-    height: 18px;
-    margin-top: 4px;
-    color: #2D5A43;
-}
-
-.container_c5 .section_criador {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-top: 90px;
-}
-
-.section_criador .img_criador {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    background-color: #E2E6D3;
-}
-
-.img_criador span {
-    font-family: 'Cormorant Garamond';
-    font-size: 38px;
-    font-weight: 500;
-    color: var(--heading);
-}
-
-.section_criador .info_criador {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-}
-
-.info_criador .titulo_criador {
-    font-family: 'Manrope';
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #A3683F;
-}
-
-.info_criador .nome_criador {
-    font-family: 'Cormorant Garamond';
-    font-size: 26px;
-    font-weight: 600;
-    color: var(--heading);
-}
-
-.nome_criador span {
-    font-style: italic;
-    font-weight: 500;
-    color: #2D5A43;
-}
-
-.info_criador .legenda_criador {
-    font-family: 'Manrope';
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--muted);
-}
-
-.info_criador .btn_criador {
-    align-items: center;
-    gap: 10px;
-    margin-top: 4px;
-    font-family: 'Manrope';
-    font-size: 15px;
-    font-weight: 600;
-    color: #2D5A43;
-    transition: 0.3s all;
-}
-
-.info_criador .btn_criador:hover {
-    color: var(--heading);
-}
-
-.container_c5 .section_comeco {
+.legenda_testamentos {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-    margin-top: 50px;
-    padding: 56px;
-    border-radius: 24px;
-    background-color: #2D5A43;
+    margin-top: var(--espaco_8);
+    font-size: 12px;
+    color: var(--texto_secundario);
 }
 
-.section_comeco .div_trilha {
+/* FUNCIONALIDADES */
+
+.titulo_funcionalidades {
+    max-width: 640px;
+}
+
+.cards_funcionalidades {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espaco_16);
+    margin-top: var(--espaco_36);
+}
+
+.card_funcionalidade {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--espaco_14);
+    padding: var(--espaco_26);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
 }
 
-.div_trilha .titulo_comeco {
-    font-family: 'Cormorant Garamond';
-    font-size: 36px;
-    font-weight: 600;
-    color: #F7F3EA;
+.titulo_funcionalidade {
+    font-size: 17px;
+    font-weight: 700;
 }
 
-.titulo_comeco span {
+.descricao_funcionalidade {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--texto_secundario);
+}
+
+/* QUEM FEZ ESTE PROJETO */
+
+.section_criador {
+    padding-bottom: var(--espaco_32);
+}
+
+.card_criador {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espaco_28);
+    padding: var(--espaco_28);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+}
+
+.letra_criador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96px;
+    height: 96px;
+    border-radius: 28px;
+    background-color: var(--verde_suave);
+    color: var(--verde);
+    font-family: var(--fonte_destaque);
+    font-size: 56px;
+}
+
+.info_criador {
+    flex: 1 1 360px;
+}
+
+.nome_criador {
+    margin: var(--espaco_6) 0;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.nome_criador .destaque_secao {
+    font-size: 32px;
+}
+
+.legenda_criador {
+    font-size: 15px;
+    color: var(--texto_secundario);
+}
+
+/* CHAMADA FINAL */
+
+.card_chamada {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--espaco_32);
+    padding: var(--espaco_56);
+    border-radius: 24px;
+    background-color: var(--texto_principal);
+    color: var(--texto_sobre_cor);
+}
+
+.texto_chamada {
+    max-width: 560px;
+}
+
+.titulo_chamada {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.destaque_chamada {
+    font-family: var(--fonte_destaque);
     font-style: italic;
-    font-weight: 500;
+    font-weight: 400;
+    color: var(--cobre);
 }
 
-.div_trilha .descricao_comeco {
-    max-width: 540px;
-    font-family: 'Manrope';
+.descricao_chamada {
+    margin-top: var(--espaco_14);
     font-size: 16px;
     line-height: 1.6;
-    color: #DCE3DA;
+    color: var(--verde_claro);
 }
 
-.section_comeco .botoes_trilha {
+.botoes_chamada {
     display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: var(--espaco_12);
 }
 
-.botoes_trilha a {
-    align-items: center;
-    gap: 10px;
-    font-family: 'Manrope';
-    font-size: 15px;
-    font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 999px;
-    transition: 0.3s all;
+.botao_claro {
+    background-color: var(--fundo_superficie);
+    color: var(--texto_principal);
 }
 
-.botoes_trilha .botao_criar {
-    background-color: #F7F3EA;
-    color: var(--heading);
+.botao_claro:hover {
+    background-color: var(--fundo_pagina);
 }
 
-.botoes_trilha .botao_criar:hover {
-    background-color: #E9E1D0;
+.botao_contorno {
+    border: 1px solid var(--verde);
+    color: var(--texto_sobre_cor);
 }
 
-.botoes_trilha .botao_projeto {
-    border: 1px solid rgba(247, 243, 234, 0.4);
-    color: #F7F3EA;
-}
-
-.botoes_trilha .botao_projeto:hover {
-    background-color: rgba(247, 243, 234, 0.1);
+.botao_contorno:hover {
+    background-color: var(--verde);
 }
