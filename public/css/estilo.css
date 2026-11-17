@@ -1,21 +1,83 @@
+/* fontes antigas: remover quando nenhum CSS usar mais Manrope ou Cormorant Garamond */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Manrope:wght@200..800&display=swap');
 
+/* fontes do trilha_v3 */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap");
+
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #F4EFE4;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: var(--fundo_pagina);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 :root {
-  --header: 80px;
+    --header: 80px;
 
-  --heading: #1D3328;
-  --muted: #645D51;
+    /* fundos */
+    --fundo_pagina: #F4EFE4;
+    --fundo_superficie: #FAF7F0;
+    --fundo_segmento: #E9E1D0;
+
+    /* textos */
+    --texto_principal: #1D3328;
+    --texto_secundario: #645D51;
+    --texto_desativado: #B4AD9C;
+    --texto_escuro: #2A2925;
+    --texto_sobre_cor: #F7F3EA;
+
+    /* bordas */
+    --borda_padrao: #DDD3BF;
+    --borda_campo: #C9BCA2;
+
+    /* marca */
+    --verde: #2D5A43;
+    --verde_escuro: #234836;
+    --verde_suave: #DFE7D8;
+    --verde_borda: #C8D6C2;
+    --verde_medio: #8FAF96;
+    --verde_claro: #DCE3DA;
+
+    /* destaque */
+    --cobre: #A3683F;
+    --cobre_escuro: #8C5530;
+    --cobre_suave: #F1E1CF;
+
+    /* status */
+    --erro: #A33B2E;
+    --erro_suave: #F5E1DC;
+
+    /* fontes */
+    --fonte_texto: "Plus Jakarta Sans", sans-serif;
+    --fonte_destaque: "Instrument Serif", serif;
+
+    /* espaçamentos */
+    --espaco_4: 4px;
+    --espaco_6: 6px;
+    --espaco_8: 8px;
+    --espaco_10: 10px;
+    --espaco_12: 12px;
+    --espaco_14: 14px;
+    --espaco_16: 16px;
+    --espaco_18: 18px;
+    --espaco_20: 20px;
+    --espaco_24: 24px;
+    --espaco_28: 28px;
+    --espaco_32: 32px;
+    --espaco_40: 40px;
+    --espaco_48: 48px;
+    --espaco_64: 64px;
+
+    /* sombras */
+    --sombra_card: 0 8px 24px -16px rgba(40, 36, 28, 0.25);
+
+    /* temporário: trocar nos CSS das páginas e apagar */
+    --heading: var(--texto_principal);
+    --muted: var(--texto_secundario);
 }
 
 .agora {
-  font-weight: 800;
+    font-weight: 800;
 }

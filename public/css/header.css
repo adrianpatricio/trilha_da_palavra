@@ -1,78 +1,138 @@
+/* HEADER - HEADER.JS */
+
+/* links de todo o site (regra antiga, usada também pelas páginas) */
+a {
+    display: inline-flex;
+    text-decoration: none;
+}
+
 #header {
-    height: var(--header);
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: #F4EFE4;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: var(--espaco_20) var(--espaco_24) 0;
+    box-sizing: border-box;
+    font-family: var(--fonte_texto);
 }
 
-#header.rolando {
-    border-bottom-color: #E5D9C3;
+/* caixa clara do header */
+
+.header_conteudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--espaco_16);
+    padding: var(--espaco_10) var(--espaco_10) var(--espaco_10) var(--espaco_18);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 16px;
+    box-shadow: var(--sombra_card);
 }
+
+/* LOGO */
 
 .section_logo {
+    align-items: center;
+    gap: var(--espaco_10);
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--texto_principal);
+}
+
+.logo_arco {
+    stroke: var(--verde);
+}
+
+.logo_caminho {
+    stroke: var(--cobre);
+}
+
+/* LINKS */
+
+.nav_links {
     display: flex;
     align-items: center;
-}
-
-.section_logo p {
-    font-family: 'Cormorant Garamond';
-    font-size: 22px;
-    font-weight: bold;
-    color: var(--heading);
-}
-
-.nav_links ul {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.text, a {
-    display: inline-flex;
-    text-decoration: none;
-}
-
-.nav_links .li a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 15px;
-    font-family: 'Manrope';
+    gap: var(--espaco_4);
+    font-size: 14px;
     font-weight: 600;
-    padding: 8px;
-    transition: 0.5s all;
 }
 
-.nav_links .li a:hover {
-    background-color: #E9E1D0;
-    color: var(--heading);
+.header_link {
+    padding: var(--espaco_10) var(--espaco_14);
     border-radius: 10px;
+    color: var(--texto_secundario);
+    transition: 0.3s all;
 }
 
-.span_divisor {
-    transform: scaleY(0.7);
-    border: 1px solid #DDD3BF;
-    height: 25px;
+.header_link:hover {
+    background-color: var(--fundo_pagina);
+    color: var(--texto_principal);
 }
 
-.login a {
-    background-color: #2D5A43;
-    color: #F7F3EA;
-    font-family: 'Manrope';
-    padding: 8px;
-    border-radius: 10px;
-    font-size: 15px;
-    transition: 0.5s all;
+.header_link_escuro,
+.header_link_ativo {
+    color: var(--texto_principal);
 }
 
-.login a:hover {
-    background-color: #234836;
+.header_link_ativo {
+    background-color: var(--fundo_pagina);
 }
+
+.header_divisor {
+    width: 1px;
+    height: 22px;
+    margin: 0 var(--espaco_6);
+    background-color: var(--borda_padrao);
+}
+
+.header_ola {
+    padding: var(--espaco_10) var(--espaco_14);
+    color: var(--texto_principal);
+}
+
+/* BOTÕES */
+
+.header_botao {
+    align-items: center;
+    height: 40px;
+    padding: 0 var(--espaco_16);
+    box-sizing: border-box;
+    border-radius: 12px;
+    background-color: var(--verde);
+    color: var(--texto_sobre_cor);
+    font-weight: 700;
+    transition: 0.3s all;
+}
+
+.header_botao:hover {
+    background-color: var(--verde_escuro);
+}
+
+.header_botao_claro {
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    color: var(--texto_principal);
+}
+
+.header_botao_claro:hover {
+    background-color: var(--fundo_pagina);
+}
+
+/* HEADER SIMPLES (ENTRAR E CRIAR CONTA) */
+
+#header.header_simples {
+    position: static;
+    padding-bottom: var(--espaco_20);
+}
+
+.header_simples .header_conteudo {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
