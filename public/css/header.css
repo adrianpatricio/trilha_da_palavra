@@ -11,7 +11,7 @@ a {
     top: 0;
     z-index: 100;
     width: 100%;
-    max-width: 1120px;
+    max-width: 1240px;
     margin: 0 auto;
     padding: var(--espaco_20) var(--espaco_24) 0;
     box-sizing: border-box;
