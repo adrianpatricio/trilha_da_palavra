@@ -28,7 +28,7 @@ footer.innerHTML = `
                     <p class="titulo_coluna">O PROJETO</p>
 
                     <a href="./sobre.html">Sobre o projeto</a>
-                    <a href="#">Explicações</a>
+                    <a href="./explicacoes.html">Explicações</a>
                 </section>
 
                 <section class="coluna_footer">
