@@ -136,3 +136,99 @@ a {
     box-shadow: none;
 }
 
+/* MENU LATERAL (BÍBLIA) */
+
+/* fica à esquerda, com a altura da tela, e não rola junto com a página */
+#header.header_lateral {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: var(--espaco_28);
+    width: 240px;
+    max-width: none;
+    height: 100vh;
+    margin: 0;
+    padding: var(--espaco_24) var(--espaco_16);
+    background-color: var(--fundo_superficie);
+    border-right: 1px solid var(--borda_padrao);
+}
+
+.menu_logo {
+    align-items: center;
+    gap: var(--espaco_10);
+    padding: 0 var(--espaco_8);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--texto_principal);
+}
+
+.menu_links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco_4);
+}
+
+.menu_link {
+    align-items: center;
+    gap: var(--espaco_12);
+    padding: var(--espaco_10) var(--espaco_14);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto_secundario);
+    transition: 0.3s all;
+}
+
+.menu_link:hover {
+    background-color: var(--fundo_pagina);
+    color: var(--texto_principal);
+}
+
+.menu_link.header_link_ativo {
+    background-color: var(--verde_suave);
+    color: var(--verde_escuro);
+}
+
+/* cartão do usuário, sempre no fim do menu */
+.menu_usuario {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco_10);
+    margin-top: auto;
+    padding: var(--espaco_12);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 14px;
+}
+
+.menu_inicial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--verde_suave);
+    font-weight: 800;
+    color: var(--verde);
+}
+
+.menu_ola {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto_principal);
+}
+
+.menu_sair {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--texto_secundario);
+    transition: 0.3s all;
+}
+
+.menu_sair:hover {
+    color: var(--texto_principal);
+}
+
