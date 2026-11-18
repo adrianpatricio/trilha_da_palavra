@@ -24,7 +24,7 @@ if (pagina == "login" || pagina == "cadastro") {
 } else if (nomeUsuario != undefined) {
     // usuário logado
     links = `
-        <a href="./index.html" class="header_link" data-link="inicio">Início</a>
+        <a href="./inicio.html" class="header_link" data-link="inicio_leitor">Início</a>
         <a href="./biblia.html" class="header_link" data-link="biblia">Bíblia</a>
         <a href="./dashboard.html" class="header_link" data-link="progresso">Progresso</a>
 
@@ -56,15 +56,15 @@ var logo = `
     Trilha da Palavra
 `;
 
-// Bíblia usa o menu lateral no lugar do header em caixa.
-if (pagina == "biblia") {
+// Início do leitor e Bíblia usam o menu lateral no lugar do header em caixa.
+if (pagina == "inicio_leitor" || pagina == "biblia") {
     header.classList.add("header_lateral");
 
     header.innerHTML = `
-        <a href="./index.html" class="menu_logo">${logo}</a>
+        <a href="./inicio.html" class="menu_logo">${logo}</a>
 
         <nav class="menu_links">
-            <a href="./index.html" class="menu_link" data-link="inicio">
+            <a href="./inicio.html" class="menu_link" data-link="inicio_leitor">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1V10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                 </svg>

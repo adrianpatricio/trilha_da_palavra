@@ -128,3 +128,13 @@ Uma funcionalidade nova passa por esses mesmos arquivos e nessa ordem: rota no `
 - Se eu for fazer, dê **pistas** e aponte os **erros** sem reescrever tudo por mim.
 - **Peça permissão antes de alterar qualquer arquivo.**
 - **Não implemente nada que eu não pedi.**
+- Toda vez que algo do back-end for criado ou alterado (rotas, controllers, models, conexão com o banco, scripts SQL, configurações do servidor), atualize o arquivo `C:\Users\adria\OneDrive\Desktop\trilha_v3\estudo_backend.md` explicando o que foi feito, para estudo futuro.
+  - Atualizar esse documento não precisa de permissão; as demais alterações continuam precisando.
+  - Cada registro deve seguir este formato, simples e fácil de entender (nível 1º semestre):
+    ```
+    ## [data] - [título curto]
+    - O que foi feito:
+    - Por que foi feito:
+    - Arquivos envolvidos:
+    - Como funciona (explicação simples, com um trecho curto de código se ajudar):
+    ```
