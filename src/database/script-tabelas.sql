@@ -19,6 +19,7 @@ CREATE TABLE usuario (
     senha_usuario VARCHAR(100) NOT NULL,
     tipo_usuario VARCHAR(20) NOT NULL DEFAULT 'USER',
     avatar_usuario VARCHAR(20) NOT NULL DEFAULT 'inicial',
+    foto_usuario MEDIUMTEXT, -- foto personalizada (imagem em texto base64); NULL = usa o avatar
     data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
     fk_livro_favorito INT,
     

@@ -182,6 +182,44 @@ if (nomeUsuario != undefined && document.getElementById("menu_conta_caixa")) {
     document.getElementById("primeiro_nome_header").textContent = nomeUsuario.split(" ")[0];
     document.getElementById("nome_menu_conta").textContent = nomeUsuario;
     document.getElementById("email_menu_conta").textContent = sessionStorage.EMAIL_USUARIO;
+
+    // Enquanto o servidor não responde, os círculos mostram a inicial; depois, a foto ou o avatar.
+    carregarAvatarMenu();
+}
+
+// Busca o avatar e a foto da pessoa no servidor e mostra nos dois círculos do menu da conta.
+function carregarAvatarMenu() {
+    fetch(`/usuarios/perfil/${sessionStorage.ID_USUARIO}`)
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (perfil) {
+            mostrarAvatarMenu(document.getElementById("inicial_usuario_header"), perfil);
+            mostrarAvatarMenu(document.getElementById("inicial_menu_conta"), perfil);
+        })
+        .catch(function (erro) {
+            // se der erro, o menu continua com a inicial do nome
+            console.log(erro);
+        });
+}
+
+// Coloca no círculo a foto (se tiver), a imagem do avatar ou deixa a inicial do nome.
+function mostrarAvatarMenu(circulo, perfil) {
+    var imagem = document.createElement("img");
+
+    if (perfil.foto_usuario != null) {
+        // .src recebe o texto da foto sem passar pelo HTML (mais seguro que innerHTML)
+        imagem.src = perfil.foto_usuario;
+        imagem.alt = "Sua foto";
+    } else if (perfil.avatar_usuario != "inicial") {
+        imagem.src = `./assets/img/avatares/${perfil.avatar_usuario}.png`;
+        imagem.alt = "Seu avatar";
+    } else {
+        return;
+    }
+
+    circulo.textContent = "";
+    circulo.appendChild(imagem);
 }
 
 // Abre e fecha o menu da conta (o mesmo botão faz as duas coisas).

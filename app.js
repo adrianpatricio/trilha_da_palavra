@@ -19,7 +19,8 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var leituraRouter = require("./src/routes/leituras");
 
-app.use(express.json());
+// limite de 2mb para caber a foto do perfil (o padrão do Express é 100kb)
+app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
