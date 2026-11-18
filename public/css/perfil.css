@@ -276,6 +276,12 @@ main h2 {
     display: block;
 }
 
+/* mesma caixa, em verde, quando deu certo (ex.: "Senha alterada.") */
+.mensagem_erro.mensagem_sucesso {
+    background-color: var(--verde_suave);
+    color: var(--verde_escuro);
+}
+
 .mensagem_erro_campo {
     display: none;
     font-size: 13px;

@@ -110,4 +110,4 @@ INSERT INTO livro (id_livro, nome_livro, testamento, quantidade_capitulos) VALUE
   
 INSERT INTO usuario (nome_usuario, email_usuario, senha_usuario, tipo_usuario, avatar_usuario, fk_livro_favorito) VALUES
 	('adrian', 'admin@trilha.com', '#admin123', 'ADMIN', 'davi', 19),
-	('leitor', 'leitor@trilha.com', '#leitor123', 'USER',  'iniciais', NULL);
+	('leitor', 'leitor@trilha.com', '#leitor123', 'USER',  'inicial', NULL);
