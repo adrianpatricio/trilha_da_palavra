@@ -71,7 +71,29 @@ function cadastrar(req, res) {
     }
 }
 
+function buscarPerfil(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    usuarioModel.buscarPerfil(idUsuario)
+        .then(
+            function (resultado) {
+                if (resultado.length == 0) {
+                    res.status(404).send("Usuário não encontrado.");
+                } else {
+                    res.status(200).json(resultado[0]);
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log("\nHouve um erro ao buscar o perfil! Erro: ", erro.sqlMessage);
+
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    buscarPerfil
 }
