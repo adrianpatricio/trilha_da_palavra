@@ -32,8 +32,43 @@ function buscarPerfil(idUsuario) {
     return database.executar(instrucaoSql, [idUsuario]);
 }
 
+// Salva o nome, o livro favorito e o avatar escolhidos no perfil
+function atualizarPerfil(idUsuario, nome, livroFavorito, avatar) {
+    var instrucaoSql = `
+        UPDATE usuario SET nome_usuario = ?, fk_livro_favorito = ?, avatar_usuario = ? WHERE id_usuario = ?;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql, [nome, livroFavorito, avatar, idUsuario]);
+}
+
+// Senha salva, para conferir a "senha atual" antes de trocar
+function buscarSenha(idUsuario) {
+    var instrucaoSql = `
+        SELECT senha_usuario FROM usuario WHERE id_usuario = ?;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql, [idUsuario]);
+}
+
+function atualizarSenha(idUsuario, novaSenha) {
+    var instrucaoSql = `
+        UPDATE usuario SET senha_usuario = ? WHERE id_usuario = ?;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql, [novaSenha, idUsuario]);
+}
+
 module.exports = {
     buscarEmail,
     cadastrar,
-    buscarPerfil
+    buscarPerfil,
+    atualizarPerfil,
+    buscarSenha,
+    atualizarSenha
 };

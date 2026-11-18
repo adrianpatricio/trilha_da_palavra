@@ -75,14 +75,14 @@
                     <section class="lado_a_lado">
                         <div class="campo">
                             <label for="ipt_nome">Nome de exibição</label>
-                            <input type="text" id="ipt_nome" placeholder="Seu nome">
+                            <input type="text" id="ipt_nome" placeholder="Seu nome" oninput="verificarAlteracoes()">
                             <span id="erro_nome" class="mensagem_erro_campo"></span>
                         </div>
 
                         <div class="campo">
                             <label for="slc_livros">Livro favorito</label>
 
-                            <select id="slc_livros">
+                            <select id="slc_livros" onchange="verificarAlteracoes()">
                                 <option value="">Selecione um livro</option>
 
                                 <optgroup label="Antigo Testamento" id="grupo_at">
@@ -122,57 +122,57 @@
                         O avatar "Iniciais" mostra as iniciais do nome da pessoa, por isso não usa imagem.
                     -->
                     <section class="grade_avatares">
-                        <button class="opcao_avatar" data-avatar="inicial">
+                        <button class="opcao_avatar" data-avatar="inicial" onclick="escolherAvatar('inicial')">
                             <span class="imagem_avatar avatar_iniciais">LM</span>
                             <span class="nome_avatar">Iniciais</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="jesus">
+                        <button class="opcao_avatar" data-avatar="jesus" onclick="escolherAvatar('jesus')">
                             <img src="./assets/img/avatares/jesus.png" alt="Avatar de Jesus" class="imagem_avatar">
                             <span class="nome_avatar">Jesus</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="maria">
+                        <button class="opcao_avatar" data-avatar="maria" onclick="escolherAvatar('maria')">
                             <img src="./assets/img/avatares/maria.png" alt="Avatar de Maria" class="imagem_avatar">
                             <span class="nome_avatar">Maria</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="jose">
+                        <button class="opcao_avatar" data-avatar="jose" onclick="escolherAvatar('jose')">
                             <img src="./assets/img/avatares/jose.png" alt="Avatar de José" class="imagem_avatar">
                             <span class="nome_avatar">José</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="moises">
+                        <button class="opcao_avatar" data-avatar="moises" onclick="escolherAvatar('moises')">
                             <img src="./assets/img/avatares/moises.png" alt="Avatar de Moisés" class="imagem_avatar">
                             <span class="nome_avatar">Moisés</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="davi">
+                        <button class="opcao_avatar" data-avatar="davi" onclick="escolherAvatar('davi')">
                             <img src="./assets/img/avatares/davi.png" alt="Avatar de Davi" class="imagem_avatar">
                             <span class="nome_avatar">Davi</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="ester">
+                        <button class="opcao_avatar" data-avatar="ester" onclick="escolherAvatar('ester')">
                             <img src="./assets/img/avatares/ester.png" alt="Avatar de Ester" class="imagem_avatar">
                             <span class="nome_avatar">Ester</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="daniel">
+                        <button class="opcao_avatar" data-avatar="daniel" onclick="escolherAvatar('daniel')">
                             <img src="./assets/img/avatares/daniel.png" alt="Avatar de Daniel" class="imagem_avatar">
                             <span class="nome_avatar">Daniel</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="pedro">
+                        <button class="opcao_avatar" data-avatar="pedro" onclick="escolherAvatar('pedro')">
                             <img src="./assets/img/avatares/pedro.png" alt="Avatar de Pedro" class="imagem_avatar">
                             <span class="nome_avatar">Pedro</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="paulo">
+                        <button class="opcao_avatar" data-avatar="paulo" onclick="escolherAvatar('paulo')">
                             <img src="./assets/img/avatares/paulo.png" alt="Avatar de Paulo" class="imagem_avatar">
                             <span class="nome_avatar">Paulo</span>
                         </button>
 
-                        <button class="opcao_avatar" data-avatar="joao_batista">
+                        <button class="opcao_avatar" data-avatar="joao_batista" onclick="escolherAvatar('joao_batista')">
                             <img src="./assets/img/avatares/joao_batista.png" alt="Avatar de João Batista" class="imagem_avatar">
                             <span class="nome_avatar">João Batista</span>
                         </button>
@@ -200,8 +200,8 @@
                         <span id="status_alteracoes" class="status_alteracoes">Nenhuma alteração pendente</span>
 
                         <div class="botoes_salvar">
-                            <button id="btn_cancelar" class="botao_texto">Cancelar</button>
-                            <button id="btn_salvar" class="botao botao_primario" disabled>Salvar alterações</button>
+                            <button id="btn_cancelar" class="botao_texto" onclick="cancelarAlteracoes()">Cancelar</button>
+                            <button id="btn_salvar" class="botao botao_primario" onclick="salvarPerfil()" disabled>Salvar alterações</button>
                         </div>
                     </section>
                 </section>
@@ -211,7 +211,7 @@
                     <section class="cabecalho_formulario">
                         <h2>Senha</h2>
 
-                        <p>Ao alterar a senha, as outras sessões abertas com a sua conta são encerradas.</p>
+                        <p>Para trocar a senha, confirme a senha atual. A nova senha precisa ter no mínimo 6 caracteres.</p>
                     </section>
 
                     <span id="mensagem_senha" class="mensagem_erro"></span>
@@ -236,7 +236,7 @@
                         </div>
                     </section>
 
-                    <button id="btn_alterar_senha" class="botao">Alterar senha</button>
+                    <button id="btn_alterar_senha" class="botao" onclick="alterarSenha()">Alterar senha</button>
                 </section>
             </section>
         </section>
@@ -292,9 +292,24 @@
                 });
         }
 
+        // O que está salvo no banco (usado para saber se algo mudou e para o "Cancelar")
+        var perfilSalvo = null;
+
+        // Avatar marcado agora na grade (pode ser diferente do salvo até clicar em "Salvar")
+        var avatarEscolhido = "inicial";
+
         function mostrarPerfil(perfil) {
-            var iniciais = calcularIniciais(perfil.nome_usuario);
-            var avatar = perfil.avatar_usuario;
+            var livro = "";
+
+            if (perfil.fk_livro_favorito != null) {
+                livro = String(perfil.fk_livro_favorito);
+            }
+
+            perfilSalvo = {
+                nome: perfil.nome_usuario,
+                livro: livro,
+                avatar: perfil.avatar_usuario
+            };
 
             // cartão do perfil
             document.getElementById("nome_perfil").textContent = perfil.nome_usuario;
@@ -307,35 +322,35 @@
                 document.getElementById("tipo_perfil").textContent = "Leitor";
             }
 
+            // botão "Iniciais" da grade mostra as iniciais da pessoa
+            document.querySelector(".avatar_iniciais").textContent = calcularIniciais(perfil.nome_usuario);
+
             // campos do formulário
-            document.getElementById("ipt_nome").value = perfil.nome_usuario;
+            document.getElementById("ipt_nome").value = perfilSalvo.nome;
             document.getElementById("ipt_email").value = perfil.email_usuario;
+            document.getElementById("slc_livros").value = perfilSalvo.livro;
 
-            if (perfil.fk_livro_favorito == null) {
-                document.getElementById("slc_livros").value = "";
-            } else {
-                document.getElementById("slc_livros").value = perfil.fk_livro_favorito;
-            }
+            mostrarAvatarNoCartao(perfilSalvo.avatar, perfilSalvo.nome);
+            marcarAvatar(perfilSalvo.avatar);
+            verificarAlteracoes();
+        }
 
-            // O usuário de teste do script foi salvo como "iniciais"; o padrão é "inicial"
-            if (avatar == "iniciais") {
-                avatar = "inicial";
-            }
-
-            // avatar do cartão: as iniciais ou a imagem do personagem
+        // Avatar do cartão: as iniciais ou a imagem do personagem
+        function mostrarAvatarNoCartao(avatar, nome) {
             var avatarPerfil = document.getElementById("avatar_perfil");
 
             if (avatar == "inicial") {
-                avatarPerfil.textContent = iniciais;
+                avatarPerfil.textContent = calcularIniciais(nome);
             } else {
                 avatarPerfil.innerHTML = `<img src="./assets/img/avatares/${avatar}.png" alt="Avatar escolhido">`;
             }
+        }
 
-            // botão "Iniciais" da grade mostra as iniciais da pessoa
-            document.querySelector(".avatar_iniciais").textContent = iniciais;
-
-            // marca o avatar escolhido na grade
+        // Marca um avatar na grade (classe "selecionado") e guarda qual foi
+        function marcarAvatar(avatar) {
             var botoes = document.querySelectorAll(".opcao_avatar");
+
+            avatarEscolhido = avatar;
 
             for (var i = 0; i < botoes.length; i++) {
                 if (botoes[i].dataset.avatar == avatar) {
@@ -346,7 +361,145 @@
             }
         }
 
-        // 3. RESUMO DA LEITURA (capítulos lidos e livros concluídos)
+        // 3. EDITAR, CANCELAR E SALVAR
+
+        // Chamada pelo onclick de cada avatar da grade
+        function escolherAvatar(avatar) {
+            marcarAvatar(avatar);
+            verificarAlteracoes();
+        }
+
+        // Compara os campos com o que está salvo e liga ou desliga o botão "Salvar"
+        function verificarAlteracoes() {
+            var nome = document.getElementById("ipt_nome").value.trim();
+            var livro = document.getElementById("slc_livros").value;
+            var status = document.getElementById("status_alteracoes");
+            var btnSalvar = document.getElementById("btn_salvar");
+
+            if (perfilSalvo == null) {
+                return;
+            }
+
+            if (nome != perfilSalvo.nome || livro != perfilSalvo.livro || avatarEscolhido != perfilSalvo.avatar) {
+                status.textContent = "Você tem alterações não salvas";
+                btnSalvar.disabled = false;
+            } else {
+                status.textContent = "Nenhuma alteração pendente";
+                btnSalvar.disabled = true;
+            }
+        }
+
+        // Volta os campos para o que está salvo no banco
+        function cancelarAlteracoes() {
+            limparMensagens();
+
+            document.getElementById("ipt_nome").value = perfilSalvo.nome;
+            document.getElementById("slc_livros").value = perfilSalvo.livro;
+
+            marcarAvatar(perfilSalvo.avatar);
+            verificarAlteracoes();
+        }
+
+        function salvarPerfil() {
+            var nomeVar = document.getElementById("ipt_nome").value.trim();
+            var livroVar = document.getElementById("slc_livros").value;
+
+            limparMensagens();
+
+            if (nomeVar == "") {
+                mostrarMensagem("erro_nome", "Informe seu nome.");
+                return;
+            }
+
+            fetch(`/usuarios/atualizar/${idUsuario}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nomeServer: nomeVar,
+                    livroFavoritoServer: livroVar,
+                    avatarServer: avatarEscolhido
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    // o menu e a saudação do Início usam o nome guardado no sessionStorage
+                    sessionStorage.NOME_USUARIO = nomeVar;
+
+                    window.location.reload();
+                } else {
+                    resposta.text().then(function (texto) {
+                        mostrarMensagem("mensagem_erro", texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                mostrarMensagem("mensagem_erro", "Não foi possível conectar ao servidor.");
+            });
+        }
+
+        // 4. ALTERAR A SENHA
+
+        function alterarSenha() {
+            var senhaAtualVar = document.getElementById("ipt_senha_atual").value;
+            var novaSenhaVar = document.getElementById("ipt_nova_senha").value;
+            var confirmarSenhaVar = document.getElementById("ipt_confirmar_senha").value;
+            var mensagemSenha = document.getElementById("mensagem_senha");
+
+            limparMensagens();
+            mensagemSenha.classList.remove("mensagem_sucesso");
+
+            var temErro = false;
+
+            if (senhaAtualVar == "") {
+                mostrarMensagem("erro_senha_atual", "Informe sua senha atual.");
+                temErro = true;
+            }
+
+            if (novaSenhaVar.length < 6) {
+                mostrarMensagem("erro_nova_senha", "A nova senha deve ter no mínimo 6 caracteres.");
+                temErro = true;
+            }
+
+            // a confirmação só é conferida aqui no navegador; o servidor não precisa recebê-la
+            if (confirmarSenhaVar != novaSenhaVar) {
+                mostrarMensagem("erro_confirmar_senha", "As senhas não conferem.");
+                temErro = true;
+            }
+
+            if (temErro) {
+                return;
+            }
+
+            fetch(`/usuarios/senha/${idUsuario}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    senhaAtualServer: senhaAtualVar,
+                    novaSenhaServer: novaSenhaVar
+                })
+            }).then(function (resposta) {
+                resposta.text().then(function (texto) {
+                    if (resposta.ok) {
+                        // limpa os campos e mostra a mensagem em verde
+                        document.getElementById("ipt_senha_atual").value = "";
+                        document.getElementById("ipt_nova_senha").value = "";
+                        document.getElementById("ipt_confirmar_senha").value = "";
+
+                        mensagemSenha.classList.add("mensagem_sucesso");
+                    }
+
+                    mostrarMensagem("mensagem_senha", texto);
+                });
+            }).catch(function (erro) {
+                console.log(erro);
+                mostrarMensagem("mensagem_senha", "Não foi possível conectar ao servidor.");
+            });
+        }
+
+        // 5. RESUMO DA LEITURA (capítulos lidos e livros concluídos)
 
         function carregarResumo() {
             fetch(`/leituras/progresso/${idUsuario}`)
@@ -362,7 +515,7 @@
                 });
         }
 
-        // 4. INÍCIO: o perfil só é carregado depois dos livros, para o select já ter as opções
+        // 6. INÍCIO: o perfil só é carregado depois dos livros, para o select já ter as opções
 
         carregarLivros()
             .then(function () {

@@ -16,4 +16,12 @@ router.get("/perfil/:idUsuario", function (req, res) {
     usuarioController.buscarPerfil(req, res);
 });
 
+router.put("/atualizar/:idUsuario", function (req, res) {
+    usuarioController.atualizarPerfil(req, res);
+});
+
+router.put("/senha/:idUsuario", function (req, res) {
+    usuarioController.alterarSenha(req, res);
+});
+
 module.exports = router;
