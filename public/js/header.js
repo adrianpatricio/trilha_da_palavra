@@ -89,12 +89,56 @@ if (pagina == "inicio_leitor" || pagina == "biblia") {
             </a>
         </nav>
 
-        <section class="menu_usuario">
-            <span id="inicial_usuario_header" class="menu_inicial"></span>
+        <section class="menu_conta">
+            <!-- caixa do menu da conta: aparece quando o botão de baixo é clicado -->
+            <section id="menu_conta_caixa" class="menu_conta_caixa">
+                <section class="menu_conta_topo">
+                    <span id="inicial_menu_conta" class="menu_inicial menu_inicial_grande"></span>
 
-            <p class="menu_ola">Olá, <span id="nome_usuario_header"></span></p>
+                    <span>
+                        <span id="nome_menu_conta" class="menu_conta_nome"></span>
+                        <span id="email_menu_conta" class="menu_conta_email"></span>
+                    </span>
+                </section>
 
-            <a href="#" class="menu_sair" onclick="sair()">Sair</a>
+                <a href="./sobre.html" class="menu_conta_item">
+                    <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="6.5" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M3.5 15.5c.8-2.6 3-4 5.5-4s4.7 1.4 5.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+
+                    Sobre o projeto
+                </a>
+
+                <a href="./explicacoes.html" class="menu_conta_item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+
+                    Explicações
+                </a>
+
+                <span class="menu_conta_divisor"></span>
+
+                <a href="#" class="menu_conta_item" onclick="sair()">
+                    <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 15.75H3.75a1.5 1.5 0 0 1-1.5-1.5V3.75a1.5 1.5 0 0 1 1.5-1.5H7M12 12.75 15.75 9 12 5.25M15.75 9H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                    Sair
+                </a>
+            </section>
+
+            <button id="btn_menu_conta" class="menu_usuario" onclick="abrirMenuConta()">
+                <span id="inicial_usuario_header" class="menu_inicial"></span>
+
+                <span id="primeiro_nome_header" class="menu_ola"></span>
+
+                <svg class="menu_seta" width="14" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 7.5L6 4.5L9 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </section>
     `;
 } else {
@@ -120,9 +164,21 @@ if (nomeUsuario != undefined && document.getElementById("nome_usuario_header")) 
     document.getElementById("nome_usuario_header").textContent = nomeUsuario;
 }
 
-// Primeira letra do nome, no círculo do menu lateral.
-if (nomeUsuario != undefined && document.getElementById("inicial_usuario_header")) {
-    document.getElementById("inicial_usuario_header").textContent = nomeUsuario[0].toUpperCase();
+// Dados do menu da conta, no menu lateral.
+if (nomeUsuario != undefined && document.getElementById("menu_conta_caixa")) {
+    var inicial = nomeUsuario[0].toUpperCase();
+
+    document.getElementById("inicial_usuario_header").textContent = inicial;
+    document.getElementById("inicial_menu_conta").textContent = inicial;
+    document.getElementById("primeiro_nome_header").textContent = nomeUsuario.split(" ")[0];
+    document.getElementById("nome_menu_conta").textContent = nomeUsuario;
+    document.getElementById("email_menu_conta").textContent = sessionStorage.EMAIL_USUARIO;
+}
+
+// Abre e fecha o menu da conta (o mesmo botão faz as duas coisas).
+function abrirMenuConta() {
+    document.getElementById("menu_conta_caixa").classList.toggle("aberto");
+    document.getElementById("btn_menu_conta").classList.toggle("aberto");
 }
 
 function sair() {

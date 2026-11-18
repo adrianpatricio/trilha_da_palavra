@@ -189,15 +189,116 @@ a {
     color: var(--verde_escuro);
 }
 
-/* cartão do usuário, sempre no fim do menu */
+/* MENU DA CONTA: botão no fim do menu lateral e caixa que abre acima dele */
+
+.menu_conta {
+    position: relative;
+    margin-top: auto;
+}
+
+/* botão com a inicial e o primeiro nome */
 .menu_usuario {
     display: flex;
     align-items: center;
     gap: var(--espaco_10);
-    margin-top: auto;
+    width: 100%;
     padding: var(--espaco_12);
+    background-color: transparent;
     border: 1px solid var(--borda_padrao);
     border-radius: 14px;
+    font-family: var(--fonte_texto);
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.menu_usuario:hover {
+    background-color: var(--fundo_pagina);
+}
+
+/* botão com o menu aberto */
+.menu_usuario.aberto {
+    background-color: var(--verde_suave);
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px var(--verde_suave);
+}
+
+.menu_usuario.aberto .menu_inicial {
+    background-color: var(--fundo_superficie);
+}
+
+/* seta: aponta para cima com o menu fechado e vira para baixo com ele aberto */
+.menu_seta {
+    flex-shrink: 0;
+    color: var(--texto_secundario);
+    transition: 0.3s all;
+}
+
+.menu_usuario.aberto .menu_seta {
+    color: var(--verde_escuro);
+    transform: rotate(180deg);
+}
+
+/* caixa do menu: fica escondida até ganhar a classe "aberto" */
+.menu_conta_caixa {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    margin-bottom: var(--espaco_8);
+    padding: var(--espaco_8);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 16px;
+    box-shadow: var(--sombra_menu);
+}
+
+.menu_conta_caixa.aberto {
+    display: block;
+}
+
+.menu_conta_topo {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco_10);
+    margin-bottom: var(--espaco_6);
+    padding: var(--espaco_10) var(--espaco_12) var(--espaco_12);
+    border-bottom: 1px solid var(--borda_padrao);
+}
+
+.menu_conta_nome {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--texto_principal);
+}
+
+.menu_conta_email {
+    font-size: 12px;
+    color: var(--texto_secundario);
+}
+
+.menu_conta_item {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco_10);
+    padding: var(--espaco_10) var(--espaco_12);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto_principal);
+    transition: 0.3s all;
+}
+
+.menu_conta_item:hover {
+    background-color: var(--fundo_pagina);
+}
+
+.menu_conta_divisor {
+    display: block;
+    margin: var(--espaco_6) 0;
+    border-top: 1px solid var(--borda_padrao);
 }
 
 .menu_inicial {
@@ -213,22 +314,15 @@ a {
     color: var(--verde);
 }
 
+.menu_inicial_grande {
+    width: 40px;
+    height: 40px;
+}
+
 .menu_ola {
     flex-grow: 1;
-    margin: 0;
     font-size: 14px;
     font-weight: 700;
-    color: var(--texto_principal);
-}
-
-.menu_sair {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--texto_secundario);
-    transition: 0.3s all;
-}
-
-.menu_sair:hover {
     color: var(--texto_principal);
 }
 
