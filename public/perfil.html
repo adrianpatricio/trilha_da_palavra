@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Trilha da Palavra</title>
+
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/perfil.css">
+
+    <script src="./js/sessao.js"></script>
+    <script>
+        exigirLogin();
+    </script>
+</head>
+<body>
+    <header id="header" data-pagina="perfil"></header>
+    <script src="./js/header.js"></script>
+
+    <main class="perfil_container">
+        <!-- TÍTULO -->
+        <section class="perfil_titulo">
+            <p class="rotulo_secao">PERFIL E CONTA</p>
+
+            <h1>Seu perfil</h1>
+
+            <p class="perfil_titulo_descricao">Escolha como você aparece na Trilha da Palavra. Ajuste nome e avatar e acompanhe o resumo da sua leitura.</p>
+        </section>
+
+        <section class="perfil_conteudo">
+            <!-- CARTÃO DO PERFIL -->
+            <section class="card_perfil">
+                <!-- avatar escolhido (o JavaScript vai trocar pela imagem do avatar) -->
+                <span id="avatar_perfil" class="avatar_perfil"></span>
+
+                <p id="nome_perfil" class="nome_perfil">Carregando...</p>
+
+                <p id="email_perfil" class="email_perfil"></p>
+
+                <span id="tipo_perfil" class="selo_tipo">Leitor</span>
+
+                <section class="resumo_perfil">
+                    <div class="linha_resumo">
+                        <span>Membro desde</span>
+                        <strong id="kpi_membro_desde">-</strong>
+                    </div>
+
+                    <div class="linha_resumo">
+                        <span>Capítulos lidos</span>
+                        <strong id="kpi_capitulos">0</strong>
+                    </div>
+
+                    <div class="linha_resumo">
+                        <span>Livros concluídos</span>
+                        <strong id="kpi_livros">0</strong>
+                    </div>
+                </section>
+
+                <a href="./dashboard.html" class="link_progresso">Ver progresso →</a>
+            </section>
+
+            <section class="perfil_formularios">
+                <!-- INFORMAÇÕES PESSOAIS + AVATAR -->
+                <section class="card_formulario">
+                    <section class="cabecalho_formulario">
+                        <h2>Informações pessoais</h2>
+
+                        <p>Seu nome aparece no menu e na saudação do Início.</p>
+                    </section>
+
+                    <span id="mensagem_erro" class="mensagem_erro"></span>
+
+                    <section class="lado_a_lado">
+                        <div class="campo">
+                            <label for="ipt_nome">Nome de exibição</label>
+                            <input type="text" id="ipt_nome" placeholder="Seu nome">
+                            <span id="erro_nome" class="mensagem_erro_campo"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="slc_livros">Livro favorito</label>
+
+                            <select id="slc_livros">
+                                <option value="">Selecione um livro</option>
+
+                                <optgroup label="Antigo Testamento" id="grupo_at">
+                                </optgroup>
+
+                                <optgroup label="Novo Testamento" id="grupo_nt">
+                                </optgroup>
+                            </select>
+                        </div>
+                    </section>
+
+                    <div class="campo">
+                        <label for="ipt_email">E-mail</label>
+
+                        <div class="campo_bloqueado">
+                            <input type="email" id="ipt_email" disabled>
+
+                            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3.75" y="8.25" width="10.5" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M6 8.25V6a3 3 0 0 1 6 0v2.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <span class="dica_campo">O e-mail identifica a sua conta e não pode ser alterado por aqui.</span>
+                    </div>
+
+                    <!-- AVATAR -->
+                    <section class="cabecalho_formulario cabecalho_avatar">
+                        <h2>Avatar</h2>
+
+                        <p>Medalhões inspirados em personagens bíblicos, com o símbolo tradicional de cada um. Você pode trocar quando quiser.</p>
+                    </section>
+
+                    <!--
+                        Cada botão é um avatar. O "data-avatar" é o valor salvo na coluna avatar_usuario.
+                        As imagens ficam em assets/img/avatares, com o mesmo nome do "data-avatar".
+                        O avatar "Iniciais" mostra as iniciais do nome da pessoa, por isso não usa imagem.
+                    -->
+                    <section class="grade_avatares">
+                        <button class="opcao_avatar" data-avatar="inicial">
+                            <span class="imagem_avatar avatar_iniciais">LM</span>
+                            <span class="nome_avatar">Iniciais</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="jesus">
+                            <img src="./assets/img/avatares/jesus.png" alt="Avatar de Jesus" class="imagem_avatar">
+                            <span class="nome_avatar">Jesus</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="maria">
+                            <img src="./assets/img/avatares/maria.png" alt="Avatar de Maria" class="imagem_avatar">
+                            <span class="nome_avatar">Maria</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="jose">
+                            <img src="./assets/img/avatares/jose.png" alt="Avatar de José" class="imagem_avatar">
+                            <span class="nome_avatar">José</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="moises">
+                            <img src="./assets/img/avatares/moises.png" alt="Avatar de Moisés" class="imagem_avatar">
+                            <span class="nome_avatar">Moisés</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="davi">
+                            <img src="./assets/img/avatares/davi.png" alt="Avatar de Davi" class="imagem_avatar">
+                            <span class="nome_avatar">Davi</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="ester">
+                            <img src="./assets/img/avatares/ester.png" alt="Avatar de Ester" class="imagem_avatar">
+                            <span class="nome_avatar">Ester</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="daniel">
+                            <img src="./assets/img/avatares/daniel.png" alt="Avatar de Daniel" class="imagem_avatar">
+                            <span class="nome_avatar">Daniel</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="pedro">
+                            <img src="./assets/img/avatares/pedro.png" alt="Avatar de Pedro" class="imagem_avatar">
+                            <span class="nome_avatar">Pedro</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="paulo">
+                            <img src="./assets/img/avatares/paulo.png" alt="Avatar de Paulo" class="imagem_avatar">
+                            <span class="nome_avatar">Paulo</span>
+                        </button>
+
+                        <button class="opcao_avatar" data-avatar="joao_batista">
+                            <img src="./assets/img/avatares/joao_batista.png" alt="Avatar de João Batista" class="imagem_avatar">
+                            <span class="nome_avatar">João Batista</span>
+                        </button>
+                    </section>
+
+                    <!-- FOTO PERSONALIZADA -->
+                    <section class="caixa_foto">
+                        <p class="titulo_foto">Foto personalizada</p>
+
+                        <p class="texto_foto">Envie uma imagem quadrada (JPG ou PNG); ela substitui o avatar escolhido.</p>
+
+                        <label for="ipt_foto" class="botao botao_foto">
+                            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 11.25V2.25M5.25 6 9 2.25 12.75 6M3 12.75v1.5a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5v-1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            Escolher foto
+                        </label>
+
+                        <input type="file" id="ipt_foto" accept="image/png, image/jpeg">
+                    </section>
+
+                    <!-- BARRA DE SALVAR -->
+                    <section class="barra_salvar">
+                        <span id="status_alteracoes" class="status_alteracoes">Nenhuma alteração pendente</span>
+
+                        <div class="botoes_salvar">
+                            <button id="btn_cancelar" class="botao_texto">Cancelar</button>
+                            <button id="btn_salvar" class="botao botao_primario" disabled>Salvar alterações</button>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- SENHA -->
+                <section class="card_formulario">
+                    <section class="cabecalho_formulario">
+                        <h2>Senha</h2>
+
+                        <p>Ao alterar a senha, as outras sessões abertas com a sua conta são encerradas.</p>
+                    </section>
+
+                    <span id="mensagem_senha" class="mensagem_erro"></span>
+
+                    <section class="campos_senha">
+                        <div class="campo">
+                            <label for="ipt_senha_atual">Senha atual</label>
+                            <input type="password" id="ipt_senha_atual">
+                            <span id="erro_senha_atual" class="mensagem_erro_campo"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="ipt_nova_senha">Nova senha</label>
+                            <input type="password" id="ipt_nova_senha">
+                            <span id="erro_nova_senha" class="mensagem_erro_campo"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="ipt_confirmar_senha">Confirmar nova senha</label>
+                            <input type="password" id="ipt_confirmar_senha">
+                            <span id="erro_confirmar_senha" class="mensagem_erro_campo"></span>
+                        </div>
+                    </section>
+
+                    <button id="btn_alterar_senha" class="botao">Alterar senha</button>
+                </section>
+            </section>
+        </section>
+    </main>
+
+    <script>
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        // 1. LIVROS DO SELECT "LIVRO FAVORITO"
+
+        function carregarLivros() {
+            return fetch(`/leituras/livros/${idUsuario}`)
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+                .then(function (livros) {
+                    var grupoAT = document.getElementById("grupo_at");
+                    var grupoNT = document.getElementById("grupo_nt");
+
+                    for (var i = 0; i < livros.length; i++) {
+                        var opcao = `<option value="${livros[i].id_livro}">${livros[i].nome_livro}</option>`;
+
+                        if (livros[i].testamento == "AT") {
+                            grupoAT.innerHTML += opcao;
+                        } else {
+                            grupoNT.innerHTML += opcao;
+                        }
+                    }
+                });
+        }
+
+        // 2. DADOS DA CONTA
+
+        // Primeira letra da primeira e da última palavra do nome: "Lia Maria" → "LM"
+        function calcularIniciais(nome) {
+            var palavras = nome.trim().split(" ");
+            var iniciais = palavras[0][0];
+
+            if (palavras.length > 1) {
+                iniciais += palavras[palavras.length - 1][0];
+            }
+
+            return iniciais.toUpperCase();
+        }
+
+        function carregarPerfil() {
+            return fetch(`/usuarios/perfil/${idUsuario}`)
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+                .then(function (perfil) {
+                    mostrarPerfil(perfil);
+                });
+        }
+
+        function mostrarPerfil(perfil) {
+            var iniciais = calcularIniciais(perfil.nome_usuario);
+            var avatar = perfil.avatar_usuario;
+
+            // cartão do perfil
+            document.getElementById("nome_perfil").textContent = perfil.nome_usuario;
+            document.getElementById("email_perfil").textContent = perfil.email_usuario;
+            document.getElementById("kpi_membro_desde").textContent = perfil.data_cadastro;
+
+            if (perfil.tipo_usuario == "ADMIN") {
+                document.getElementById("tipo_perfil").textContent = "Administrador";
+            } else {
+                document.getElementById("tipo_perfil").textContent = "Leitor";
+            }
+
+            // campos do formulário
+            document.getElementById("ipt_nome").value = perfil.nome_usuario;
+            document.getElementById("ipt_email").value = perfil.email_usuario;
+
+            if (perfil.fk_livro_favorito == null) {
+                document.getElementById("slc_livros").value = "";
+            } else {
+                document.getElementById("slc_livros").value = perfil.fk_livro_favorito;
+            }
+
+            // O usuário de teste do script foi salvo como "iniciais"; o padrão é "inicial"
+            if (avatar == "iniciais") {
+                avatar = "inicial";
+            }
+
+            // avatar do cartão: as iniciais ou a imagem do personagem
+            var avatarPerfil = document.getElementById("avatar_perfil");
+
+            if (avatar == "inicial") {
+                avatarPerfil.textContent = iniciais;
+            } else {
+                avatarPerfil.innerHTML = `<img src="./assets/img/avatares/${avatar}.png" alt="Avatar escolhido">`;
+            }
+
+            // botão "Iniciais" da grade mostra as iniciais da pessoa
+            document.querySelector(".avatar_iniciais").textContent = iniciais;
+
+            // marca o avatar escolhido na grade
+            var botoes = document.querySelectorAll(".opcao_avatar");
+
+            for (var i = 0; i < botoes.length; i++) {
+                if (botoes[i].dataset.avatar == avatar) {
+                    botoes[i].classList.add("selecionado");
+                } else {
+                    botoes[i].classList.remove("selecionado");
+                }
+            }
+        }
+
+        // 3. RESUMO DA LEITURA (capítulos lidos e livros concluídos)
+
+        function carregarResumo() {
+            fetch(`/leituras/progresso/${idUsuario}`)
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+                .then(function (dados) {
+                    document.getElementById("kpi_capitulos").textContent = dados.capitulosLidos.toLocaleString("pt-BR");
+                    document.getElementById("kpi_livros").textContent = dados.livrosConcluidos;
+                })
+                .catch(function (erro) {
+                    console.log(erro);
+                });
+        }
+
+        // 4. INÍCIO: o perfil só é carregado depois dos livros, para o select já ter as opções
+
+        carregarLivros()
+            .then(function () {
+                return carregarPerfil();
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                alert("Não foi possível carregar o seu perfil.");
+            });
+
+        carregarResumo();
+    </script>
+</body>
+</html>

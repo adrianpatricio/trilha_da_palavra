@@ -1,0 +1,464 @@
+/* PERFIL - PERFIL.HTML */
+
+/* menu lateral à esquerda e conteúdo à direita */
+body {
+    flex-direction: row;
+}
+
+.perfil_container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: var(--espaco_22);
+    min-width: 0;
+    /* mesma largura máxima da Bíblia e do Início, centralizada ao lado do menu */
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: var(--espaco_40) var(--espaco_40) var(--espaco_56);
+    box-sizing: border-box;
+    font-family: var(--fonte_texto);
+    color: var(--texto_principal);
+}
+
+main p,
+main h1,
+main h2 {
+    margin: 0;
+}
+
+.rotulo_secao {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--verde);
+}
+
+/* TÍTULO */
+
+.perfil_titulo h1 {
+    margin: var(--espaco_8) 0 var(--espaco_6);
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.perfil_titulo_descricao {
+    max-width: 600px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--texto_secundario);
+}
+
+/* CARTÃO DO PERFIL (esquerda) + FORMULÁRIOS (direita) */
+
+.perfil_conteudo {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espaco_16);
+}
+
+/* CARTÃO DO PERFIL */
+
+.card_perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 0 280px;
+    gap: var(--espaco_8);
+    padding: var(--espaco_26);
+    box-sizing: border-box;
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.avatar_perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 112px;
+    height: 112px;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: var(--verde_suave);
+    font-family: var(--fonte_destaque);
+    font-size: 60px;
+    color: var(--verde_escuro);
+}
+
+/* quando o avatar escolhido for uma imagem, ela ocupa o círculo inteiro */
+.avatar_perfil img {
+    width: 100%;
+    height: 100%;
+}
+
+.nome_perfil {
+    margin-top: var(--espaco_8);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.email_perfil {
+    font-size: 14px;
+    color: var(--texto_secundario);
+}
+
+.selo_tipo {
+    padding: var(--espaco_4) var(--espaco_10);
+    border-radius: 999px;
+    background-color: var(--verde_suave);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--verde_escuro);
+}
+
+.resumo_perfil {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    gap: var(--espaco_10);
+    margin-top: var(--espaco_12);
+    padding-top: var(--espaco_14);
+    border-top: 1px solid var(--borda_padrao);
+    font-size: 13px;
+    text-align: left;
+}
+
+.linha_resumo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.linha_resumo span {
+    color: var(--texto_secundario);
+}
+
+.link_progresso {
+    margin-top: var(--espaco_10);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--verde);
+    transition: 0.3s all;
+}
+
+.link_progresso:hover {
+    color: var(--verde_escuro);
+}
+
+/* FORMULÁRIOS */
+
+.perfil_formularios {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: var(--espaco_16);
+    min-width: 0;
+}
+
+.card_formulario {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco_20);
+    padding: var(--espaco_28);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+}
+
+.cabecalho_formulario h2 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.cabecalho_formulario p {
+    margin-top: var(--espaco_4);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--texto_secundario);
+}
+
+/* a parte do avatar começa com uma linha separando das informações pessoais */
+.cabecalho_avatar {
+    padding-top: var(--espaco_18);
+    border-top: 1px solid var(--borda_padrao);
+}
+
+/* CAMPOS */
+
+.lado_a_lado {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--espaco_14);
+}
+
+.campos_senha {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--espaco_14);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco_8);
+    min-width: 0;
+}
+
+.campo label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    height: 48px;
+    padding: 0 var(--espaco_14);
+    box-sizing: border-box;
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_campo);
+    border-radius: 12px;
+    font-family: var(--fonte_texto);
+    font-size: 15px;
+    color: var(--texto_principal);
+    outline: none;
+    transition: 0.3s all;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 4px var(--verde_suave);
+}
+
+.campo select {
+    cursor: pointer;
+}
+
+/* e-mail bloqueado, com o cadeado dentro do campo */
+.campo_bloqueado {
+    position: relative;
+}
+
+.campo_bloqueado input {
+    padding-right: var(--espaco_40);
+    background-color: var(--fundo_pagina);
+    color: var(--texto_secundario);
+    cursor: not-allowed;
+}
+
+.campo_bloqueado svg {
+    position: absolute;
+    top: var(--espaco_16);
+    right: var(--espaco_14);
+    color: var(--texto_secundario);
+}
+
+.dica_campo {
+    font-size: 13px;
+    color: var(--texto_secundario);
+}
+
+/* MENSAGENS DE ERRO (aparecem com a classe "ativa", do sessao.js) */
+
+.mensagem_erro {
+    display: none;
+    padding: var(--espaco_14) var(--espaco_16);
+    border-radius: 12px;
+    background-color: var(--erro_suave);
+    font-size: 14px;
+    color: var(--erro);
+}
+
+.mensagem_erro.ativa {
+    display: block;
+}
+
+.mensagem_erro_campo {
+    display: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--erro);
+}
+
+.mensagem_erro_campo.ativa {
+    display: block;
+}
+
+/* AVATARES */
+
+.grade_avatares {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--espaco_10);
+}
+
+.opcao_avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaco_8);
+    padding: var(--espaco_12) var(--espaco_6);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 14px;
+    font-family: var(--fonte_texto);
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.opcao_avatar:hover {
+    border-color: var(--borda_campo);
+}
+
+/* avatar escolhido (o JavaScript vai colocar a classe "selecionado") */
+.opcao_avatar.selecionado {
+    background-color: var(--verde_suave);
+    border: 2px solid var(--verde);
+}
+
+.imagem_avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+/* avatar "Iniciais": letras do nome num círculo verde suave */
+.avatar_iniciais {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--verde_suave);
+    font-family: var(--fonte_destaque);
+    font-size: 18px;
+    color: var(--verde_escuro);
+}
+
+.nome_avatar {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto_principal);
+}
+
+/* FOTO PERSONALIZADA */
+
+.caixa_foto {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco_10);
+    padding: var(--espaco_18);
+    border: 1px dashed var(--borda_campo);
+    border-radius: 14px;
+}
+
+.titulo_foto {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.texto_foto {
+    font-size: 13px;
+    color: var(--texto_secundario);
+}
+
+/* o input de arquivo fica escondido: quem abre a escolha da foto é o label "Escolher foto" */
+#ipt_foto {
+    display: none;
+}
+
+/* BOTÕES */
+
+.botao {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--espaco_8);
+    height: 44px;
+    padding: 0 var(--espaco_18);
+    box-sizing: border-box;
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_campo);
+    border-radius: 12px;
+    font-family: var(--fonte_texto);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto_principal);
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.botao:hover {
+    background-color: var(--fundo_pagina);
+}
+
+/* "Alterar senha" fica à esquerda, do tamanho do texto */
+.card_formulario > .botao {
+    align-self: flex-start;
+}
+
+.botao_foto {
+    align-self: flex-start;
+    height: 40px;
+    padding: 0 var(--espaco_14);
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.botao_primario {
+    height: 42px;
+    padding: 0 var(--espaco_16);
+    background-color: var(--verde);
+    border: none;
+    color: var(--texto_sobre_cor);
+}
+
+.botao_primario:hover {
+    background-color: var(--verde_escuro);
+}
+
+.botao_primario:disabled {
+    background-color: var(--verde_medio);
+    cursor: default;
+}
+
+/* BARRA DE SALVAR */
+
+.barra_salvar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--espaco_12);
+    padding: var(--espaco_14) var(--espaco_16);
+    border-radius: 14px;
+    background-color: var(--fundo_pagina);
+}
+
+.status_alteracoes {
+    font-size: 14px;
+    color: var(--texto_secundario);
+}
+
+.botoes_salvar {
+    display: flex;
+    gap: var(--espaco_8);
+}
+
+.botao_texto {
+    height: 42px;
+    padding: 0 var(--espaco_16);
+    background-color: transparent;
+    border: none;
+    font-family: var(--fonte_texto);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto_secundario);
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.botao_texto:hover {
+    color: var(--texto_principal);
+}
