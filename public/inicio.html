@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início - Trilha da Palavra</title>
+
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/inicio.css">
+
+    <script src="./js/sessao.js"></script>
+    <script>
+        exigirLogin();
+    </script>
+</head>
+<body>
+    <header id="header" data-pagina="inicio_leitor"></header>
+    <script src="./js/header.js"></script>
+
+    <main class="inicio_container">
+        <!-- SAUDAÇÃO -->
+        <section class="inicio_titulo">
+            <p id="saudacao" class="rotulo_secao">OLÁ</p>
+
+            <h1>Continue de onde <span class="destaque_titulo">parou</span>.</h1>
+        </section>
+
+        <section class="inicio_cards">
+            <!-- PRÓXIMA LEITURA -->
+            <section class="card_proxima">
+                <svg class="arco_proxima" width="220" height="220" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="arco_proxima_linha" d="M5 27V12a10 10 0 0 1 20 0v15" stroke-width="1.6" stroke-linecap="round"/>
+                    <path class="arco_proxima_caminho" d="M15 27c-3-4 4-6 1-10s3-5 1-8" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+
+                <p class="rotulo_secao rotulo_proxima">PRÓXIMA LEITURA</p>
+
+                <p id="proxima_nome" class="proxima_nome">Carregando...</p>
+
+                <p id="proxima_detalhe" class="proxima_detalhe"></p>
+
+                <section class="botoes_proxima">
+                    <button id="btn_marcar_proxima" class="botao_claro" onclick="marcarProxima()">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 4.5L6.75 12.75L3 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                        Marcar como lido
+                    </button>
+
+                    <a href="./biblia.html" id="btn_abrir_proxima" class="botao_contorno">Abrir no livro →</a>
+                </section>
+            </section>
+
+            <!-- PROGRESSO DA BÍBLIA -->
+            <section class="card_progresso">
+                <section class="progresso_topo">
+                    <div id="anel_progresso" class="anel_progresso">
+                        <span id="kpi_porcentagem" class="anel_texto">0%</span>
+                    </div>
+
+                    <div>
+                        <p class="progresso_rotulo">Progresso da Bíblia</p>
+                        <p id="kpi_capitulos_total" class="progresso_total">0 de 1.189 capítulos</p>
+                    </div>
+                </section>
+
+                <section class="progresso_numeros">
+                    <div>
+                        <p id="kpi_capitulos" class="numero_progresso">0</p>
+                        <p class="legenda_progresso">capítulos lidos</p>
+                    </div>
+
+                    <div>
+                        <p id="kpi_livros" class="numero_progresso">0</p>
+                        <p class="legenda_progresso">livros concluídos</p>
+                    </div>
+
+                    <div>
+                        <p id="kpi_sequencia" class="numero_progresso">0</p>
+                        <p class="legenda_progresso">dias seguidos</p>
+                    </div>
+                </section>
+            </section>
+        </section>
+
+        <!-- ATALHOS -->
+        <section class="inicio_atalhos">
+            <a href="./biblia.html" class="atalho">
+                <span class="icone_atalho">
+                    <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 2.25H6a3 3 0 0 1 3 3v10.5a2.25 2.25 0 0 0-2.25-2.25H1.5V2.25ZM16.5 2.25H12a3 3 0 0 0-3 3v10.5a2.25 2.25 0 0 1 2.25-2.25h5.25V2.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+
+                <span class="texto_atalho">
+                    <span class="titulo_atalho">Bíblia</span>
+                    <span class="legenda_atalho">Livros e capítulos</span>
+                </span>
+
+                <span class="seta_atalho">›</span>
+            </a>
+
+            <a href="./dashboard.html" class="atalho">
+                <span class="icone_atalho">
+                    <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.25 2.25V15.75H15.75M13.5 12.75V6.75M9.75 12.75V3.75M6 12.75V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+
+                <span class="texto_atalho">
+                    <span class="titulo_atalho">Progresso</span>
+                    <span class="legenda_atalho">Indicadores da sua leitura</span>
+                </span>
+
+                <span class="seta_atalho">›</span>
+            </a>
+        </section>
+    </main>
+
+    <script>
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var proxima = null;
+
+        // "BOM DIA", "BOA TARDE" ou "BOA NOITE", conforme a hora, com o nome da pessoa.
+        function mostrarSaudacao() {
+            var hora = new Date().getHours();
+            var saudacao = "BOA NOITE";
+
+            if (hora < 12) {
+                saudacao = "BOM DIA";
+            } else if (hora < 18) {
+                saudacao = "BOA TARDE";
+            }
+
+            document.getElementById("saudacao").textContent = saudacao + ", " + sessionStorage.NOME_USUARIO.toUpperCase();
+        }
+
+        function carregarProgresso() {
+            fetch(`/leituras/progresso/${idUsuario}`)
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+                .then(function (dados) {
+                    mostrarProgresso(dados);
+                })
+                .catch(function (erro) {
+                    console.log(erro);
+                    alert("Não foi possível carregar seu progresso.");
+                });
+        }
+
+        function mostrarProgresso(dados) {
+            proxima = dados.proxima;
+
+            // Porcentagem com no máximo uma casa decimal e vírgula (1,8%), igual ao Progresso
+            var porcentagem = dados.capitulosLidos / dados.totalCapitulos * 100;
+            var textoPorcentagem = porcentagem.toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + "%";
+
+            document.getElementById("kpi_porcentagem").textContent = textoPorcentagem;
+            document.getElementById("anel_progresso").style.background = `conic-gradient(var(--verde) 0 ${porcentagem}%, var(--verde_suave) ${porcentagem}% 100%)`;
+            document.getElementById("kpi_capitulos_total").textContent = `${dados.capitulosLidos.toLocaleString("pt-BR")} de ${dados.totalCapitulos.toLocaleString("pt-BR")} capítulos`;
+
+            document.getElementById("kpi_capitulos").textContent = dados.capitulosLidos.toLocaleString("pt-BR");
+            document.getElementById("kpi_livros").textContent = dados.livrosConcluidos;
+            document.getElementById("kpi_sequencia").textContent = dados.sequencia;
+
+            mostrarProxima();
+        }
+
+        function mostrarProxima() {
+            var nome = document.getElementById("proxima_nome");
+            var detalhe = document.getElementById("proxima_detalhe");
+            var btnMarcar = document.getElementById("btn_marcar_proxima");
+
+            if (proxima == null) {
+                nome.textContent = "Você leu a Bíblia inteira!";
+                detalhe.textContent = "Todos os 1.189 capítulos foram marcados.";
+                btnMarcar.disabled = true;
+                return;
+            }
+
+            var testamento = "Novo Testamento";
+
+            if (proxima.testamento == "AT") {
+                testamento = "Antigo Testamento";
+            }
+
+            var pendentes = proxima.quantidadeCapitulos - proxima.capitulosLidos;
+            var textoPendentes = `${pendentes} capítulos pendentes`;
+
+            if (pendentes == 1) {
+                textoPendentes = "1 capítulo pendente";
+            }
+
+            nome.textContent = `${proxima.nomeLivro} ${proxima.capitulo}`;
+            detalhe.textContent = `${testamento} · ${textoPendentes} em ${proxima.nomeLivro}.`;
+            btnMarcar.disabled = false;
+        }
+
+        // Marca a próxima leitura e carrega os números de novo
+        function marcarProxima() {
+            fetch("/leituras/marcar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuario,
+                    idLivroServer: proxima.idLivro,
+                    capituloServer: proxima.capitulo
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    carregarProgresso();
+                } else {
+                    resposta.text().then(function (texto) {
+                        alert(texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                alert("Não foi possível marcar a leitura.");
+            });
+        }
+
+        mostrarSaudacao();
+        carregarProgresso();
+    </script>
+</body>
+</html>
