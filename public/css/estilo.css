@@ -84,6 +84,7 @@ body {
     --sombra_card: 0 8px 24px -16px rgba(40, 36, 28, 0.25);
     --sombra_janela: 0 30px 60px -40px rgba(40, 36, 28, 0.35);
     --sombra_leve: 0 1px 2px rgba(40, 36, 28, 0.1);
+    --sombra_menu: 0 20px 40px -20px rgba(40, 36, 28, 0.35);
 
     /* temporário: trocar nos CSS das páginas e apagar */
     --heading: var(--texto_principal);
