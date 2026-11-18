@@ -1,58 +1,58 @@
 /* BÍBLIA - BIBLIA.HTML */
 
+/* menu lateral à esquerda e conteúdo à direita */
+body {
+    flex-direction: row;
+}
+
 .biblia_container {
     display: flex;
     flex-direction: column;
-    width: 1176px;
-    max-width: 90%;
+    flex: 1;
+    gap: var(--espaco_22);
+    min-width: 0;
+    /* largura máxima (1080px + 40px de cada lado), centralizada no espaço ao lado do menu */
+    max-width: 1160px;
     margin: 0 auto;
-    padding: 30px 0 80px;
+    padding: var(--espaco_36) var(--espaco_40) var(--espaco_56);
     box-sizing: border-box;
+    font-family: var(--fonte_texto);
+    color: var(--texto_principal);
 }
 
-.biblia_container p,
-.biblia_container h1,
-.biblia_container h2,
-.biblia_container ul {
+main p,
+main h1,
+main h2,
+main ul {
     margin: 0;
 }
 
 .biblia_container button {
-    font-family: 'Manrope';
+    font-family: var(--fonte_texto);
     cursor: pointer;
 }
 
 /* TÍTULO */
 
-.biblia_titulo {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.biblia_titulo .biblia_titulo_rotulo {
-    font-family: 'Manrope';
-    font-size: 11.52px;
-    font-weight: 600;
-    letter-spacing: 1.6px;
-    color: #8C5530;
+.biblia_titulo_rotulo {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--verde);
 }
 
 .biblia_titulo h1 {
-    font-family: 'Cormorant Garamond';
-    font-size: 49.6px;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.25px;
-    color: var(--heading);
+    margin: var(--espaco_8) 0 var(--espaco_6);
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
 }
 
-.biblia_titulo .biblia_titulo_descricao {
-    max-width: 585px;
-    font-family: 'Manrope';
-    font-size: 16px;
-    line-height: 26.5px;
-    color: var(--muted);
+.biblia_titulo_descricao {
+    max-width: 580px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--texto_secundario);
 }
 
 /* BOTÕES */
@@ -60,30 +60,31 @@
 .biblia_container .botao {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    height: 38px;
-    padding: 0 15px;
-    font-size: 13.76px;
-    font-weight: 600;
-    color: var(--heading);
-    background-color: transparent;
-    border: 1px solid #C9BCA2;
-    border-radius: 999px;
+    gap: var(--espaco_8);
+    height: 44px;
+    padding: 0 var(--espaco_16);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_campo);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto_principal);
+    white-space: nowrap;
     transition: 0.3s all;
 }
 
 .biblia_container .botao:hover {
-    background-color: #E9E1D0;
+    background-color: var(--fundo_pagina);
 }
 
 .biblia_container .botao_primario {
-    color: #F7F3EA;
-    background-color: #2D5A43;
-    border-color: #2D5A43;
+    background-color: var(--verde);
+    border-color: var(--verde);
+    color: var(--texto_sobre_cor);
 }
 
 .biblia_container .botao_primario:hover {
-    background-color: #234836;
+    background-color: var(--verde_escuro);
 }
 
 .biblia_container .botao:disabled {
@@ -93,70 +94,67 @@
 
 /* PRÓXIMA LEITURA */
 
-.biblia_container .biblia_proxima {
+.biblia_proxima {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-top: 32px;
-    padding: 18px 24px;
-    background-color: #DFE7D8;
-    border: 1px solid #C8D6C2;
-    border-radius: 14px;
+    gap: var(--espaco_16);
+    padding: var(--espaco_18) var(--espaco_20);
+    background-color: var(--verde_suave);
+    border: 1px solid var(--verde_borda);
+    border-radius: 16px;
 }
 
-.biblia_proxima .proxima_icone {
+.proxima_icone {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
     width: 44px;
     height: 44px;
-    color: #8C5530;
-    background-color: #FAF7F0;
-    border-radius: 50%;
+    background-color: var(--fundo_superficie);
+    border-radius: 12px;
+    color: var(--verde);
 }
 
-.biblia_proxima .proxima_texto {
+.proxima_texto {
     flex: 1;
 }
 
 .proxima_texto p {
-    font-family: 'Manrope';
-    font-size: 12.8px;
-    color: var(--muted);
+    font-size: 13px;
+    color: var(--texto_secundario);
 }
 
 .proxima_texto h2 {
-    font-family: 'Cormorant Garamond';
-    font-size: 24.8px;
-    font-weight: 600;
-    line-height: 27.5px;
-    color: var(--heading);
+    margin-top: var(--espaco_4);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
-.biblia_proxima .proxima_botoes {
+.proxima_botoes {
     display: flex;
-    gap: 10px;
+    gap: var(--espaco_10);
 }
 
-/* CONTEÚDO: LATERAL + PAINEL */
+/* CONTEÚDO: LISTA DE LIVROS + PAINEL DO LIVRO */
 
-.biblia_container .biblia_conteudo {
+.biblia_conteudo {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 320px 1fr;
     align-items: start;
-    gap: 32px;
-    margin-top: 32px;
+    gap: var(--espaco_20);
 }
 
-/* LATERAL */
+/* LISTA DE LIVROS */
 
 .biblia_lateral {
     display: flex;
     flex-direction: column;
+    gap: var(--espaco_12);
 }
 
-.biblia_lateral .lateral_busca {
+.lateral_busca {
     position: relative;
     display: flex;
     align-items: center;
@@ -164,283 +162,284 @@
 
 .lateral_busca svg {
     position: absolute;
-    left: 14px;
-    color: var(--muted);
+    left: var(--espaco_14);
+    color: var(--texto_secundario);
 }
 
 .lateral_busca input {
     width: 100%;
-    height: 48.5px;
-    padding: 0 16px 0 41px;
+    height: 46px;
+    padding: 0 var(--espaco_14) 0 var(--espaco_40);
     box-sizing: border-box;
-    font-family: 'Manrope';
-    font-size: 16px;
-    color: var(--heading);
-    background-color: #FAF7F0;
-    border: 1px solid #DDD3BF;
-    border-radius: 999px;
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_campo);
+    border-radius: 12px;
+    font-family: var(--fonte_texto);
+    font-size: 15px;
+    color: var(--texto_principal);
     outline: none;
+    transition: 0.3s all;
 }
 
 .lateral_busca input:focus {
-    border-color: #A3683F;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 4px var(--verde_suave);
 }
 
-.biblia_lateral .lateral_testamentos {
+/* seletor Antigo / Novo */
+.lateral_testamentos {
     display: flex;
-    margin-top: 12px;
-    padding: 4px;
-    background-color: #E9E1D0;
-    border-radius: 22px;
+    padding: var(--espaco_4);
+    background-color: var(--fundo_segmento);
+    border-radius: 12px;
 }
 
 .lateral_testamentos button {
     flex: 1;
-    height: 36px;
-    font-size: 13.44px;
-    font-weight: 600;
-    color: var(--muted);
+    height: 38px;
     background-color: transparent;
     border: none;
-    border-radius: 18px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto_secundario);
 }
 
 .lateral_testamentos button.ativo {
-    color: var(--heading);
-    background-color: #FAF7F0;
-    box-shadow: 0 8px 24px -12px rgba(40, 36, 28, 0.18), 0 1px 2px rgba(40, 36, 28, 0.05);
+    background-color: var(--fundo_superficie);
+    box-shadow: var(--sombra_leve);
+    font-weight: 700;
+    color: var(--texto_principal);
 }
 
-.biblia_lateral .lateral_rotulo {
-    margin: 27px 12px 10px;
-    font-family: 'Manrope';
-    font-size: 11.2px;
-    font-weight: 600;
-    letter-spacing: 1.57px;
-    color: #8C5530;
+.lateral_rotulo {
+    margin: var(--espaco_6) var(--espaco_4) 0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--texto_secundario);
 }
 
-/* A lista tem altura máxima e rola sozinha, sem esticar a página */
-
-.biblia_lateral .lateral_livros {
+/* a lista tem altura máxima e rola sozinha, sem esticar a página */
+.lateral_livros {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--espaco_4);
     max-height: 620px;
-    padding: 0;
+    padding: var(--espaco_6);
     overflow-y: auto;
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
     list-style: none;
 }
 
 .lateral_livros .livro {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--espaco_8);
     width: 100%;
-    padding: 10px 12px 12px;
-    text-align: left;
+    padding: var(--espaco_12) var(--espaco_14);
     background-color: transparent;
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 12px;
+    text-align: left;
+    transition: 0.3s all;
 }
 
 .lateral_livros .livro:hover {
-    background-color: #FAF7F0;
+    background-color: var(--fundo_pagina);
 }
 
 .lateral_livros .livro.selecionado {
-    background-color: #FAF7F0;
-    border-color: #DDD3BF;
-    box-shadow: 0 8px 24px -12px rgba(40, 36, 28, 0.18), 0 1px 2px rgba(40, 36, 28, 0.05);
+    background-color: var(--verde_suave);
+    border-color: var(--verde_borda);
 }
 
-.livro .livro_linha {
+.livro_linha {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.livro .livro_nome {
-    font-size: 14.88px;
-    font-weight: 600;
-    color: var(--heading);
+.livro_nome {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto_principal);
 }
 
-.livro .livro_contagem {
+.livro_contagem {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-size: 12.48px;
-    color: var(--muted);
+    gap: var(--espaco_4);
+    font-size: 12px;
+    color: var(--texto_secundario);
 }
 
 .livro.concluido .livro_contagem {
     font-weight: 600;
-    color: #2D5A43;
+    color: var(--verde);
 }
 
-.livro .livro_barra {
+.livro_barra {
     display: block;
-    height: 3px;
+    height: 4px;
     overflow: hidden;
-    background-color: #E9E1D0;
-    border-radius: 2px;
+    background-color: var(--fundo_segmento);
+    border-radius: 999px;
 }
 
 .livro_barra span {
     display: block;
     height: 100%;
-    background-color: #2D5A43;
+    background-color: var(--verde);
+    border-radius: 999px;
 }
 
-.lateral_livros .lateral_vazio {
-    padding: 12px;
-    font-family: 'Manrope';
+.lateral_vazio {
+    padding: var(--espaco_12);
     font-size: 14px;
-    color: var(--muted);
+    color: var(--texto_secundario);
 }
 
 /* PAINEL DO LIVRO */
 
-.biblia_conteudo .biblia_livro {
-    padding: 32px;
-    background-color: #FAF7F0;
-    border: 1px solid #DDD3BF;
+.biblia_livro {
+    padding: var(--espaco_28);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
     border-radius: 20px;
 }
 
-.biblia_livro .livro_topo {
+.livro_topo {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: var(--espaco_12);
 }
 
-.livro_topo .livro_rotulo {
-    font-family: 'Manrope';
-    font-size: 11.52px;
-    font-weight: 600;
-    letter-spacing: 1.6px;
-    color: #8C5530;
+.livro_rotulo {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--texto_secundario);
 }
 
 .livro_topo h2 {
-    margin-top: 6px;
-    font-family: 'Cormorant Garamond';
-    font-size: 41.6px;
-    font-weight: 600;
-    line-height: 46px;
-    letter-spacing: -0.2px;
-    color: var(--heading);
+    margin-top: var(--espaco_6);
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
 }
 
-.livro_topo .livro_setas {
+.livro_setas {
     display: flex;
-    gap: 12px;
+    gap: var(--espaco_8);
 }
 
 .livro_setas button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 36px;
-    height: 36px;
-    color: var(--heading);
-    background-color: transparent;
-    border: none;
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 10px;
+    color: var(--texto_principal);
     transition: 0.3s all;
 }
 
 .livro_setas button:hover {
-    background-color: #E9E1D0;
+    background-color: var(--fundo_pagina);
 }
 
 .livro_setas button:disabled {
-    opacity: 0.35;
+    background-color: var(--fundo_superficie);
+    color: var(--texto_desativado);
     cursor: default;
-    background-color: transparent;
 }
 
-.biblia_livro .livro_progresso {
-    margin-top: 24px;
-    font-family: 'Manrope';
-    font-size: 14.4px;
-    color: var(--muted);
+.livro_progresso {
+    margin: var(--espaco_20) 0 var(--espaco_8);
+    font-size: 14px;
+    color: var(--texto_secundario);
 }
 
-.biblia_livro .livro_barra_grande {
+.livro_barra_grande {
     display: block;
-    height: 6px;
-    margin-top: 10px;
+    height: 8px;
     overflow: hidden;
-    background-color: #E9E1D0;
-    border-radius: 3px;
+    background-color: var(--verde_suave);
+    border-radius: 999px;
 }
 
 .livro_barra_grande span {
     display: block;
     height: 100%;
-    background-color: #2D5A43;
+    background-color: var(--verde);
+    border-radius: 999px;
     transition: 0.3s width;
 }
 
-/* GRADE DE CAPÍTULOS: 13 colunas, como no Figma */
+/* GRADE DE CAPÍTULOS: 10 colunas, como no trilha_v3 */
 
-.biblia_livro .grade_capitulos {
+.grade_capitulos {
     display: grid;
-    grid-template-columns: repeat(13, 1fr);
-    gap: 8px;
-    margin-top: 24px;
+    grid-template-columns: repeat(10, 1fr);
+    gap: var(--espaco_8);
+    margin-top: var(--espaco_22);
 }
 
-.grade_capitulos .capitulo {
+.capitulo {
     position: relative;
-    height: 52px;
-    font-size: 16px;
-    color: #2A2925;
-    background-color: #F4EFE4;
-    border: 1px solid #DDD3BF;
+    height: 46px;
+    background-color: var(--fundo_pagina);
+    border: 1px solid var(--borda_padrao);
     border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--texto_principal);
     transition: 0.2s all;
 }
 
-.grade_capitulos .capitulo:hover {
-    border-color: #C9BCA2;
+.capitulo:hover {
+    border-color: var(--borda_campo);
 }
 
-.grade_capitulos .capitulo.lido {
-    color: #F7F3EA;
-    background-color: #2D5A43;
-    border-color: #2D5A43;
+.capitulo.lido {
+    background-color: var(--verde);
+    border-color: var(--verde);
+    color: var(--texto_sobre_cor);
 }
 
-.grade_capitulos .capitulo.proximo {
-    color: #8C5530;
-    background-color: #F1E1CF;
-    border: 2px dashed #A3683F;
+.capitulo.proximo {
+    background-color: var(--cobre_suave);
+    border: 2px dashed var(--cobre);
+    color: var(--cobre_escuro);
 }
 
-.capitulo .capitulo_check {
+.capitulo_check {
     position: absolute;
-    top: 6px;
-    right: 6px;
+    top: var(--espaco_6);
+    right: var(--espaco_6);
 }
 
 /* LEGENDA */
 
-.biblia_livro .livro_legenda {
+.livro_legenda {
     display: flex;
-    gap: 20px;
-    margin-top: 28px;
+    flex-wrap: wrap;
+    gap: var(--espaco_18);
+    margin-top: var(--espaco_20);
 }
 
 .livro_legenda span {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-family: 'Manrope';
-    font-size: 12.8px;
-    color: var(--muted);
+    gap: var(--espaco_6);
+    font-size: 13px;
+    color: var(--texto_secundario);
 }
 
 .livro_legenda i {
@@ -450,36 +449,35 @@
     border-radius: 4px;
 }
 
-.livro_legenda .legenda_lido {
-    background-color: #2D5A43;
+.legenda_lido {
+    background-color: var(--verde);
 }
 
-.livro_legenda .legenda_nao_lido {
-    background-color: #F4EFE4;
-    border: 1px solid #DDD3BF;
+.legenda_nao_lido {
+    background-color: var(--fundo_pagina);
+    border: 1px solid var(--borda_padrao);
 }
 
-.livro_legenda .legenda_proximo {
-    background-color: #F1E1CF;
-    border: 2px dashed #A3683F;
+.legenda_proximo {
+    background-color: var(--cobre_suave);
+    border: 2px dashed var(--cobre);
 }
 
 /* RODAPÉ DO PAINEL */
 
-.biblia_livro .livro_rodape {
+.livro_rodape {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 24px;
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid #DDD3BF;
+    gap: var(--espaco_16);
+    margin-top: var(--espaco_22);
+    padding-top: var(--espaco_18);
+    border-top: 1px solid var(--borda_padrao);
 }
 
 .livro_rodape p {
-    max-width: 377px;
-    font-family: 'Manrope';
-    font-size: 13.44px;
-    line-height: 22px;
-    color: var(--muted);
+    max-width: 380px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--texto_secundario);
 }
