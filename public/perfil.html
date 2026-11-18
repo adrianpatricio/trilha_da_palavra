@@ -182,17 +182,24 @@
                     <section class="caixa_foto">
                         <p class="titulo_foto">Foto personalizada</p>
 
-                        <p class="texto_foto">Envie uma imagem quadrada (JPG ou PNG); ela substitui o avatar escolhido.</p>
+                        <p class="texto_foto">Envie uma imagem quadrada (JPG ou PNG, até 1 MB); ela substitui o avatar escolhido.</p>
 
-                        <label for="ipt_foto" class="botao botao_foto">
-                            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 11.25V2.25M5.25 6 9 2.25 12.75 6M3 12.75v1.5a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5v-1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                        <span id="mensagem_foto" class="mensagem_erro"></span>
 
-                            Escolher foto
-                        </label>
+                        <div class="botoes_foto">
+                            <label for="ipt_foto" class="botao botao_foto">
+                                <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 11.25V2.25M5.25 6 9 2.25 12.75 6M3 12.75v1.5a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5v-1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
 
-                        <input type="file" id="ipt_foto" accept="image/png, image/jpeg">
+                                Escolher foto
+                            </label>
+
+                            <!-- só aparece quando a pessoa já tem uma foto salva -->
+                            <button id="btn_remover_foto" class="botao botao_foto botao_remover_foto" onclick="removerFoto()">Remover foto</button>
+                        </div>
+
+                        <input type="file" id="ipt_foto" accept="image/png, image/jpeg" onchange="escolherFoto()">
                     </section>
 
                     <!-- BARRA DE SALVAR -->
@@ -308,8 +315,15 @@
             perfilSalvo = {
                 nome: perfil.nome_usuario,
                 livro: livro,
-                avatar: perfil.avatar_usuario
+                avatar: perfil.avatar_usuario,
+                foto: perfil.foto_usuario,
+                // com foto, nenhum avatar fica marcado na grade (quem aparece é a foto)
+                avatarMarcado: perfil.avatar_usuario
             };
+
+            if (perfilSalvo.foto != null) {
+                perfilSalvo.avatarMarcado = "";
+            }
 
             // cartão do perfil
             document.getElementById("nome_perfil").textContent = perfil.nome_usuario;
@@ -330,20 +344,39 @@
             document.getElementById("ipt_email").value = perfil.email_usuario;
             document.getElementById("slc_livros").value = perfilSalvo.livro;
 
-            mostrarAvatarNoCartao(perfilSalvo.avatar, perfilSalvo.nome);
-            marcarAvatar(perfilSalvo.avatar);
+            mostrarAvatarNoCartao(perfilSalvo.avatar, perfilSalvo.nome, perfilSalvo.foto);
+            marcarAvatar(perfilSalvo.avatarMarcado);
             verificarAlteracoes();
+
+            // "Remover foto" só aparece quando existe uma foto salva
+            if (perfilSalvo.foto != null) {
+                document.getElementById("btn_remover_foto").style.display = "inline-flex";
+            } else {
+                document.getElementById("btn_remover_foto").style.display = "none";
+            }
         }
 
-        // Avatar do cartão: as iniciais ou a imagem do personagem
-        function mostrarAvatarNoCartao(avatar, nome) {
+        // Avatar do cartão: a foto (se tiver), as iniciais ou a imagem do personagem
+        function mostrarAvatarNoCartao(avatar, nome, foto) {
             var avatarPerfil = document.getElementById("avatar_perfil");
+            var imagem = document.createElement("img");
 
-            if (avatar == "inicial") {
+            if (avatar == "inicial" && foto == null) {
                 avatarPerfil.textContent = calcularIniciais(nome);
-            } else {
-                avatarPerfil.innerHTML = `<img src="./assets/img/avatares/${avatar}.png" alt="Avatar escolhido">`;
+                return;
             }
+
+            // .src recebe o texto sem passar pelo HTML (mais seguro que innerHTML)
+            if (foto != null) {
+                imagem.src = foto;
+                imagem.alt = "Sua foto";
+            } else {
+                imagem.src = `./assets/img/avatares/${avatar}.png`;
+                imagem.alt = "Avatar escolhido";
+            }
+
+            avatarPerfil.textContent = "";
+            avatarPerfil.appendChild(imagem);
         }
 
         // Marca um avatar na grade (classe "selecionado") e guarda qual foi
@@ -380,7 +413,7 @@
                 return;
             }
 
-            if (nome != perfilSalvo.nome || livro != perfilSalvo.livro || avatarEscolhido != perfilSalvo.avatar) {
+            if (nome != perfilSalvo.nome || livro != perfilSalvo.livro || avatarEscolhido != perfilSalvo.avatarMarcado) {
                 status.textContent = "Você tem alterações não salvas";
                 btnSalvar.disabled = false;
             } else {
@@ -396,19 +429,25 @@
             document.getElementById("ipt_nome").value = perfilSalvo.nome;
             document.getElementById("slc_livros").value = perfilSalvo.livro;
 
-            marcarAvatar(perfilSalvo.avatar);
+            marcarAvatar(perfilSalvo.avatarMarcado);
             verificarAlteracoes();
         }
 
         function salvarPerfil() {
             var nomeVar = document.getElementById("ipt_nome").value.trim();
             var livroVar = document.getElementById("slc_livros").value;
+            var avatarVar = avatarEscolhido;
 
             limparMensagens();
 
             if (nomeVar == "") {
                 mostrarMensagem("erro_nome", "Informe seu nome.");
                 return;
+            }
+
+            // com foto e nenhum avatar marcado, o avatar salvo continua o mesmo
+            if (avatarVar == "") {
+                avatarVar = perfilSalvo.avatar;
             }
 
             fetch(`/usuarios/atualizar/${idUsuario}`, {
@@ -419,14 +458,22 @@
                 body: JSON.stringify({
                     nomeServer: nomeVar,
                     livroFavoritoServer: livroVar,
-                    avatarServer: avatarEscolhido
+                    avatarServer: avatarVar
                 })
             }).then(function (resposta) {
                 if (resposta.ok) {
                     // o menu e a saudação do Início usam o nome guardado no sessionStorage
                     sessionStorage.NOME_USUARIO = nomeVar;
 
-                    window.location.reload();
+                    // tinha foto e escolheu um avatar: a foto é apagada para o avatar aparecer
+                    if (perfilSalvo.foto != null && avatarEscolhido != "") {
+                        fetch(`/usuarios/foto/${idUsuario}`, { method: "DELETE" })
+                            .then(function () {
+                                window.location.reload();
+                            });
+                    } else {
+                        window.location.reload();
+                    }
                 } else {
                     resposta.text().then(function (texto) {
                         mostrarMensagem("mensagem_erro", texto);
@@ -438,7 +485,85 @@
             });
         }
 
-        // 4. ALTERAR A SENHA
+        // 4. FOTO PERSONALIZADA
+
+        // Chamada quando a pessoa escolhe um arquivo no "Escolher foto"
+        function escolherFoto() {
+            var campoFoto = document.getElementById("ipt_foto");
+            var arquivo = campoFoto.files[0];
+
+            limparMensagens();
+            document.getElementById("mensagem_foto").classList.remove("mensagem_sucesso");
+
+            // a pessoa abriu a janela e não escolheu nada
+            if (arquivo == undefined) {
+                return;
+            }
+
+            if (arquivo.type != "image/png" && arquivo.type != "image/jpeg") {
+                mostrarMensagem("mensagem_foto", "A foto precisa ser JPG ou PNG.");
+                campoFoto.value = "";
+                return;
+            }
+
+            // 1 MB = 1024 × 1024 bytes
+            if (arquivo.size > 1024 * 1024) {
+                mostrarMensagem("mensagem_foto", "A foto deve ter no máximo 1 MB.");
+                campoFoto.value = "";
+                return;
+            }
+
+            // O FileReader lê o arquivo e transforma a imagem em texto (base64)
+            var leitor = new FileReader();
+
+            leitor.onload = function () {
+                enviarFoto(leitor.result);
+            };
+
+            leitor.readAsDataURL(arquivo);
+        }
+
+        function enviarFoto(fotoTexto) {
+            fetch(`/usuarios/foto/${idUsuario}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    fotoServer: fotoTexto
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    window.location.reload();
+                } else {
+                    resposta.text().then(function (texto) {
+                        mostrarMensagem("mensagem_foto", texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                mostrarMensagem("mensagem_foto", "Não foi possível enviar a foto.");
+            });
+        }
+
+        function removerFoto() {
+            fetch(`/usuarios/foto/${idUsuario}`, {
+                method: "DELETE"
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    window.location.reload();
+                } else {
+                    resposta.text().then(function (texto) {
+                        mostrarMensagem("mensagem_foto", texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                mostrarMensagem("mensagem_foto", "Não foi possível remover a foto.");
+            });
+        }
+
+        // 5. ALTERAR A SENHA
 
         function alterarSenha() {
             var senhaAtualVar = document.getElementById("ipt_senha_atual").value;
@@ -499,7 +624,7 @@
             });
         }
 
-        // 5. RESUMO DA LEITURA (capítulos lidos e livros concluídos)
+        // 6. RESUMO DA LEITURA (capítulos lidos e livros concluídos)
 
         function carregarResumo() {
             fetch(`/leituras/progresso/${idUsuario}`)
@@ -515,7 +640,7 @@
                 });
         }
 
-        // 6. INÍCIO: o perfil só é carregado depois dos livros, para o select já ter as opções
+        // 7. INÍCIO: o perfil só é carregado depois dos livros, para o select já ter as opções
 
         carregarLivros()
             .then(function () {

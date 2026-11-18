@@ -22,7 +22,7 @@ function cadastrar(nome, email, senha, livroFavorito) {
 
 function buscarPerfil(idUsuario) {
     var instrucaoSql = `
-        SELECT nome_usuario, email_usuario, tipo_usuario, avatar_usuario, fk_livro_favorito,
+        SELECT nome_usuario, email_usuario, tipo_usuario, avatar_usuario, foto_usuario, fk_livro_favorito,
             DATE_FORMAT(data_cadastro, '%d/%m/%Y') AS data_cadastro
         FROM usuario WHERE id_usuario = ?;
     `;
@@ -64,11 +64,23 @@ function atualizarSenha(idUsuario, novaSenha) {
     return database.executar(instrucaoSql, [novaSenha, idUsuario]);
 }
 
+// Salva a foto (texto base64) ou apaga a foto, quando recebe null
+function atualizarFoto(idUsuario, foto) {
+    var instrucaoSql = `
+        UPDATE usuario SET foto_usuario = ? WHERE id_usuario = ?;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql, [foto, idUsuario]);
+}
+
 module.exports = {
     buscarEmail,
     cadastrar,
     buscarPerfil,
     atualizarPerfil,
     buscarSenha,
-    atualizarSenha
+    atualizarSenha,
+    atualizarFoto
 };

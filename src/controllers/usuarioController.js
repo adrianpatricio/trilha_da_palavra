@@ -171,10 +171,68 @@ function alterarSenha(req, res) {
     }
 }
 
+// 1 MB de imagem vira cerca de 1,4 milhão de caracteres em base64
+var tamanhoMaximoFoto = 1400000;
+
+function salvarFoto(req, res) {
+    var idUsuario = req.params.idUsuario;
+    var foto = req.body.fotoServer;
+
+    if (foto == undefined || foto == "") {
+        res.status(400).send("Escolha uma imagem.");
+    } else if (!foto.startsWith("data:image/png;base64,") && !foto.startsWith("data:image/jpeg;base64,")) {
+        res.status(400).send("A foto precisa ser JPG ou PNG.");
+    } else if (foto.length > tamanhoMaximoFoto) {
+        res.status(400).send("A foto deve ter no máximo 1 MB.");
+    } else {
+
+        usuarioModel.atualizarFoto(idUsuario, foto)
+            .then(
+                function (resultado) {
+                    if (resultado.affectedRows == 0) {
+                        res.status(404).send("Usuário não encontrado.");
+                    } else {
+                        res.status(200).send("Foto salva.");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log("\nHouve um erro ao salvar a foto! Erro: ", erro.sqlMessage);
+
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function removerFoto(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    // null apaga a foto; a pessoa volta a usar o avatar escolhido
+    usuarioModel.atualizarFoto(idUsuario, null)
+        .then(
+            function (resultado) {
+                if (resultado.affectedRows == 0) {
+                    res.status(404).send("Usuário não encontrado.");
+                } else {
+                    res.status(200).send("Foto removida.");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log("\nHouve um erro ao remover a foto! Erro: ", erro.sqlMessage);
+
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     buscarPerfil,
     atualizarPerfil,
-    alterarSenha
+    alterarSenha,
+    salvarFoto,
+    removerFoto
 }

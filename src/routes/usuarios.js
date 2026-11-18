@@ -24,4 +24,12 @@ router.put("/senha/:idUsuario", function (req, res) {
     usuarioController.alterarSenha(req, res);
 });
 
+router.put("/foto/:idUsuario", function (req, res) {
+    usuarioController.salvarFoto(req, res);
+});
+
+router.delete("/foto/:idUsuario", function (req, res) {
+    usuarioController.removerFoto(req, res);
+});
+
 module.exports = router;

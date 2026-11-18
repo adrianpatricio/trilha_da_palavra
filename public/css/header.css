@@ -308,10 +308,18 @@ a {
     flex-shrink: 0;
     width: 36px;
     height: 36px;
+    overflow: hidden;
     border-radius: 50%;
     background-color: var(--verde_suave);
     font-weight: 800;
     color: var(--verde);
+}
+
+/* foto ou avatar no lugar da inicial: ocupa o círculo inteiro, sem esticar */
+.menu_inicial img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .menu_inicial_grande {
