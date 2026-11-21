@@ -291,6 +291,12 @@ body {
     color: var(--texto_secundario);
 }
 
+/* rodapé em destaque: usado quando a pessoa leu hoje */
+.kpi_rodape_destaque {
+    font-weight: 700;
+    color: var(--texto_principal);
+}
+
 /* GRÁFICOS: um embaixo do outro */
 
 .dash_graficos {

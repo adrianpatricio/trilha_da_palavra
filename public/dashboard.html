@@ -116,6 +116,8 @@
 
                     <h6>dias seguidos com leitura</h6>
                 </section>
+
+                <p id="kpi_sequencia_detalhe" class="kpi_rodape">Carregando...</p>
             </section>
 
             <section class="kpis">
@@ -461,6 +463,21 @@
             document.getElementById("kpi_livros").textContent = dados.livrosConcluidos;
             document.getElementById("kpi_livros_total").textContent = `de ${dados.totalLivros}`;
             document.getElementById("kpi_sequencia").textContent = dados.sequencia;
+
+            // Sequência: confere primeiro se existe leitura (sem ela, não existe diasAtras)
+            var sequenciaDetalhe = document.getElementById("kpi_sequencia_detalhe");
+
+            if (dados.ultimaLeitura == null) {
+                sequenciaDetalhe.textContent = "Marque uma leitura hoje para começar uma sequência.";
+            } else if (dados.ultimaLeitura.diasAtras == 0) {
+                sequenciaDetalhe.textContent = "▲ Você leu hoje: a sequência continua.";
+                sequenciaDetalhe.classList.add("kpi_rodape_destaque");
+            } else if (dados.ultimaLeitura.diasAtras == 1) {
+                // a sequência ainda vale até o fim de hoje (mesma regra do controller)
+                sequenciaDetalhe.textContent = "Leia hoje para não perder a sequência.";
+            } else {
+                sequenciaDetalhe.textContent = "Marque uma leitura hoje para começar uma sequência.";
+            }
             document.getElementById("kpi_semana").textContent = dados.ultimos7Dias;
 
             document.getElementById("kpi_capitulos_detalhe").textContent = `${formatar(porcentagem)}% da Bíblia · faltam ${formatar(faltam)} capítulos`;
