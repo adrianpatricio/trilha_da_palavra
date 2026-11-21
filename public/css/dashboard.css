@@ -8,15 +8,22 @@ body {
 .dash_container {
     display: flex;
     flex-direction: column;
-    width: 1240px;
-    max-width: 90%;
+    flex: 1;
+    gap: var(--espaco_16);
+    min-width: 0;
+    /* mesma largura máxima do Início do leitor, centralizada no espaço ao lado do menu */
+    max-width: 1160px;
     margin: 0 auto;
-    padding: 30px 0 80px;
+    padding: var(--espaco_40) var(--espaco_40) var(--espaco_56);
     box-sizing: border-box;
+    font-family: var(--fonte_texto);
+    color: var(--texto_principal);
 }
 
 .dash_container p,
-.dash_container h1 {
+.dash_container h1,
+.dash_container h4,
+.dash_container h6 {
     margin: 0;
 }
 
@@ -25,133 +32,129 @@ body {
 .dash_titulo {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: var(--espaco_8);
+    margin-bottom: var(--espaco_8);
 }
 
-.dash_titulo .dash_titulo_progresso {
-    font-family: 'Manrope';
+.dash_titulo_progresso {
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #A3683F;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--verde);
 }
 
 .dash_titulo h1 {
-    font-family: 'Cormorant Garamond';
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 1.1;
-    color: var(--heading);
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -0.035em;
 }
 
-.dash_titulo .dash_titulo_descricao {
-    max-width: 580px;
-    font-family: 'Manrope';
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--muted);
+.dash_titulo_descricao {
+    font-size: 15px;
+    color: var(--texto_secundario);
 }
 
-/* CARDS */
+/* CARDS DE CIMA: progresso (2 colunas) + leituras (1 coluna) */
 
-.dash_container .dash_top {
+.dash_top {
     display: grid;
-    grid-template-columns: auto 1fr 1fr;
-    margin-top: 36px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--espaco_16);
 }
 
-/* O card da esquerda é formado por duas sections lado a lado:
-   o gráfico (metade esquerda) e o progresso (metade direita) */
+.card_progresso {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco_28);
+    grid-column: span 2;
+    padding: var(--espaco_26);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
+    border-radius: 20px;
+}
 
-.dash_top .top_grafico {
-    position: relative;
+/* anel: o fundo bege claro é a parte não lida; o JavaScript pinta a parte lida de verde */
+.top_grafico {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 142px;
-    padding: 0 38px;
-    font-family: 'Cormorant Garamond';
-    font-size: 26px;
-    font-weight: 600;
-    color: var(--heading);
-    background-color: #FAF7F0;
-    border: 1px solid #DDD3BF;
-    border-right: none;
-    border-radius: 20px 0 0 20px;
-}
-
-.top_grafico::before {
-    content: '';
-    position: absolute;
-    width: 142px;
-    height: 142px;
-    box-sizing: border-box;
-    border: 10px solid #2D5A43;
+    flex-shrink: 0;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
+    background-color: var(--verde_suave);
 }
 
-.dash_top .top_progresso {
+/* círculo do meio, da cor do card, que deixa só a borda do anel aparecendo */
+.anel_texto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    background-color: var(--fundo_superficie);
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.top_progresso {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 40px 108px 40px 0;
-    background-color: #FAF7F0;
-    border: 1px solid #DDD3BF;
-    border-left: none;
-    border-radius: 0 20px 20px 0;
+    flex: 1;
+    min-width: 0;
 }
 
-.top_progresso .top_progresso_titulo {
-    font-family: 'Manrope';
+.top_progresso_titulo,
+.leitura_rotulo {
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #A3683F;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--texto_secundario);
 }
 
 .top_progresso h1 {
-    margin-top: 10px;
-    font-family: 'Cormorant Garamond';
-    font-size: 34px;
-    font-weight: 600;
-    color: var(--heading);
+    margin-top: var(--espaco_8);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
+/* ".top_progresso" na frente: sem ele, a regra ".dash_container p" (margin: 0) vence e as margens somem */
 .top_progresso .top_progresso_descricao {
-    margin-top: 8px;
-    font-family: 'Manrope';
+    margin-top: var(--espaco_8);
     font-size: 14px;
-    color: var(--muted);
+    color: var(--texto_secundario);
 }
 
 .top_progresso .top_progresso_at,
 .top_progresso .top_progresso_nt {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
-    font-family: 'Manrope';
+    margin-top: var(--espaco_24);
     font-size: 14px;
-    color: var(--heading);
+    font-weight: 600;
 }
 
 .top_progresso .top_progresso_nt {
-    margin-top: 16px;
+    margin-top: var(--espaco_18);
 }
 
 .top_progresso_at span,
 .top_progresso_nt span {
-    color: var(--muted);
+    font-weight: 400;
+    color: var(--texto_secundario);
 }
 
-.top_progresso .barra_at,
-.top_progresso .barra_nt {
-    position: relative;
+.barra_at,
+.barra_nt {
     display: block;
-    height: 6px;
-    margin-top: 10px;
+    height: 8px;
+    margin-top: var(--espaco_10);
     overflow: hidden;
     border-radius: 999px;
-    background-color: #E6DECD;
+    background-color: var(--verde_suave);
 }
 
 /* A largura de cada barra é definida pelo JavaScript */
@@ -162,189 +165,168 @@ body {
     width: 0%;
     height: 100%;
     border-radius: 999px;
+    background-color: var(--verde);
     transition: 0.3s width;
-}
-
-.barra_at span {
-    background-color: #2D5A43;
-}
-
-.barra_nt span {
-    background-color: #8FAF96;
 }
 
 /* LEITURAS */
 
-.dash_top .dash_leituas {
+.dash_leituras {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-left: 24px;
+    gap: var(--espaco_16);
 }
 
-.dash_leituas .top_leitura,
-.dash_leituas .dash_registro {
+.top_leitura,
+.dash_registro {
     display: flex;
     flex-direction: column;
+    flex: 1;
     align-items: flex-start;
-    padding: 28px 24px;
+    gap: var(--espaco_6);
+    padding: var(--espaco_22) var(--espaco_24);
     border-radius: 20px;
 }
 
-.dash_leituas .top_leitura {
-    background-color: #DFE7D8;
-    border: 1px solid #CBD6C2;
+.top_leitura {
+    background-color: var(--verde_suave);
+    border: 1px solid var(--verde_borda);
 }
 
-.dash_leituas .dash_registro {
-    background-color: #FAF7F0;
-    border: 1px solid #DDD3BF;
+.top_leitura .leitura_rotulo {
+    color: var(--verde_escuro);
 }
 
-.top_leitura .top_leitura_pxLeitura,
-.dash_registro .registro_ultimo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Manrope';
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-}
-
-.top_leitura_pxLeitura svg,
-.registro_ultimo svg {
-    color: #A3683F;
+.dash_registro {
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
 }
 
 .top_leitura h1,
 .dash_registro h1 {
-    margin-top: 14px;
-    font-family: 'Cormorant Garamond';
     font-size: 28px;
-    font-weight: 600;
-    color: var(--heading);
+    font-weight: 800;
+    letter-spacing: -0.03em;
 }
 
-.top_leitura .top_leitura_descricao,
-.dash_registro .registro_hoje {
-    margin-top: 10px;
-    font-family: 'Manrope';
-    font-size: 15px;
-    color: var(--muted);
+.top_leitura_descricao,
+.registro_hoje {
+    font-size: 14px;
+    color: var(--texto_secundario);
 }
 
 .top_leitura a {
-    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 18px;
-    padding: 10px 16px;
-    font-family: 'Manrope';
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    color: #F7F3EA;
-    background-color: #2D5A43;
-    border-radius: 999px;
+    gap: var(--espaco_8);
+    margin-top: var(--espaco_10);
+    padding: var(--espaco_10) var(--espaco_16);
+    border-radius: 12px;
+    background-color: var(--verde);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto_sobre_cor);
     transition: 0.3s all;
 }
 
 .top_leitura a:hover {
-    background-color: #234836;
+    background-color: var(--verde_escuro);
 }
-/* KPIs */
 
-.dash_container .dash_kpi {
+/* KPIs: um card para cada indicador */
+
+.dash_kpi {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--espaco_16);
+}
+
+.kpis {
     display: flex;
-    margin-top: 24px;
-    background-color: #FAF7F0;
-    border: 1px solid #DDD3BF;
+    flex-direction: column;
+    gap: var(--espaco_12);
+    padding: var(--espaco_20);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
     border-radius: 20px;
 }
 
-.dash_kpi .kpis {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 12px;
-    padding: 24px;
-    border-right: 1px solid #DDD3BF;
-}
-
-.dash_kpi .kpis:last-child {
-    border-right: none;
-}
-
-.kpis p {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Manrope';
+.kpi_titulo {
     font-size: 14px;
-    color: var(--heading);
+    font-weight: 600;
 }
 
-.kpis p svg {
-    color: #2D5A43;
-}
-
-.kpis h4,
-.kpis h6 {
-    margin: 0;
-    font-family: 'Manrope';
+/* número grande com a explicação curta ao lado */
+.kpi_numero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--espaco_6);
 }
 
 .kpis h4 {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--heading);
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
 }
 
 .kpis h6 {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--muted);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--texto_secundario);
 }
 
-/* GRÁFICOS */
+/* GRÁFICOS: um embaixo do outro */
 
-.dash_container .dash_graficos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 24px;
-}
-
-.dash_graficos .grafico_dias,
-.dash_graficos .grafico_livros {
+.dash_graficos {
     display: flex;
     flex-direction: column;
-    padding: 28px 24px;
-    background-color: #FAF7F0;
-    border: 1px solid #DDD3BF;
+    gap: var(--espaco_16);
+}
+
+.grafico_dias,
+.grafico_livros {
+    display: flex;
+    flex-direction: column;
+    padding: var(--espaco_24);
+    background-color: var(--fundo_superficie);
+    border: 1px solid var(--borda_padrao);
     border-radius: 20px;
 }
 
-.dash_graficos .grafico_titulo {
-    font-family: 'Manrope';
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--heading);
+/* título à esquerda e explicação à direita */
+.grafico_topo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--espaco_8);
+}
+
+.grafico_titulo {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.grafico_legenda {
+    font-size: 13px;
+    color: var(--texto_secundario);
 }
 
 /* O Chart.js precisa de um pai com position e altura definidas */
 
-.dash_graficos .grafico_canvas {
+.grafico_canvas {
     position: relative;
-    height: 200px;
-    margin-top: 20px;
+    height: 240px;
+    margin-top: var(--espaco_20);
 }
 
-.dash_graficos .grafico_descricao {
-    margin-top: 20px;
-    font-family: 'Manrope';
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--muted);
+/* o gráfico dos livros fica no final e é o maior */
+.grafico_livros .grafico_canvas {
+    height: 340px;
+}
+
+.grafico_descricao {
+    margin-top: var(--espaco_16);
+    font-size: 14px;
+    color: var(--texto_secundario);
 }
