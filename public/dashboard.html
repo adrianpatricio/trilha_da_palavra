@@ -104,6 +104,8 @@
 
                     <h6 id="kpi_livros_total">de 66</h6>
                 </section>
+
+                <p id="kpi_livros_detalhe" class="kpi_rodape">Carregando...</p>
             </section>
 
             <section class="kpis">
@@ -155,6 +157,8 @@
                 <section class="grafico_canvas">
                     <canvas id="canvas_livros"></canvas>
                 </section>
+
+                <p class="grafico_descricao"><strong>Destaques:</strong> <span id="grafico_destaques">Carregando...</span></p>
             </section>
         </section>
     </main>
@@ -262,6 +266,15 @@
 
         // GRÁFICO 2 - OS 66 LIVROS
 
+        // "1 livro" no singular; 0, 2, 3... no plural ("0 livros", "3 livros")
+        function escreverLivros(quantidade) {
+            if (quantidade == 1) {
+                return "1 livro";
+            }
+
+            return `${quantidade} livros`;
+        }
+
         // Recebe do servidor a lista dos 66 livros, já na ordem da Bíblia.
         function criarGraficoLivros(listaLivros) {
             var livros = [];
@@ -279,20 +292,28 @@
             var emAndamento = [];
             var naoIniciados = [];
 
+            // Quantos livros há em cada grupo (para a legenda)
+            var qtdConcluidos = 0;
+            var qtdEmAndamento = 0;
+            var qtdNaoIniciados = 0;
+
             // Cada livro entra em só um dos três grupos; nos outros fica null
             for (let i = 0; i < livros.length; i++) {
                 if (capitulosLidos[i] == totalCapitulos[i]) {
                     concluidos.push(totalCapitulos[i]);
                     emAndamento.push(null);
                     naoIniciados.push(null);
+                    qtdConcluidos++;
                 } else if (capitulosLidos[i] > 0) {
                     concluidos.push(null);
                     emAndamento.push(totalCapitulos[i]);
                     naoIniciados.push(null);
+                    qtdEmAndamento++;
                 } else {
                     concluidos.push(null);
                     emAndamento.push(null);
                     naoIniciados.push(totalCapitulos[i]);
+                    qtdNaoIniciados++;
                 }
             }
 
@@ -301,9 +322,9 @@
                 data: {
                     labels: livros,
                     datasets: [
-                        { label: "Concluído", data: concluidos, backgroundColor: "#2D5A43" },
-                        { label: "Em andamento", data: emAndamento, backgroundColor: "#8FAF96" },
-                        { label: "Não iniciado", data: naoIniciados, backgroundColor: "#E6DECD" }
+                        { label: `Concluído (${escreverLivros(qtdConcluidos)})`, data: concluidos, backgroundColor: "#2D5A43" },
+                        { label: `Em andamento (${escreverLivros(qtdEmAndamento)})`, data: emAndamento, backgroundColor: "#8FAF96" },
+                        { label: `Não iniciado (${escreverLivros(qtdNaoIniciados)})`, data: naoIniciados, backgroundColor: "#E6DECD" }
                     ]
                 },
                 options: {
@@ -513,6 +534,7 @@
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                         criarGraficoLivros(resposta);
+                        mostrarDestaques(resposta);
                     });
                 } else {
                     console.error("Nenhum dado encontrado ou erro na API");
@@ -524,6 +546,73 @@
         }
 
         buscarLivros();
+
+        // Destaques do gráfico e rodapé do KPI de livros, a partir da lista dos 66 livros.
+        function mostrarDestaques(listaLivros) {
+            var nomesConcluidos = [];
+            var iniciados = [];
+            var maisPerto = null;
+
+            for (var i = 0; i < listaLivros.length; i++) {
+                var livro = listaLivros[i];
+                var lidos = livro.capitulos_lidos;
+                var total = livro.quantidade_capitulos;
+
+                if (lidos == total) {
+                    nomesConcluidos.push(livro.nome_livro);
+                    iniciados.push(`${livro.nome_livro} concluído (${lidos} de ${total})`);
+                } else if (lidos > 0) {
+                    iniciados.push(`${livro.nome_livro} em andamento (${lidos} de ${total})`);
+
+                    // Mais perto de terminar = o livro em andamento com menos capítulos faltando.
+                    // Com "<" (e não "<="), no empate fica o primeiro na ordem da Bíblia.
+                    if (maisPerto == null || total - lidos < maisPerto.quantidade_capitulos - maisPerto.capitulos_lidos) {
+                        maisPerto = livro;
+                    }
+                }
+            }
+
+            // Destaques: no máximo 4 livros e, se tiver mais, "e mais X"
+            var textoDestaques = "Nenhum livro iniciado ainda.";
+
+            if (iniciados.length > 0) {
+                textoDestaques = "";
+
+                for (var i = 0; i < iniciados.length && i < 4; i++) {
+                    if (i > 0) {
+                        textoDestaques += " · ";
+                    }
+
+                    textoDestaques += iniciados[i];
+                }
+
+                if (iniciados.length > 4) {
+                    textoDestaques += ` e mais ${iniciados.length - 4}`;
+                }
+
+                textoDestaques += ".";
+            }
+
+            document.getElementById("grafico_destaques").textContent = textoDestaques;
+
+            // KPI: até 2 nomes de livros concluídos e, se tiver mais, "e mais X"
+            var textoKpi = "Nenhum livro concluído ainda.";
+
+            if (nomesConcluidos.length == 1) {
+                textoKpi = `Concluído: ${nomesConcluidos[0]}.`;
+            } else if (nomesConcluidos.length == 2) {
+                textoKpi = `Concluídos: ${nomesConcluidos[0]} e ${nomesConcluidos[1]}.`;
+            } else if (nomesConcluidos.length > 2) {
+                textoKpi = `Concluídos: ${nomesConcluidos[0]}, ${nomesConcluidos[1]} e mais ${nomesConcluidos.length - 2}.`;
+            }
+
+            // Só mostra o "mais perto de terminar" se houver algum livro em andamento
+            if (maisPerto != null) {
+                textoKpi += ` Mais perto de terminar: ${maisPerto.nome_livro} (${maisPerto.capitulos_lidos} de ${maisPerto.quantidade_capitulos}).`;
+            }
+
+            document.getElementById("kpi_livros_detalhe").textContent = textoKpi;
+        }
     </script>
 </body>
 </html>
