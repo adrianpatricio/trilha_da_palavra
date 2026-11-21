@@ -95,7 +95,7 @@ if (pagina == "inicio_leitor" || pagina == "biblia" || pagina == "progresso" || 
                 <section class="menu_conta_topo">
                     <span id="inicial_menu_conta" class="menu_inicial menu_inicial_grande"></span>
 
-                    <span>
+                    <span class="menu_conta_texto">
                         <span id="nome_menu_conta" class="menu_conta_nome"></span>
                         <span id="email_menu_conta" class="menu_conta_email"></span>
                     </span>
@@ -182,6 +182,9 @@ if (nomeUsuario != undefined && document.getElementById("menu_conta_caixa")) {
     document.getElementById("primeiro_nome_header").textContent = nomeUsuario.split(" ")[0];
     document.getElementById("nome_menu_conta").textContent = nomeUsuario;
     document.getElementById("email_menu_conta").textContent = sessionStorage.EMAIL_USUARIO;
+
+    // title: mostra o e-mail completo ao passar o mouse (quando ele aparece cortado com "...")
+    document.getElementById("email_menu_conta").title = sessionStorage.EMAIL_USUARIO;
 
     // Enquanto o servidor não responde, os círculos mostram a inicial; depois, a foto ou o avatar.
     carregarAvatarMenu();
