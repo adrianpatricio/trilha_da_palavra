@@ -282,6 +282,15 @@ body {
     color: var(--texto_secundario);
 }
 
+/* texto de baixo do KPI, separado do número por uma linha */
+.kpi_rodape {
+    padding-top: var(--espaco_12);
+    border-top: 1px solid var(--borda_padrao);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--texto_secundario);
+}
+
 /* GRÁFICOS: um embaixo do outro */
 
 .dash_graficos {
@@ -332,7 +341,8 @@ body {
     height: 340px;
 }
 
-.grafico_descricao {
+/* ".dash_graficos" na frente: sem ele, a regra ".dash_container p" (margin: 0) vence */
+.dash_graficos .grafico_descricao {
     margin-top: var(--espaco_16);
     font-size: 14px;
     color: var(--texto_secundario);
