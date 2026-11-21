@@ -56,8 +56,8 @@ var logo = `
     Trilha da Palavra
 `;
 
-// Início do leitor, Bíblia e Perfil usam o menu lateral no lugar do header em caixa.
-if (pagina == "inicio_leitor" || pagina == "biblia" || pagina == "perfil") {
+// Início do leitor, Bíblia, Progresso e Perfil usam o menu lateral no lugar do header em caixa.
+if (pagina == "inicio_leitor" || pagina == "biblia" || pagina == "progresso" || pagina == "perfil") {
     header.classList.add("header_lateral");
 
     header.innerHTML = `

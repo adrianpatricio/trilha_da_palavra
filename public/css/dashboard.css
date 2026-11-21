@@ -1,5 +1,10 @@
 /* DASHBOARD - DASHBOARD.HTML */
 
+/* menu lateral à esquerda e conteúdo à direita */
+body {
+    flex-direction: row;
+}
+
 .dash_container {
     display: flex;
     flex-direction: column;
