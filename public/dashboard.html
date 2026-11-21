@@ -262,38 +262,19 @@
 
         // GRÁFICO 2 - OS 66 LIVROS
 
-        var livros = [
-            "Gênesis", "Êxodo", "Levítico", "Números", "Deuteronômio", "Josué", "Juízes", "Rute",
-            "1 Samuel", "2 Samuel", "1 Reis", "2 Reis", "1 Crônicas", "2 Crônicas", "Esdras", "Neemias",
-            "Ester", "Jó", "Salmos", "Provérbios", "Eclesiastes", "Cânticos", "Isaías", "Jeremias",
-            "Lamentações", "Ezequiel", "Daniel", "Oseias", "Joel", "Amós", "Obadias", "Jonas",
-            "Miqueias", "Naum", "Habacuque", "Sofonias", "Ageu", "Zacarias", "Malaquias",
-            "Mateus", "Marcos", "Lucas", "João", "Atos", "Romanos", "1 Coríntios", "2 Coríntios",
-            "Gálatas", "Efésios", "Filipenses", "Colossenses", "1 Tessalonicenses", "2 Tessalonicenses",
-            "1 Timóteo", "2 Timóteo", "Tito", "Filemom", "Hebreus", "Tiago", "1 Pedro", "2 Pedro",
-            "1 João", "2 João", "3 João", "Judas", "Apocalipse"
-        ];
+        // Recebe do servidor a lista dos 66 livros, já na ordem da Bíblia.
+        function criarGraficoLivros(listaLivros) {
+            var livros = [];
+            var totalCapitulos = [];
+            var capitulosLidos = [];
 
-        // Total de capítulos de cada livro (mesma ordem do vetor livros)
-        var totalCapitulos = [
-            50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31,
-            12, 8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4,
-            28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22
-        ];
+            // Separa cada informação num vetor (mesma posição = mesmo livro)
+            for (var i = 0; i < listaLivros.length; i++) {
+                livros.push(listaLivros[i].nome_livro);
+                totalCapitulos.push(listaLivros[i].quantidade_capitulos);
+                capitulosLidos.push(listaLivros[i].capitulos_lidos);
+            }
 
-        // Capítulos lidos de cada livro (fixo por enquanto, depois virá do banco)
-        var capitulosLidos = [];
-
-        for (let i = 0; i < livros.length; i++) {
-            capitulosLidos.push(0);
-        }
-
-        capitulosLidos[0] = 12;  // Gênesis
-        capitulosLidos[7] = 3;   // Rute
-        capitulosLidos[30] = 1;  // Obadias
-        capitulosLidos[42] = 5;  // João
-
-        function criarGraficoLivros() {
             var concluidos = [];
             var emAndamento = [];
             var naoIniciados = [];
@@ -391,8 +372,6 @@
 
             document.getElementById("grafico_periodo").textContent = periodo;
         }
-
-        criarGraficoLivros();
     </script>
 
     <script>
@@ -525,6 +504,26 @@
         }
 
         buscarDataCadastro();
+
+        // Os 66 livros com os capítulos lidos: vem da mesma rota que a página Bíblia usa.
+        function buscarLivros() {
+            fetch(`/leituras/livros/${idUsuario}`, { cache: "no-store" }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        criarGraficoLivros(resposta);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos livros: ${error.message}`);
+                });
+        }
+
+        buscarLivros();
     </script>
 </body>
 </html>
