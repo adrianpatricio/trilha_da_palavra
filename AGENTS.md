@@ -45,6 +45,8 @@ O projeto segue o padrão do web-data-viz:
 ### Estrutura do repositório
 Segue o padrão do web-data-viz (https://github.com/BandTec/web-data-viz). **Não mude essa estrutura.**
 
+O web-data-viz é a base do projeto (estrutura de rotas, controllers, models e o modelo de fetch com response.ok e .catch). Quando ele conflitar com o AGENTS.md, o AGENTS.md prevalece: valores no SQL sempre por ?, var e function, e resposta 404 quando não houver resultado.
+
 ```
 app.js                    -> inicia o Express e liga cada rota (app.use("/usuarios", usuarioRouter))
 public/                   -> front-end (o que o navegador abre)
