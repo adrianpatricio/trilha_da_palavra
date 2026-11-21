@@ -169,6 +169,49 @@
 
         carregarLivros();
 
+        // Confere as regras da senha, caractere por caractere.
+        // Devolve um vetor com as regras que não foram cumpridas (vazio = senha certa).
+        function validarSenha(senha) {
+            var especiais = "!@#$%&*?_-";
+
+            // bandeiras: começam falsas e viram verdadeiras quando o tipo de caractere aparece
+            var temMaiuscula = false;
+            var temMinuscula = false;
+            var temEspecial = false;
+
+            for (var i = 0; i < senha.length; i++) {
+                var caractere = senha[i];
+
+                if (caractere >= "A" && caractere <= "Z") {
+                    temMaiuscula = true;
+                } else if (caractere >= "a" && caractere <= "z") {
+                    temMinuscula = true;
+                } else if (especiais.includes(caractere)) {
+                    temEspecial = true;
+                }
+            }
+
+            var erros = [];
+
+            if (senha.length < 6) {
+                erros.push("A senha deve ter no mínimo 6 caracteres.");
+            }
+
+            if (!temMaiuscula) {
+                erros.push("A senha precisa ter pelo menos uma letra maiúscula.");
+            }
+
+            if (!temMinuscula) {
+                erros.push("A senha precisa ter pelo menos uma letra minúscula.");
+            }
+
+            if (!temEspecial) {
+                erros.push("A senha precisa ter pelo menos um caractere especial (! @ # $ % & * ? _ -).");
+            }
+
+            return erros;
+        }
+
         function cadastrar() {
             var nomeVar = document.getElementById("ipt_nome").value.trim();
             var emailVar = document.getElementById("ipt_email").value.trim();
@@ -192,8 +235,11 @@
                 temErro = true;
             }
 
-            if (senhaVar.length < 6) {
-                mostrarMensagem("erro_senha", "A senha deve ter no mínimo 6 caracteres.");
+            var errosSenha = validarSenha(senhaVar);
+
+            if (errosSenha.length > 0) {
+                // todas as regras que falharam, uma por linha
+                mostrarMensagem("erro_senha", errosSenha.join("\n"));
                 temErro = true;
             }
 

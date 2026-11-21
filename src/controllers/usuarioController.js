@@ -34,18 +34,67 @@ function autenticar(req, res) {
     }
 }
 
+// Confere as regras da senha, caractere por caractere (a mesma lógica do cadastro.html).
+// Devolve as regras que não foram cumpridas, uma por linha, ou "" se a senha estiver certa.
+function validarSenha(senha) {
+    if (senha == undefined) {
+        senha = "";
+    }
+
+    var especiais = "!@#$%&*?_-";
+
+    // bandeiras: começam falsas e viram verdadeiras quando o tipo de caractere aparece
+    var temMaiuscula = false;
+    var temMinuscula = false;
+    var temEspecial = false;
+
+    for (var i = 0; i < senha.length; i++) {
+        var caractere = senha[i];
+
+        if (caractere >= "A" && caractere <= "Z") {
+            temMaiuscula = true;
+        } else if (caractere >= "a" && caractere <= "z") {
+            temMinuscula = true;
+        } else if (especiais.includes(caractere)) {
+            temEspecial = true;
+        }
+    }
+
+    var erros = [];
+
+    if (senha.length < 6) {
+        erros.push("A senha deve ter no mínimo 6 caracteres.");
+    }
+
+    if (!temMaiuscula) {
+        erros.push("A senha precisa ter pelo menos uma letra maiúscula.");
+    }
+
+    if (!temMinuscula) {
+        erros.push("A senha precisa ter pelo menos uma letra minúscula.");
+    }
+
+    if (!temEspecial) {
+        erros.push("A senha precisa ter pelo menos um caractere especial (! @ # $ % & * ? _ -).");
+    }
+
+    return erros.join("\n");
+}
+
 function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var livroFavorito = req.body.livroFavoritoServer;
 
+    var errosSenha = validarSenha(senha);
+
     if (nome == undefined || nome.trim() == "") {
         res.status(400).send("Informe seu nome.");
     } else if (email == undefined || !email.includes("@") || !email.includes(".")) {
         res.status(400).send("Informe um e-mail válido.");
-    } else if (senha == undefined || senha.length < 6) {
-        res.status(400).send("A senha deve ter no mínimo 6 caracteres.");
+    } else if (errosSenha != "") {
+        res.status(400).send(errosSenha);
     } else {
 
         if (livroFavorito == undefined || livroFavorito == "") {

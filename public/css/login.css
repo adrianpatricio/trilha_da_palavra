@@ -126,6 +126,12 @@ main h1 {
     color: var(--verde);
 }
 
+/* pre-line: o "\n" do texto vira quebra de linha (uma regra da senha por linha) */
+.mensagem_erro,
+.mensagem_erro_campo {
+    white-space: pre-line;
+}
+
 .mensagem_erro_campo {
     display: none;
     font-size: 13px;
