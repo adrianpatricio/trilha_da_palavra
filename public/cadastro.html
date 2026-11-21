@@ -214,6 +214,8 @@
                 })
             }).then(function (resposta) {
                 if (resposta.ok) {
+                    // sucesso: a mensagem fica verde
+                    document.getElementById("mensagem_erro").classList.add("mensagem_sucesso");
                     mostrarMensagem("mensagem_erro", "Conta criada! Redirecionando para o login...");
 
                     setTimeout(function () {

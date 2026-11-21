@@ -120,6 +120,12 @@ main h1 {
     display: block;
 }
 
+/* mensagem de sucesso: mesma caixa da mensagem de erro, mas verde */
+.mensagem_erro.mensagem_sucesso {
+    background-color: var(--verde_suave);
+    color: var(--verde);
+}
+
 .mensagem_erro_campo {
     display: none;
     font-size: 13px;

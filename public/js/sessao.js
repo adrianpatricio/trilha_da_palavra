@@ -18,5 +18,8 @@ function limparMensagens() {
     for (var i = 0; i < spans.length; i++) {
         spans[i].textContent = "";
         spans[i].classList.remove("ativa");
+
+        // volta a mensagem para a cor de erro (vermelha), que é a padrão
+        spans[i].classList.remove("mensagem_sucesso");
     }
 }
