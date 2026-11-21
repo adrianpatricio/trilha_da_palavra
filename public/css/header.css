@@ -267,8 +267,21 @@ a {
     border-bottom: 1px solid var(--borda_padrao);
 }
 
-.menu_conta_nome {
+/* nome e e-mail: num flex, o item não encolhe menos que o próprio texto (min-width: auto);
+   com min-width: 0 ele pode encolher, e o texto longo é cortado com "..." */
+.menu_conta_texto {
+    min-width: 0;
+}
+
+.menu_conta_nome,
+.menu_conta_email {
     display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.menu_conta_nome {
     font-size: 14px;
     font-weight: 800;
     color: var(--texto_principal);
