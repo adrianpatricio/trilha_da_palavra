@@ -111,10 +111,12 @@
             <section class="kpis">
                 <p class="kpi_titulo">Sequência</p>
 
+                <p class="kpi_subtitulo">Dias seguidos com leitura</p>
+
                 <section class="kpi_numero">
                     <h4 id="kpi_sequencia">0</h4>
 
-                    <h6>dias seguidos com leitura</h6>
+                    <h6>dias</h6>
                 </section>
 
                 <p id="kpi_sequencia_detalhe" class="kpi_rodape">Carregando...</p>
@@ -123,10 +125,12 @@
             <section class="kpis">
                 <p class="kpi_titulo">Últimos 7 dias</p>
 
+                <p class="kpi_subtitulo"><span id="kpi_semana_periodo">...</span></p>
+
                 <section class="kpi_numero">
                     <h4 id="kpi_semana">0</h4>
 
-                    <h6>capítulos lidos</h6>
+                    <h6>capítulos</h6>
                 </section>
 
                 <p id="kpi_semana_media" class="kpi_rodape">Carregando...</p>
@@ -394,6 +398,7 @@
             }
 
             document.getElementById("grafico_periodo").textContent = periodo;
+            document.getElementById("kpi_semana_periodo").textContent = periodo;
         }
     </script>
 
@@ -470,7 +475,8 @@
             if (dados.ultimaLeitura == null) {
                 sequenciaDetalhe.textContent = "Marque uma leitura hoje para começar uma sequência.";
             } else if (dados.ultimaLeitura.diasAtras == 0) {
-                sequenciaDetalhe.textContent = "▲ Você leu hoje: a sequência continua.";
+                // o ▲ verde é colocado pelo CSS (.kpi_rodape_destaque::before)
+                sequenciaDetalhe.textContent = "Você leu hoje: a sequência continua.";
                 sequenciaDetalhe.classList.add("kpi_rodape_destaque");
             } else if (dados.ultimaLeitura.diasAtras == 1) {
                 // a sequência ainda vale até o fim de hoje (mesma regra do controller)
