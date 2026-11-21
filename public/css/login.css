@@ -126,10 +126,23 @@ main h1 {
     color: var(--verde);
 }
 
-/* pre-line: o "\n" do texto vira quebra de linha (uma regra da senha por linha) */
-.mensagem_erro,
-.mensagem_erro_campo {
-    white-space: pre-line;
+/* regras da senha: uma por linha, com "•" na frente e um pequeno espaço entre elas */
+.regra_senha {
+    display: block;
+    position: relative;
+    padding-left: var(--espaco_12);
+}
+
+/* o "•" fica à esquerda; se a regra quebrar em duas linhas, a segunda continua alinhada com o texto */
+.regra_senha::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+}
+
+/* espaço só entre uma regra e a seguinte (não antes da primeira) */
+.regra_senha + .regra_senha {
+    margin-top: var(--espaco_4);
 }
 
 .mensagem_erro_campo {

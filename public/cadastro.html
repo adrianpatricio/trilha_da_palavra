@@ -212,6 +212,26 @@
             return erros;
         }
 
+        // Mostra cada linha do texto como uma regra separada (o "•" e o espaço vêm do CSS .regra_senha).
+        function mostrarRegras(idSpan, texto) {
+            var span = document.getElementById(idSpan);
+            var regras = texto.split("\n");
+
+            span.textContent = "";
+
+            for (var i = 0; i < regras.length; i++) {
+                var item = document.createElement("span");
+                item.className = "regra_senha";
+
+                // textContent: o texto entra como texto puro, sem passar pelo HTML (mais seguro que innerHTML)
+                item.textContent = regras[i];
+
+                span.appendChild(item);
+            }
+
+            span.classList.add("ativa");
+        }
+
         function cadastrar() {
             var nomeVar = document.getElementById("ipt_nome").value.trim();
             var emailVar = document.getElementById("ipt_email").value.trim();
@@ -239,7 +259,7 @@
 
             if (errosSenha.length > 0) {
                 // todas as regras que falharam, uma por linha
-                mostrarMensagem("erro_senha", errosSenha.join("\n"));
+                mostrarRegras("erro_senha", errosSenha.join("\n"));
                 temErro = true;
             }
 
@@ -269,7 +289,12 @@
                     }, 2000);
                 } else {
                     resposta.text().then(function (texto) {
-                        mostrarMensagem("mensagem_erro", texto);
+                        // mais de uma linha = regras da senha (vêm separadas por "\n" do controller)
+                        if (texto.includes("\n")) {
+                            mostrarRegras("mensagem_erro", texto);
+                        } else {
+                            mostrarMensagem("mensagem_erro", texto);
+                        }
                     });
                 }
             }).catch(function (erro) {
