@@ -284,9 +284,13 @@ function buscarProgresso(req, res) {
                 // Capítulos lidos de hoje até 6 dias atrás
                 var ultimos7Dias = 0;
 
+                // Capítulos de cada um dos últimos 7 dias: posição 0 = 6 dias atrás, posição 6 = hoje
+                var capitulosPorDia = [0, 0, 0, 0, 0, 0, 0];
+
                 for (var i = 0; i < dias.length; i++) {
                     if (dias[i].dias_atras <= 6) {
                         ultimos7Dias += dias[i].capitulos;
+                        capitulosPorDia[6 - dias[i].dias_atras] = dias[i].capitulos;
                     }
                 }
 
@@ -309,6 +313,7 @@ function buscarProgresso(req, res) {
                     totalLivros: livros.length,
                     sequencia: sequencia,
                     ultimos7Dias: ultimos7Dias,
+                    capitulosPorDia: capitulosPorDia,
                     ultimaLeitura: ultimaLeitura,
                     proxima: proxima
                 });

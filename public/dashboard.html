@@ -132,7 +132,11 @@
         <!-- GRÁFICOS: um embaixo do outro; o dos livros é o maior -->
         <section class="dash_graficos">
             <section class="grafico_dias">
-                <p class="grafico_titulo">Capítulos por dia, últimos 7 dias</p>
+                <section class="grafico_topo">
+                    <p class="grafico_titulo">Capítulos lidos por dia</p>
+
+                    <p class="grafico_legenda">Últimos 7 dias · <span id="grafico_periodo">...</span> · em capítulos</p>
+                </section>
 
                 <section class="grafico_canvas">
                     <canvas id="canvas_dias"></canvas>
@@ -164,10 +168,25 @@
 
         // GRÁFICO 1 - CAPÍTULOS POR DIA
 
-        var dias = ["qua", "qui", "sex", "sáb", "dom", "seg", "hoje"];
-        var capitulosPorDia = [0, 2, 2, 2, 2, 6, 7];
+        // Recebe do servidor os capítulos de cada dia (posição 0 = 6 dias atrás, posição 6 = hoje).
+        function criarGraficoDias(capitulosPorDia) {
+            var nomesDias = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
+            var dias = [];
 
-        function criarGraficoDias() {
+            // Nome de cada dia, de 6 dias atrás até hoje; getDay() dá 0 para domingo, 1 para segunda...
+            for (var i = 6; i >= 0; i--) {
+                var data = new Date();
+                data.setDate(data.getDate() - i);
+
+                if (i == 0) {
+                    dias.push("hoje");
+                } else {
+                    dias.push(nomesDias[data.getDay()]);
+                }
+            }
+
+            mostrarPeriodo();
+
             var cores = [];
 
             for (let i = 0; i < capitulosPorDia.length; i++) {
@@ -353,7 +372,26 @@
             });
         }
 
-        criarGraficoDias();
+        // Período do gráfico: "15 a 21/11" (ou "28/10 a 3/11" quando muda o mês).
+        function mostrarPeriodo() {
+            var inicio = new Date();
+            inicio.setDate(inicio.getDate() - 6);
+
+            var hoje = new Date();
+
+            // getMonth() começa em 0 (janeiro), por isso o + 1
+            var mesInicio = inicio.getMonth() + 1;
+            var mesHoje = hoje.getMonth() + 1;
+
+            var periodo = `${inicio.getDate()}/${mesInicio} a ${hoje.getDate()}/${mesHoje}`;
+
+            if (mesInicio == mesHoje) {
+                periodo = `${inicio.getDate()} a ${hoje.getDate()}/${mesHoje}`;
+            }
+
+            document.getElementById("grafico_periodo").textContent = periodo;
+        }
+
         criarGraficoLivros();
     </script>
 
@@ -449,16 +487,21 @@
             document.getElementById("grafico_media").textContent = textoPrevisao;
         }
 
-        fetch(`/leituras/progresso/${idUsuario}`)
-            .then(function (resposta) {
-                return resposta.json();
-            })
-            .then(function (dados) {
-                console.log("Progresso recebido: ", dados);
-                mostrarProgresso(dados);
-            })
-            .catch(function (erro) {
-                console.log(erro);
+        fetch(`/leituras/progresso/${idUsuario}`, { cache: "no-store" }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    mostrarProgresso(resposta);
+                    criarGraficoDias(resposta.capitulosPorDia);
+                });
+            } else {
+                console.error("Nenhum dado encontrado ou erro na API");
+                alert("Não foi possível carregar seu progresso.");
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção do progresso: ${error.message}`);
                 alert("Não foi possível carregar seu progresso.");
             });
 
