@@ -83,6 +83,8 @@
             <section class="kpis">
                 <p class="kpi_titulo">Capítulos lidos</p>
 
+                <p class="kpi_subtitulo">Desde o cadastro (<span id="kpi_cadastro_capitulos">...</span>)</p>
+
                 <section class="kpi_numero">
                     <h4 id="kpi_capitulos">0</h4>
 
@@ -92,6 +94,8 @@
 
             <section class="kpis">
                 <p class="kpi_titulo">Livros concluídos</p>
+
+                <p class="kpi_subtitulo">Desde o cadastro (<span id="kpi_cadastro_livros">...</span>)</p>
 
                 <section class="kpi_numero">
                     <h4 id="kpi_livros">0</h4>
@@ -427,6 +431,27 @@
                 console.log(erro);
                 alert("Não foi possível carregar seu progresso.");
             });
+
+        // Data de cadastro: vem da mesma rota que a página de perfil usa.
+        function buscarDataCadastro() {
+            fetch(`/usuarios/perfil/${idUsuario}`, { cache: "no-store" }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta.data_cadastro)}`);
+
+                        document.getElementById("kpi_cadastro_capitulos").textContent = resposta.data_cadastro;
+                        document.getElementById("kpi_cadastro_livros").textContent = resposta.data_cadastro;
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção da data de cadastro: ${error.message}`);
+                });
+        }
+
+        buscarDataCadastro();
     </script>
 </body>
 </html>

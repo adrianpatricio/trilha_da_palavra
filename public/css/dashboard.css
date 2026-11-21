@@ -255,6 +255,13 @@ body {
     font-weight: 600;
 }
 
+/* ".kpis" na frente: sem ele, a regra ".dash_container p" (margin: 0) vence */
+.kpis .kpi_subtitulo {
+    margin-top: calc(var(--espaco_8) * -1);
+    font-size: 12px;
+    color: var(--texto_secundario);
+}
+
 /* número grande com a explicação curta ao lado */
 .kpi_numero {
     display: flex;
