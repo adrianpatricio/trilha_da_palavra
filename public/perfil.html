@@ -39,8 +39,6 @@
 
                 <p id="email_perfil" class="email_perfil"></p>
 
-                <span id="tipo_perfil" class="selo_tipo">Leitor</span>
-
                 <section class="resumo_perfil">
                     <div class="linha_resumo">
                         <span>Membro desde</span>
@@ -329,12 +327,6 @@
             document.getElementById("nome_perfil").textContent = perfil.nome_usuario;
             document.getElementById("email_perfil").textContent = perfil.email_usuario;
             document.getElementById("kpi_membro_desde").textContent = perfil.data_cadastro;
-
-            if (perfil.tipo_usuario == "ADMIN") {
-                document.getElementById("tipo_perfil").textContent = "Administrador";
-            } else {
-                document.getElementById("tipo_perfil").textContent = "Leitor";
-            }
 
             // botão "Iniciais" da grade mostra as iniciais da pessoa
             document.querySelector(".avatar_iniciais").textContent = calcularIniciais(perfil.nome_usuario);

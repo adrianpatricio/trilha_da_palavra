@@ -112,7 +112,7 @@ Uma funcionalidade nova passa por esses mesmos arquivos e nessa ordem: rota no `
 - O cabeçalho e o rodapé são vazios no HTML (`<header id="header" data-pagina="...">` e `<footer id="footer" ...>`) e preenchidos por `js/header.js` e `js/footer.js`.
 - Páginas que exigem login chamam `exigirLogin();` (de `sessao.js`) no `<head>`.
 - O JavaScript próprio de cada página fica num `<script>` no fim do `<body>`.
-- Os dados do usuário logado ficam no `sessionStorage`: `ID_USUARIO`, `NOME_USUARIO`, `EMAIL_USUARIO` e `TIPO_USUARIO`.
+- Os dados do usuário logado ficam no `sessionStorage`: `ID_USUARIO`, `NOME_USUARIO` e `EMAIL_USUARIO`.
 - `id` em snake_case com prefixo pelo tipo: `ipt_` (input), `btn_` (botão), `erro_` (mensagem de erro de um campo), `canvas_` (gráfico), `kpi_` (indicador). Exemplos: `ipt_email`, `btn_marcar_livro`, `canvas_dias`.
 - Eventos com `onclick="funcao()"` direto no HTML.
 

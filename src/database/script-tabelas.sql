@@ -17,13 +17,11 @@ CREATE TABLE usuario (
     nome_usuario VARCHAR(100) NOT NULL,
     email_usuario VARCHAR(100) NOT NULL UNIQUE,
     senha_usuario VARCHAR(100) NOT NULL,
-    tipo_usuario VARCHAR(20) NOT NULL DEFAULT 'USER',
     avatar_usuario VARCHAR(20) NOT NULL DEFAULT 'inicial',
     foto_usuario MEDIUMTEXT, -- foto personalizada (imagem em texto base64); NULL = usa o avatar
     data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
     fk_livro_favorito INT,
     
-    CONSTRAINT ch_tipo_usuario CHECK (tipo_usuario IN ('USER', 'ADMIN')),
     CONSTRAINT fk_livro_usuario FOREIGN KEY (fk_livro_favorito) REFERENCES livro (id_livro)
 );
 
@@ -109,6 +107,6 @@ INSERT INTO livro (id_livro, nome_livro, testamento, quantidade_capitulos) VALUE
 	(65, 'Judas', 'NT', 1), 
 	(66, 'Apocalipse', 'NT', 22);
   
-INSERT INTO usuario (nome_usuario, email_usuario, senha_usuario, tipo_usuario, avatar_usuario, fk_livro_favorito) VALUES
-	('adrian', 'admin@trilha.com', '#admin123', 'ADMIN', 'davi', 19),
-	('leitor', 'leitor@trilha.com', '#leitor123', 'USER',  'inicial', NULL);
+INSERT INTO usuario (nome_usuario, email_usuario, senha_usuario, avatar_usuario, fk_livro_favorito) VALUES
+	('adrian', 'admin@trilha.com', '#admin123', 'davi', 19),
+	('leitor', 'leitor@trilha.com', '#leitor123', 'inicial', NULL);

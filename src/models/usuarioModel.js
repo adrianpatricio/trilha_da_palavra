@@ -2,7 +2,7 @@ var database = require("../database/config")
 
 function buscarEmail(email) {
     var instrucaoSql = `
-        SELECT id_usuario, nome_usuario, email_usuario, senha_usuario, tipo_usuario FROM usuario WHERE email_usuario = ?;
+        SELECT id_usuario, nome_usuario, email_usuario, senha_usuario FROM usuario WHERE email_usuario = ?;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -22,7 +22,7 @@ function cadastrar(nome, email, senha, livroFavorito) {
 
 function buscarPerfil(idUsuario) {
     var instrucaoSql = `
-        SELECT nome_usuario, email_usuario, tipo_usuario, avatar_usuario, foto_usuario, fk_livro_favorito,
+        SELECT nome_usuario, email_usuario, avatar_usuario, foto_usuario, fk_livro_favorito,
             DATE_FORMAT(data_cadastro, '%d/%m/%Y') AS data_cadastro
         FROM usuario WHERE id_usuario = ?;
     `;

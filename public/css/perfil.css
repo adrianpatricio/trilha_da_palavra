@@ -106,15 +106,6 @@ main h2 {
     color: var(--texto_secundario);
 }
 
-.selo_tipo {
-    padding: var(--espaco_4) var(--espaco_10);
-    border-radius: 999px;
-    background-color: var(--verde_suave);
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--verde_escuro);
-}
-
 .resumo_perfil {
     display: flex;
     flex-direction: column;

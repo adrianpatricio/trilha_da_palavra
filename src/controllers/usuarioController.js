@@ -17,8 +17,7 @@ function autenticar(req, res) {
                         res.json({
                             id: resultado[0].id_usuario,
                             nome: resultado[0].nome_usuario,
-                            email: resultado[0].email_usuario,
-                            tipo: resultado[0].tipo_usuario
+                            email: resultado[0].email_usuario
                         });
                     } else {
                         res.status(401).send('E-mail e/ou senha inválido(s).');
